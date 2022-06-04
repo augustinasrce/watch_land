@@ -4,20 +4,20 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const TableItem = () => {
-  const addressId = useParams().addressId;
+  const ip = useParams().ip;
   const [address, setAddress] = useState();
 
   useEffect(() => {
-    if (addressId) {
+    if (ip) {
       axios
-        .get(`http://localhost:3004/address/${addressId}`)
+        .get(`http://localhost:3004/address?ip=${ip}`)
         .then(response => {
-          setAddress(response.data);
+          setAddress(response.data[0]);
           console.log(response);
         })
         .catch(error => alert("broken"));
     }
-  }, [addressId]);
+  }, [ip]);
 
   return (
     <div>
