@@ -5,21 +5,25 @@ import "../table/table.css";
 
 const Provider = ({ type }) => {
   const [address, setAddress] = useState([]);
-
-  const [pageSize, setPageSize] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const pageSize = 5;
+
   useEffect(() => {
+    let url = `http://localhost:3004/address?_limit=${pageSize}&_page=${currentPage}`;
+    if (type) {
+      url = `${url}&type=${type}`;
+    }
     axios
-      .get(`http://localhost:3004/address?type=${type}&_limit=${pageSize}&_page=${currentPage}`)
+      .get(url)
       .then(response => {
         setAddress(response.data);
       })
       .catch(error => alert("broken"));
-  }, [type, currentPage, pageSize]);
+  }, [type, currentPage]);
 
   return (
-    <>
+    <React.Fragment>
       <table className="table">
         <thead>
           <tr>
@@ -43,7 +47,7 @@ const Provider = ({ type }) => {
         </tbody>
       </table>
       <input type="number" onChange={e => setCurrentPage(e.target.value)} />
-    </>
+    </React.Fragment>
   );
 };
 export default Provider;
