@@ -1,0 +1,10 @@
+{
+    "address": [
+      { "id": 1, "ip": "104.234.23.1" , "name": "Aws-test-1", "type": "aws" },
+      { "id": 2, "ip": "104.543.23.3", "name": "Google-test-1", "type": "google"}
+    ],
+    "aws": [
+      {"id": 1, "group": [{"id": 1, "name": "groupName"}, {"id": 2, "name": "groupName2"}]}
+    ]
+}
+

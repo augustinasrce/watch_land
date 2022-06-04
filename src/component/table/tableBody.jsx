@@ -1,25 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import TableItem from "./tableItem";
 
-const TableBody = ({ dummyDataId, dummyDataName, dummyDataAuthor }) => {
+const TableBody = ({ address }) => {
   return (
     <table className="table">
       <thead>
         <tr>
-          <th>Api</th>
-          <th>Title</th>
-          <th>Number</th>
+          <th>Id</th>
+          <th>Ip</th>
+          <th>Name</th>
+          <th>Type</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th>
-            <Link to="/aws/tableBody/tableItem">{dummyDataId}</Link>
-          </th>
-          <th>{dummyDataName}</th>
-          <th>{dummyDataAuthor}</th>
-        </tr>
+        {address.map(a => (
+          <tr key={a.id}>
+            <td>
+              <Link to={`/aws/tableBody/${a.id}`}>{a.id}</Link>
+            </td>
+            <td>{a.ip}</td>
+            <td>{a.name}</td>
+            <td>{a.type}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );

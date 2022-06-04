@@ -20,7 +20,7 @@ function App() {
           <Route path="/azure" element={<Azure />}></Route>
           <Route path="/google" element={<Google />}></Route>
           <Route path="/aws/tableBody" element={<TableBody />}></Route>
-          <Route path="/aws/tableBody/tableItem" element={<TableItem />}></Route>
+          <Route path="/aws/tableBody/:addressId" element={<TableItem />}></Route>
         </Routes>
       </main>
     </div>
