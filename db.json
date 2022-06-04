@@ -1,7 +1,12 @@
 {
     "address": [
-      { "id": 1, "ip": "104.234.23.1" , "name": "Aws-test-1", "type": "aws" },
-      { "id": 2, "ip": "104.543.23.3", "name": "Google-test-1", "type": "google"}
+      { "id": 1, "ip": "104.234.23.1" , "name": "Aws-test-1", "type": "aws", "location": "london" },
+      { "id": 2, "ip": "103.268.01.7", "name": "Google-test-1", "type": "google", "location": "london"},
+      { "id": 3, "ip": "259.543.11.9", "name": "Google-test-2", "type": "google", "location": "vilnius"},
+      { "id": 4, "ip": "401.760.45.1" , "name": "Aws-test-2", "type": "aws", "location": "tokyo" },
+      { "id": 5, "ip": "102.985.99.1" , "name": "Azure-test-1", "type": "azure", "location": "paris" },
+      { "id": 6, "ip": "352.640.18.3" , "name": "Azure-test-1", "type": "azure", "location": "miami" }
+
     ],
     "aws": [
       {"id": 1, "group": [{"id": 1, "name": "groupName"}, {"id": 2, "name": "groupName2"}]}
