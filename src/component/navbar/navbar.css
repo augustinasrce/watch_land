@@ -3,10 +3,15 @@
   align-items: center;
   justify-content: flex-end;
   height: 10%;
-  border-bottom: 2px solid;
+  background-color: #232f3e;
 }
 
 .navbar a {
   margin: 0 24px;
+  padding: 6px;
+  color: #ddd;
+  background-color: #232f3e;
   text-decoration: none;
+  font-family: "Roboto Mono", monospace;
+  font-size: 24px;
 }
