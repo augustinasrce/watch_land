@@ -5,9 +5,16 @@ import "./navbar.css";
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <Link to="/aws">AWS</Link>
-      <Link to="/azure">Azure</Link>
-      <Link to="/google">Google Cloud</Link>
+      <span className="logo">Logo</span>
+      <Link className="navlink" to="/aws">
+        AWS
+      </Link>
+      <Link className="navlink" to="/azure">
+        Azure
+      </Link>
+      <Link className="navlink" to="/google">
+        Google Cloud
+      </Link>
     </nav>
   );
 };

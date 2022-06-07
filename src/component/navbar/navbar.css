@@ -4,14 +4,27 @@
   justify-content: flex-end;
   height: 10%;
   background-color: #232f3e;
+  padding-right: 24px;
+  padding-left: 24px;
 }
 
-.navbar a {
+.navlink {
+  width: 10%;
   margin: 0 24px;
   padding: 6px;
   color: #ddd;
-  background-color: #232f3e;
+  background-color: #d35400;
+  border-radius: 6px;
   text-decoration: none;
   font-family: "Roboto Mono", monospace;
+  font-size: 16px;
+  text-align: center;
+}
+
+.logo {
+  margin: 24px;
+  color: #ddd;
   font-size: 24px;
+  position: absolute;
+  left: 24px;
 }
