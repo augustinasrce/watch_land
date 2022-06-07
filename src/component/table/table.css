@@ -1,4 +1,17 @@
 .table {
   width: 80%;
   margin: 0 auto;
+  background-color: #fbfcfc;
+  border-radius: 24px;
+  text-align: center;
+  min-height: 400px;
+  box-shadow: 0 0 20px rgb(0 0 0 / 15%);
+}
+
+.table thead th {
+  padding: 10px 0;
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background-color: #e5eaef;
 }

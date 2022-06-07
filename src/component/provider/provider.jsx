@@ -33,7 +33,7 @@ const Provider = ({ type }) => {
             <th>Type</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="tablebody">
           {address.map(a => (
             <tr key={a.id}>
               <td>{a.id}</td>
