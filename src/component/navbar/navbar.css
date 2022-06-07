@@ -21,6 +21,14 @@
   text-align: center;
 }
 
+.selected {
+  background-color: #b44a03;
+}
+
+.navlink:hover {
+  background-color: #b44a03;
+}
+
 .logo {
   margin: 24px;
   color: #ddd;
