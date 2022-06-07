@@ -46,7 +46,12 @@ const Provider = ({ type }) => {
           ))}
         </tbody>
       </table>
-      <input type="number" onChange={e => setCurrentPage(e.target.value)} />
+      <nav className="pagination">
+        <ul>
+          <li onClick={() => setCurrentPage(currentPage - 1)}>Previous</li>
+          <li onClick={() => setCurrentPage(currentPage + 1)}>Next</li>
+        </ul>
+      </nav>
     </React.Fragment>
   );
 };

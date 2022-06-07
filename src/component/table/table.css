@@ -15,3 +15,25 @@
 .table tbody tr:nth-of-type(odd) {
   background-color: #e5eaef;
 }
+
+.pagination ul {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+}
+
+.pagination li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 0.5px solid #0000ff;
+  height: 32px;
+  width: 84px;
+  list-style: none;
+  background-color: #fbfcfc;
+}
+
+.pagination li:hover {
+  cursor: pointer;
+}
