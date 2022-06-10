@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "../table/table.css";
+import "../provider/provider.css";
 
 const Provider = ({ type }) => {
   const [address, setAddress] = useState([]);
