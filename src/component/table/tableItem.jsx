@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "../table/table.css";
 
 const TableItem = () => {
   const ip = useParams().ip;
@@ -13,24 +14,24 @@ const TableItem = () => {
         .get(`http://localhost:3004/address?ip=${ip}`)
         .then(response => {
           setAddress(response.data[0]);
-          console.log(response);
         })
         .catch(error => alert("broken"));
     }
   }, [ip]);
 
   return (
-    <div>
-      <table>
+    <div className="small-table">
+      <table className="table-ip">
         <thead>
           <tr>
             <th>Ip</th>
             <th>Location</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="tablebody-ip">
           <tr>
-            <td>{address ? `${address.ip} ${address.location}` : ""}</td>
+            <td>{address ? `${address.ip}` : ""}</td>
+            <td>{address ? `${address.location}` : ""}</td>
           </tr>
         </tbody>
       </table>

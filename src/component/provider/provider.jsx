@@ -24,7 +24,7 @@ const Provider = ({ type }) => {
 
   return (
     <React.Fragment>
-      <table className="table">
+      <table className="table ip">
         <thead>
           <tr>
             <th>Id</th>
