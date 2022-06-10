@@ -35,7 +35,9 @@ const TableItem = () => {
           </tr>
         </tbody>
       </table>
-      <Link to="/">Back</Link>
+      <Link className="back-button" to="/">
+        Back
+      </Link>
     </div>
   );
 };
