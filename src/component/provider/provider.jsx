@@ -27,7 +27,7 @@ const Provider = ({ type }) => {
       <table className="table ip">
         <thead>
           <tr>
-            <th>Id</th>
+            <th>Icon</th>
             <th>Ip</th>
             <th>Name</th>
             <th>Type</th>
@@ -36,7 +36,9 @@ const Provider = ({ type }) => {
         <tbody className="tablebody">
           {address.map(a => (
             <tr key={a.id}>
-              <td>{a.id}</td>
+              <td>
+                <img src={`${process.env.PUBLIC_URL}${a.image}`} alt="icon"></img>
+              </td>
               <td>
                 <Link to={`/provider/${a.ip}`}>{a.ip}</Link>
               </td>
