@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import "../provider/provider.css";
 
 const Provider = ({ type }) => {
@@ -14,8 +13,7 @@ const Provider = ({ type }) => {
     if (type) {
       url = `${url}&type=${type}`;
     }
-    axios
-      .get(url)
+    fetch(url)
       .then(response => {
         setAddress(response.data);
       })
@@ -24,7 +22,13 @@ const Provider = ({ type }) => {
 
   return (
     <React.Fragment>
-      <table className="table ip">
+      <section>
+        <div>
+          <div></div>
+          <div>Timestamp</div>
+        </div>
+      </section>
+      {/* <table className="table ip">
         <thead>
           <tr>
             <th>Icon</th>
@@ -47,7 +51,7 @@ const Provider = ({ type }) => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
       <nav className="pagination">
         <ul>
           <li onClick={() => setCurrentPage(currentPage - 1)}>Previous</li>
