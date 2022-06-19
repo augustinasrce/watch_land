@@ -23,7 +23,9 @@ const TableItem = () => {
       </div>
       <section className="main section">
         {streams.map(s => (
-          <div className="small-section">
+          <div
+            className={isTriangleClicked ? `${"small-section"}` : `${"small-section-extension"}`}
+          >
             <img
               className="img-triangle"
               onClick={() => setTriangleClicked(!isTriangleClicked)}

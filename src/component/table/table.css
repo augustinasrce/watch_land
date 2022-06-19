@@ -31,6 +31,16 @@
   margin-left: 72px;
 }
 
+.small-section-extension {
+  display: flex;
+  height: 72px;
+}
+
+.small-section-extension div {
+  padding: 6px;
+  margin-left: 72px;
+}
+
 .title {
   display: flex;
 }
