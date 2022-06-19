@@ -17,8 +17,9 @@ const Provider = ({ type }) => {
   return (
     <React.Fragment>
       <section>
-        <div>
-          <div>Timestamp</div>
+        <div className="title">
+          <h3>Log stream</h3>
+          <h3>Last event time</h3>
         </div>
         {groups.map(g => (
           <div className="timestamp">

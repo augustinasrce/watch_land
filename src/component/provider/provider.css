@@ -43,3 +43,12 @@
   padding: 0 32px;
   margin-left: 32px;
 }
+
+.title {
+  display: flex;
+}
+
+.title h3 {
+  width: 25%;
+  margin-left: 72px;
+}

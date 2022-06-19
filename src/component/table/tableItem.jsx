@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as ProviderService from "../../services/providerService.js";
+import Triangle from "../../component/table/triangle.png";
 import "../table/table.css";
 
 const TableItem = () => {
@@ -13,16 +14,21 @@ const TableItem = () => {
   }, []);
 
   return (
-    <div className="small-table">
-      <section>
-        <div>
-          {streams.map(s => (
-            <div>
-              <div key={s.time}>{s.time}</div>
-              <div key={s.message}>{s.message}</div>
+    <div>
+      <div className="title">
+        <h3>TimeStamp</h3>
+        <h3>Message</h3>
+      </div>
+      <section className="main section">
+        {streams.map(s => (
+          <div className="small-section">
+            <img className="img-triangle" src={Triangle} alt="" />
+            <div key={s.time}>{s.time}</div>
+            <div className="section-message" key={s.message}>
+              {s.message}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </section>
       <Link className="back-button" to="/">
         Back

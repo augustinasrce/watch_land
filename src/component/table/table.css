@@ -22,9 +22,25 @@
   margin: 16px auto;
 }
 
-.small-table {
-  height: 60vh;
+.small-section {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+}
+
+.small-section div {
+  padding: 6px;
+  margin-left: 72px;
+}
+
+.title {
+  display: flex;
+}
+
+.title h3 {
+  width: 25%;
+  margin-left: 72px;
+}
+
+.img-triangle {
+  width: 16px;
+  height: 16px;
 }
