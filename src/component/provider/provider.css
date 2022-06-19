@@ -34,3 +34,12 @@
 .pagination li:hover {
   cursor: pointer;
 }
+
+.timestamp {
+  display: flex;
+}
+
+.timestamp-div {
+  padding: 0 32px;
+  margin-left: 32px;
+}
