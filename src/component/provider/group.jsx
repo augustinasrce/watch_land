@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../provider/provider.css";
+import "./provider.css";
 import * as ProviderService from "../../services/providerService.js";
 
 const Provider = ({ type }) => {

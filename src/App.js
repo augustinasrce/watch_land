@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./component/navbar/navbar";
 import TableItem from "./component/table/tableItem";
-import Provider from "./component/provider/provider";
+import Provider from "./component/group/group";
 import "./App.css";
 
 const App = () => {

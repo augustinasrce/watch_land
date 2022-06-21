@@ -32,10 +32,8 @@ const TableItem = () => {
               src={isTriangleClicked ? Triangle : TriangleRight}
               alt=""
             />
-            <div key={s.time}>{s.time}</div>
-            <div className="section-message" key={s.message}>
-              {s.message}
-            </div>
+            <div>{s.time}</div>
+            <div className="section-message">{s.message}</div>
           </div>
         ))}
       </section>
