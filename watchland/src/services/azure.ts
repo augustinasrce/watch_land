@@ -1,10 +1,11 @@
-import { IApiProvider } from "../utils/interfaces";
+import { IApiProvider, IProviderGroup } from "../utils/interfaces";
 import { BaseApiProvider } from "./base";
 
 export class AzureApiProvider extends BaseApiProvider{
 
-    async getGroups(): Promise<void>{
+    async getGroups(): Promise<IProviderGroup[]|[]>{
         console.log('AZURE GROUPS')
+        return []
     }
 
     async getStream(streamId: string): Promise<void> {

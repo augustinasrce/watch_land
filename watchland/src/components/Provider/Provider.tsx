@@ -1,31 +1,32 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { getProviderGroups } from '../../services/services';
 import { ProviderTypes } from '../../utils/enum';
-import Groups from '../Groups/Groups';
+import { IProviderGroup } from '../../utils/interfaces';
+import TableItem from '../TableItem/TableItem';
 import './Provider.scss';
 
-interface IProviderProps {
+
+interface IProviderPros{
   type:ProviderTypes
 }
 
-const Provider: FC<IProviderProps> = ({type}) => {
-  const [groups, setGroup] = useState([]);
-  
-  useEffect(() => {
-    const providerGroups:any = getProviderGroups(type)
-    setGroup(providerGroups)
-  }, [type]);
+const DEFAULT_STATE:IProviderGroup[] = [{ id:0, stream:'', lastEvent:'' }]
 
-  const grops = getProviderGroups(type)
+const Provider:FC<IProviderPros> = ({type}) => {
+  const [service, setService] = useState<IProviderGroup[]>(DEFAULT_STATE);
+
+  useEffect(() => {
+    loadService()
+  }, [])
+
+  const loadService = async () => {
+    const services:IProviderGroup[] = await getProviderGroups(type)
+    setService(services)
+  }
 
   return (
     <div>
-      {[...groups.map((group:any) => {
-        return (
-          <Groups data={group}></Groups>
-        )
-      })
-      ]}
+      <TableItem groups={service} />
     </div>
   )
 }

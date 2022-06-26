@@ -1,0 +1,15 @@
+{
+  "groups": [
+  {"id": 1, "stream":"2022/05/23/[$LATEST]887be0e64f9e4b1f863665a72c32507a1", "lastEvent":"14-06-2022 20:00:00 GMT" },
+  {"id": 2, "stream":"2022/05/23/[$LATEST]887be0e64f9e4b1f863665a72c32507a2", "lastEvent":"14-06-2022 20:01:00 GMT" },
+  {"id": 3, "stream":"2022/05/23/[$LATEST]887be0e64f9e4b1f863665a72c32507a3", "lastEvent":"14-06-2022 20:02:00 GMT" },
+  {"id": 4, "stream":"2022/05/23/[$LATEST]887be0e64f9e4b1f863665a72c32507a4", "lastEvent":"14-06-2022 20:03:00 GMT" }
+  ],
+"streams": [
+  {"id": 1, "time":"14-06-2022 20:00:00 GMT", "message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget urna non lectus porta facilisis in ac orci. " },
+  {"id": 2, "time":"14-06-2022 20:00:02 GMT", "message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget urna non lectus porta facilisis in ac orci. " },
+  {"id": 3, "time":"14-06-2022 20:00:04 GMT", "message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget urna non lectus porta facilisis in ac orci." },
+  {"id": 4, "time":"14-06-2022 20:00:05 GMT", "message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget urna non lectus porta facilisis in ac orci." },
+  {"id": 5, "time":"14-06-2022 20:00:06 GMT", "message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget urna non lectus porta facilisis in ac orci." }
+  ]
+}

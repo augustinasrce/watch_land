@@ -24,7 +24,8 @@
     "generate": "npx generate-react-cli component",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "backend": "json-server --watch db.json --port 3004"
   },
   "eslintConfig": {
     "extends": [

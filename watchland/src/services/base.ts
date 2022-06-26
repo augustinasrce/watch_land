@@ -1,8 +1,12 @@
-import { IApiProvider } from "../utils/interfaces";
+import { IApiProvider, IProviderGroup } from "../utils/interfaces";
 
 export class BaseApiProvider implements IApiProvider{
-    constructor(){}
+    constructor(){
+
+    }
     async apiCall(url: string): Promise<any> {}
-    async getGroups(): Promise<void>{}
+    async getGroups(): Promise<IProviderGroup[]|[]>{
+        return []
+    }
     async getStream(streamId: string): Promise<void> {}
 }
