@@ -5,7 +5,10 @@ export class AzureApiProvider extends BaseApiProvider{
 
     async getGroups(): Promise<IProviderGroup[]|[]>{
         console.log('AZURE GROUPS')
-        return []
+        const response = await fetch("http://localhost:3004/azure");
+        return await response.json().then(response => {
+          return response.groups;
+        });
     }
 
     async getStream(streamId: string): Promise<void> {

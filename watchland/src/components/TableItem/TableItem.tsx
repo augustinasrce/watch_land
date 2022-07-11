@@ -9,7 +9,7 @@ const TableItem:FC<ITableItemProps> = (props:ITableItemProps) => (
   <div className="TableItem">
     {[...props.groups.map((group:IProviderGroup)=>{
       return (
-        <div className="group">
+        <div className="group" key={group.id}>
           <div>ID:{group.id}</div>
           <div>Stream:{group.stream}</div>
           <div>Last event:{group.lastEvent}</div>
