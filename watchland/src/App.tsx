@@ -4,12 +4,15 @@ import Navbar from './components/Navbar/Navbar';
 import Provider from './components/Provider/Provider';
 import { ProviderTypes } from './utils/enum';
 
+const isAuthenticated = ()=>{
+  return true;
+}
 function App() {
   return (
     <Router>
 
     <div className="App">
-    <Navbar />
+    <Navbar isAuthenticated={ isAuthenticated() }/>
     <main className="container">
       <Routes>
         <Route path="/aws" element={<Provider type={ProviderTypes.AWS} />}></Route>
@@ -23,3 +26,4 @@ function App() {
 }
 
 export default App;
+
