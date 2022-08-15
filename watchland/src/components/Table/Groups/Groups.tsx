@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IProviderGroup } from "../../utils/interfaces";
+import { IProviderGroup } from "../../../utils/interfaces";
 import { GoTriangleRight } from "react-icons/go";
 import { GoTriangleDown } from "react-icons/go";
 
