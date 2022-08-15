@@ -1,0 +1,94 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 76px;
+  background-color: #232f3e;
+  padding-right: 24px;
+  padding-left: 24px;
+}
+.navlink {
+  width: 10%;
+  margin: 0 24px;
+  padding: 6px;
+  color: #ddd;
+  background-color: #d35400;
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: "Roboto Mono", monospace;
+  font-size: 16px;
+  text-align: center;
+}
+.selected {
+  background-color: #b44a03;
+}
+.navlink:hover {
+  background-color: #b44a03;
+}
+.logo {
+  margin: 24px;
+  color: #ddd;
+  font-size: 24px;
+  position: absolute;
+  left: 24px;
+}
+.table {
+  margin-top: 64px;
+  font-family: "Roboto Mono", monospace;
+}
+.table #info {
+  justify-content: center;
+}
+.table table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.table thead {
+  display: flex;
+  border-bottom: 2px solid #c1bfbf;
+  background: #d4d2d2;
+  width: 100%;
+}
+.table thead .table-id {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+.table thead .table-stream {
+  flex: 2;
+}
+.table thead .table-lastEvent {
+  flex: 1;
+}
+.table tbody {
+  width: 100%;
+}
+.table tbody .info {
+  justify-content: center;
+}
+.table tbody .expanded {
+  border-bottom: none;
+}
+.table tbody tr {
+  display: flex;
+  padding: 12px 6px 12px 6px;
+  border-bottom: 2px solid #c1bfbf;
+}
+.table tbody tr .group-id {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+.table tbody tr .group-stream {
+  flex: 2;
+}
+.table tbody tr .group-lastEvent {
+  flex: 1;
+}
+.table tbody tr .group-lastEvent .arrow-right {
+  margin-right: 6px;
+}
+.table tbody tr .group-lastEvent .arrow-down {
+  margin-right: 6px;
+} /*# sourceMappingURL=style.css.map */
