@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { getProviderGroups } from "../../services/services";
 import { ProviderTypes } from "../../utils/enum";
 import { IProviderGroup } from "../../utils/interfaces";
-import TableItem from "../Table/TableItem";
+import TableItem from "../Table/TableItem/TableItem";
 
 interface IProviderPros {
   type: ProviderTypes;
