@@ -22,19 +22,18 @@ const Group = ({ group }: GroupProps) => {
   return (
     <React.Fragment>
       <tr className={`group ${expanded ? "expanded" : ""}`} key={group.id}>
-        <td className="group-id">{group.id}</td>
-        <td className="group-stream"> {group.stream}</td>
         {!expanded ? (
-          <td className="group-lastEvent">
+          <td className="group-id">
             <GoTriangleRight className="arrow-right" onClick={() => setExpanded(!expanded)} />
-            {group.lastEvent}
+            {group.id}
           </td>
         ) : (
-          <td className="group-lastEvent">
+          <td className="group-id">
             <GoTriangleDown className="arrow-down" onClick={() => setExpanded(!expanded)} />
-            {group.lastEvent}
+            {group.id}
           </td>
         )}
+        <td className="group-stream"> {group.stream}</td>
       </tr>
       {getDetails()}
     </React.Fragment>
