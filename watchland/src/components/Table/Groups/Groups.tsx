@@ -14,7 +14,7 @@ const Group = ({ group }: GroupProps) => {
     if (!expanded) return null;
     return (
       <tr className="info">
-        <td>{group.stream}</td>
+        <td>{group.lastEvent}</td>
       </tr>
     );
   };
