@@ -11,15 +11,15 @@ const TableItem = ({ groups }: ITableItemProps) => {
     <div className="table">
       <table>
         <thead>
-          <th className="table-id">
-            <td>ID</td>
-          </th>
-          <th className="table-stream">
-            <td>Stream</td>
-          </th>
-          <th className="table-lastEvent">
-            <td>Last event</td>
-          </th>
+          <tr className="table-id">
+            <th>ID</th>
+          </tr>
+          <tr className="table-stream">
+            <th>Stream</th>
+          </tr>
+          <tr className="table-lastEvent">
+            <th>Last event</th>
+          </tr>
         </thead>
         <tbody>
           {[
