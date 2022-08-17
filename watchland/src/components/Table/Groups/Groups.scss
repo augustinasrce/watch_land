@@ -1,0 +1,25 @@
+.expanded {
+  border-bottom: none;
+}
+
+tr {
+  .group-id {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+  }
+  .group-stream {
+    flex: 2;
+  }
+  .group-lastEvent {
+    flex: 1;
+
+    .arrow-right {
+      margin-right: 6px;
+    }
+
+    .arrow-down {
+      margin-right: 6px;
+    }
+  }
+}

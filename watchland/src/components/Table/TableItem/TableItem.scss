@@ -43,34 +43,10 @@
       justify-content: center;
     }
 
-    .expanded {
-      border-bottom: none;
-    }
-
     tr {
       display: flex;
       padding: 12px 6px 12px 6px;
       border-bottom: 2px solid color("argent");
-
-      .group-id {
-        display: flex;
-        justify-content: center;
-        flex: 1;
-      }
-      .group-stream {
-        flex: 2;
-      }
-      .group-lastEvent {
-        flex: 1;
-
-        .arrow-right {
-          margin-right: 6px;
-        }
-
-        .arrow-down {
-          margin-right: 6px;
-        }
-      }
     }
   }
 }
