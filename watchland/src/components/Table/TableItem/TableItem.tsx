@@ -1,7 +1,6 @@
-import React, { useState } from "react";
 import { IProviderGroup } from "../../../utils/interfaces";
 import Group from "../Groups/Groups";
-import "./TableItem.scss";
+import "../TableItem/TableItem.scss";
 
 interface ITableItemProps {
   groups: IProviderGroup[];
