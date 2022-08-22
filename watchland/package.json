@@ -26,7 +26,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "backend": "json-server --watch db.json --port 3004"
+    "dev": "concurrently npm:backend:*",
+    "backend:aws": "json-server --watch aws.json --port 3004",
+    "backend:google": "json-server --watch google.json --port 3005",
+    "backend:azure": "json-server --watch azure.json --port 3006"
   },
   "eslintConfig": {
     "extends": [
@@ -48,7 +51,9 @@
   },
   "devDependencies": {
     "@types/node-sass": "^4.11.2",
+    "concurrently": "^7.3.0",
     "generate-react-cli": "^7.2.0",
+    "i": "^0.3.7",
     "node-sass": "^7.0.1",
     "npm-run-all": "^4.1.5"
   }
