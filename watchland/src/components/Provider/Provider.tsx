@@ -2,31 +2,34 @@ import { FC, useEffect, useState } from "react";
 import { getProviderGroups } from "../../services/services";
 import { ProviderTypes } from "../../utils/enum";
 import { IProviderGroup } from "../../utils/interfaces";
-import TableItem from "../Table/TableItem/TableItem";
+import TableItem from "../Table/Table";
 
 interface IProviderPros {
   type: ProviderTypes;
+  details: boolean;
 }
 
-const DEFAULT_STATE: IProviderGroup[] = [{ id: 0, stream: "", lastEvent: "" }];
-
 const Provider: FC<IProviderPros> = ({ type }) => {
-  const [service, setService] = useState<IProviderGroup[]>(DEFAULT_STATE);
+  const [groups, setGroups] = useState<IProviderGroup[]>();
 
   useEffect(() => {
-    loadService();
-  }, []);
+    loadGroups();
+  }, [type]);
 
-  const loadService = async () => {
-    const services: IProviderGroup[] = await getProviderGroups(type);
-    setService(services);
+  const loadGroups = async () => {
+    const groups: IProviderGroup[] = await getProviderGroups(type);
+    setGroups(groups);
   };
 
-  return (
-    <div>
-      <TableItem groups={service} />
-    </div>
-  );
+  if (groups) {
+    return (
+      <div>
+        <TableItem groups={groups} type={type} isMsg={false} />
+      </div>
+    );
+  } else {
+    return <div>Undifined</div>;
+  }
 };
 
 export default Provider;
