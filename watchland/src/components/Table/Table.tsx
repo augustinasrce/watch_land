@@ -6,28 +6,31 @@ import "./Table.scss";
 interface ITableProps {
   groups: IProviderGroup[];
   type: string;
-  isStream: boolean;
+  isMsg: boolean;
 }
 
-const Table = ({ groups, type, isStream = true }: ITableProps) => {
+const Table = ({ groups, type, isMsg }: ITableProps) => {
   return (
     <div className="table">
       <table>
         <thead>
-          <tr className="table-id">
-            <th>ID</th>
-          </tr>
-          {isStream ? (
-            <tr className="table-stream">
-              <th>Stream</th>
-            </tr>
-          ) : (
-            [
-              <tr className="table-lastEvent">
-                <th>Last event</th>
-              </tr>
-            ]
-          )}
+          {isMsg
+            ? [
+                <tr className="table-id">
+                  <th>Timestamp</th>
+                </tr>,
+                <tr className="table-stream">
+                  <th>Message</th>
+                </tr>
+              ]
+            : [
+                <tr className="table-id">
+                  <th>Log stream</th>
+                </tr>,
+                <tr className="table-lastEvent">
+                  <th>Last event</th>
+                </tr>
+              ]}
         </thead>
         <tbody>
           {[
