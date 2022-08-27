@@ -9,7 +9,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 48px;
   }
 
   thead {
@@ -40,10 +39,10 @@
       justify-content: center;
     }
 
-    tr {
-      display: flex;
-      padding: 12px 6px 12px 6px;
-      border-bottom: 2px solid color("argent");
-    }
+    // tr {
+    //   display: flex;
+    //   padding: 12px 6px 12px 6px;
+    //   border-bottom: 2px solid color("argent");
+    // }
   }
 }

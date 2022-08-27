@@ -52,7 +52,6 @@
 }
 .table thead .table-id {
   display: flex;
-  justify-content: center;
   flex: 1;
 }
 .table thead .table-stream {
@@ -77,7 +76,6 @@
 }
 .table tbody tr .group-id {
   display: flex;
-  justify-content: center;
   flex: 1;
 }
 .table tbody tr .group-stream {
@@ -91,4 +89,5 @@
 }
 .table tbody tr .group-lastEvent .arrow-down {
   margin-right: 6px;
-} /*# sourceMappingURL=style.css.map */
+  /* # sourceMappingURL=style.css.map */
+}

@@ -8,7 +8,7 @@ interface ItemProps {
   type: ProviderTypes;
 }
 
-const Item = ({ type }: ItemProps) => {
+const LogMessage = ({ type }: ItemProps) => {
   const groupId = parseInt(useParams().groupId || "") || 1;
   const [group, setGroup] = useState<IProviderGroup | undefined>(undefined);
 
@@ -21,10 +21,22 @@ const Item = ({ type }: ItemProps) => {
   };
 
   return (
-    <div>
-      <h1>{JSON.stringify(group)}</h1>
-    </div>
+    <table className="table table-striped">
+      <thead>
+        <tr className="table-id">
+          <th>TimeStamp</th>
+        </tr>
+        <tr className="table-lastEvent">
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{JSON.stringify(group)}</td>
+        </tr>
+      </tbody>
+    </table>
   );
 };
 
-export default Item;
+export default LogMessage;
