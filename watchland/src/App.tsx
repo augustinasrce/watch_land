@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Provider from "./components/LogGroup/LogGroup";
-import Item from "./components/LogMessage/LogMessage";
+import LogMessage from "./components/LogMessage/LogMessage";
 import { ProviderTypes } from "./utils/enum";
 import "./css/style.css";
 
@@ -18,7 +18,12 @@ function App() {
           <Route path="/aws" element={<Provider type={ProviderTypes.AWS} />}></Route>
           <Route path="/azure" element={<Provider type={ProviderTypes.AZURE} />}></Route>
           <Route path="/google" element={<Provider type={ProviderTypes.GOOGLE} />}></Route>
-          <Route path="/aws/:groupId" element={<Item type={ProviderTypes.AWS} />}></Route>
+          <Route path="/aws/:groupId" element={<LogMessage type={ProviderTypes.AWS} />}></Route>
+          <Route path="/azure/:groupId" element={<LogMessage type={ProviderTypes.AZURE} />}></Route>
+          <Route
+            path="/google/:groupId"
+            element={<LogMessage type={ProviderTypes.GOOGLE} />}
+          ></Route>
         </Routes>
       </main>
     </div>
