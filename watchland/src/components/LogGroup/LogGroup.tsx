@@ -6,7 +6,6 @@ import TableItem from "../Table/Table";
 
 interface IProviderPros {
   type: ProviderTypes;
-  details: boolean;
 }
 
 const Provider: FC<IProviderPros> = ({ type }) => {
@@ -24,7 +23,7 @@ const Provider: FC<IProviderPros> = ({ type }) => {
   if (groups) {
     return (
       <div>
-        <TableItem groups={groups} type={type} isMsg={false} />
+        <TableItem groups={groups} type={type} details={false} />
       </div>
     );
   } else {
