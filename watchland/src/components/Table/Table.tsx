@@ -6,15 +6,15 @@ import "./Table.scss";
 interface ITableProps {
   groups: IProviderGroup[];
   type: string;
-  isMsg: boolean;
+  details: boolean;
 }
 
-const Table = ({ groups, type, isMsg }: ITableProps) => {
+const Table = ({ groups, type, details }: ITableProps) => {
   return (
     <div className="table">
       <table>
         <thead>
-          {isMsg
+          {details
             ? [
                 <tr className="table-id">
                   <th>Timestamp</th>
