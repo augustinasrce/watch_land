@@ -9,8 +9,8 @@ const Navbar: FC<NavbarProps> = ({ isAuthenticated }) => {
   const [selected, setSelected] = useState<String | undefined>(undefined);
 
   return (
-    <nav className="navbar">
-      <span className="logo">Logo</span>
+    <nav className="navbar navbar-expand-lg">
+      <div className="logo">Logo</div>
       <Link
         className={selected === "aws" ? "navlink selected" : "navlink"}
         to="/aws"
@@ -18,7 +18,6 @@ const Navbar: FC<NavbarProps> = ({ isAuthenticated }) => {
       >
         AWS
       </Link>
-      ,
       <Link
         className={selected === "azure" ? "navlink selected" : "navlink"}
         to="/azure"
@@ -26,7 +25,6 @@ const Navbar: FC<NavbarProps> = ({ isAuthenticated }) => {
       >
         Azure
       </Link>
-      ,
       <Link
         className={selected === "google" ? "navlink selected" : "navlink"}
         to="/google"
