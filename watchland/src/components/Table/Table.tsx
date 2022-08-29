@@ -11,24 +11,20 @@ interface ITableProps {
 
 const Table = ({ groups, type, details }: ITableProps) => {
   return (
-    <div className="table">
-      <table>
+    <div className="container">
+      <table className="table">
         <thead>
           {details
             ? [
-                <tr className="table-id">
-                  <th>Timestamp</th>
-                </tr>,
-                <tr className="table-stream">
-                  <th>Message</th>
+                <tr>
+                  <th scope="col">Timestamp</th>
+                  <th scope="col">Message</th>
                 </tr>
               ]
             : [
-                <tr className="table-id">
-                  <th>Log stream</th>
-                </tr>,
-                <tr className="table-lastEvent">
-                  <th>Last event</th>
+                <tr>
+                  <th scope="col">Log Group</th>
+                  <th scope="col">Creation time</th>
                 </tr>
               ]}
         </thead>

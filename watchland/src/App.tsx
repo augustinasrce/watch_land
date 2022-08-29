@@ -3,11 +3,12 @@ import Navbar from "./components/Navbar/Navbar";
 import Provider from "./components/LogGroup/LogGroup";
 import LogMessage from "./components/LogMessage/LogMessage";
 import { ProviderTypes } from "./utils/enum";
-import "./css/style.css";
+import "./App.scss";
 
 const isAuthenticated = () => {
   return true;
 };
+
 
 function App() {
   return (
