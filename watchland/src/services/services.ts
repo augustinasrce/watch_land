@@ -20,3 +20,10 @@ export const getGroupById = (id: number, type: ProviderTypes) => {
   console.log(provider);
   return provider.getGroupById(id);
 };
+
+
+export const getStreams = (id: number, type: ProviderTypes) => {
+  const provider = new providers[type]();
+  console.log(provider);
+  return provider.getGroupById(id);
+};
