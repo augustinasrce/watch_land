@@ -1,35 +1,65 @@
 import { Link } from "react-router-dom";
 import { IProviderGroup } from "../../utils/interfaces";
+import { ITableCell } from "../spec";
 // import Group from "../Groups/Groups";
 import "./Table.scss";
 
 interface ITableProps {
-  groups: IProviderGroup[];
-  type: string;
-  details: boolean;
+  headers:string[]
+  body:ITableCell[][]
 }
 
-const Table = ({ groups, type, details }: ITableProps) => {
+const Table = ({ headers, body  }: ITableProps) => {
   return (
+   
     <div className="container">
+
       <table className="table">
         <thead>
-          {details
-            ? [
-                <tr>
-                  <th scope="col">Timestamp</th>
-                  <th scope="col">Message</th>
-                </tr>
-              ]
-            : [
-                <tr>
-                  <th scope="col">Log Group</th>
-                  <th scope="col">Creation time</th>
-                </tr>
-              ]}
+          <tr>
+          {[
+            ...headers.map((header:string)=>{
+              return (
+                <th scope="col">{ header }</th>
+              )
+            })
+          ]}
+          </tr>
         </thead>
         <tbody>
-          {[
+        {[
+          ...body.map((cells:ITableCell[])=>{
+            return (
+              <tr>
+                {[
+                  ...cells.map((cell:ITableCell)=>{
+                    return (
+                      <td>
+                      { cell.isLink ? (
+                        <Link to={{ pathname: cell.link }}>{cell.message}</Link>
+                      ) : cell.message }
+                      </td>
+                    )
+                  })
+                ]}
+              </tr>
+            )
+          })
+        ]}
+
+          
+              {/* // return (
+
+                
+                <td>
+                { cell.isLink ? (
+                  <Link to={{ pathname: cell.link }}>{cell.message}</Link>
+                ) : cell.message }
+                </td>
+              // ) */}
+          
+
+          {/* {[
             ...groups.map((group: IProviderGroup) => {
               return (
                 <tr className="group" key={group.id}>
@@ -48,9 +78,9 @@ const Table = ({ groups, type, details }: ITableProps) => {
               );
               // return <Group group={group} />;
             })
-          ]}
+          ]} */}
         </tbody>
-      </table>
+       </table>
     </div>
   );
 };
