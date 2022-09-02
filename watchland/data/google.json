@@ -1,0 +1,19 @@
+{    
+  "groups": [
+      {
+        "id": 7,
+        "stream": "2022/05/23/[$google]887be0e64f9e4b1f863665a72c32507a1",
+        "lastEvent": "14-06-2022 20:00:00 GMT"
+      },
+      {
+        "id": 8,
+        "stream": "2022/05/23/[$google]887be0e64f9e4b1f863665a72c32507a2",
+        "lastEvent": "14-06-2022 20:01:00 GMT"
+      },
+      {
+        "id": 9,
+        "stream": "2022/05/23/[$google]887be0e64f9e4b1f863665a72c32507a3",
+        "lastEvent": "14-06-2022 20:02:00 GMT"
+      }
+    ]
+}
