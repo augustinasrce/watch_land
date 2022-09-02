@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { getGroupById } from "../../services/services";
 import { ProviderTypes } from "../../utils/enum";
 import { useEffect, useState } from "react";
 import { IProviderGroup } from "../../utils/interfaces";
@@ -17,7 +16,7 @@ const LogMessage = ({ type }: ItemProps) => {
   }, []);
 
   const loadGroup = async () => {
-    setGroup(await getGroupById(groupId, type));
+    // setGroup(await getGroupById(groupId, type));
   };
 
   return (
