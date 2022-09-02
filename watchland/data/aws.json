@@ -1,0 +1,72 @@
+{    
+  "groups": [
+      {
+        "logGroupName": "/aws/lambda/test",
+        "creationTime": 1653341251114,
+        "metricFilterCount": 1,
+        "arn": "arn:aws:logs:eu-west-1:123456789:log-group:/aws/lambda/test:*",
+        "storedBytes": 1332
+      },
+      {
+        "logGroupName": "/aws/lambda/test-two",
+        "creationTime": 1653341251114,
+        "metricFilterCount": 1,
+        "arn": "arn:aws:logs:eu-west-1:123456789:log-group:/aws/lambda/test-two:*",
+        "storedBytes": 1332
+      },
+      {
+        "logGroupName": "/aws/lambda/test-three",
+        "creationTime": 1653341251114,
+        "metricFilterCount": 1,
+        "arn": "arn:aws:logs:eu-west-1:123456789:log-group:/aws/lambda/test-three:*",
+        "storedBytes": 1332
+      }
+  ],
+  "streams":[
+    {
+      "group":"/aws/lambda/test",
+      "logStreamName": "2022/05/23/[$LATEST]abcdefg123456789",
+      "creationTime": 1653341251145,
+      "firstEventTimestamp": 1653341246695,
+      "lastEventTimestamp": 1653341322821,
+      "lastIngestionTime": 1653341331840,
+      "uploadSequenceToken": "123456abcde",
+      "arn": "arn:aws:logs:eu-west-1:123456789:log-group:/aws/lambda/test:log-stream:2022/05/23/[$LATEST]abcdefg123456789",
+      "storedBytes": 0
+    },
+    {
+      "group":"/aws/lambda/test",
+      "logStreamName": "2022/05/23/abcdefg123456789-2",
+      "creationTime": 1653341251145,
+      "firstEventTimestamp": 1653341246695,
+      "lastEventTimestamp": 1653341322821,
+      "lastIngestionTime": 1653341331840,
+      "uploadSequenceToken": "123456abcde",
+      "arn": "arn:aws:logs:eu-west-1:123456789:log-group:/aws/lambda/test:log-stream:2022/05/23/abcdefg123456789-2",
+      "storedBytes": 0
+    },
+    {
+      "group":"/aws/lambda/test-two",
+      "logStreamName": "2022/05/23/[$LATEST]abcdefg123456789-test-2",
+      "creationTime": 1653341251145,
+      "firstEventTimestamp": 1653341246695,
+      "lastEventTimestamp": 1653341322821,
+      "lastIngestionTime": 1653341331840,
+      "uploadSequenceToken": "123456abcde",
+      "arn": "arn:aws:logs:eu-west-1:123456789:log-group:/aws/lambda/test:log-stream:2022/05/23/[$LATEST]abcdefg123456789-test-2",
+      "storedBytes": 0
+    },
+    {
+      "group":"/aws/lambda/test-three",
+      "logStreamName": "2022/05/23/abcdefg123456789-test-3",
+      "creationTime": 1653341251145,
+      "firstEventTimestamp": 1653341246695,
+      "lastEventTimestamp": 1653341322821,
+      "lastIngestionTime": 1653341331840,
+      "uploadSequenceToken": "123456abcde",
+      "arn": "arn:aws:logs:eu-west-1:123456789:log-group:/aws/lambda/test:log-stream:2022/05/23/abcdefg123456789-test-3",
+      "storedBytes": 0
+    }
+  ],
+  "logs":[]
+}

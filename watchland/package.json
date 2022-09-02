@@ -27,9 +27,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "concurrently npm:backend:*",
-    "backend:aws": "json-server --watch aws.json --port 3004",
-    "backend:google": "json-server --watch google.json --port 3005",
-    "backend:azure": "json-server --watch azure.json --port 3006"
+    "backend:aws": "json-server --watch ./data/aws.json --port 3004",
+    "backend:google": "json-server --watch ./data/google.json --port 3005",
+    "backend:azure": "json-server --watch ./data/azure.json --port 3006"
   },
   "eslintConfig": {
     "extends": [
