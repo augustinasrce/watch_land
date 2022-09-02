@@ -1,29 +1,26 @@
 import { ProviderTypes } from "../utils/enum";
-import { IProviderGroup } from "../utils/interfaces";
-import { AwsApiProvider } from "./aws";
-import { AzureApiProvider } from "./azure";
-import { GoogleApiProvider } from "./google";
+import { AwsService } from "./aws/aws";
+import { AzureService } from "./azure/azure";
+import { GoogleService } from "./google/google";
 
-const providers = {
-  aws: AwsApiProvider,
-  azure: AzureApiProvider,
-  google: GoogleApiProvider
+
+const providers:any = {
+  aws: AwsService,
+  azure: AzureService,
+  google: GoogleService
 };
 
-export const getProviderGroups = (type: ProviderTypes) => {
-  const provider = new providers[type]();
-  return provider.getGroups();
+export const getGroups = (type: ProviderTypes) => {
+  const service = new providers[type]();
+  return service.groups();
 };
 
-export const getGroupById = (id: number, type: ProviderTypes) => {
-  const provider = new providers[type]();
-  console.log(provider);
-  return provider.getGroupById(id);
+export const getStreams = (group: string, type: ProviderTypes) => {
+  const service = new providers[type]();
+  return service.streams(group);
 };
 
-
-export const getStreams = (id: number, type: ProviderTypes) => {
-  const provider = new providers[type]();
-  console.log(provider);
-  return provider.getGroupById(id);
+export const getLogs = (group:string, streams:string[], type: ProviderTypes) => {
+  const service = new providers[type]();
+  return service.streams(group, streams);
 };
