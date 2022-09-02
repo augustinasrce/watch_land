@@ -19,9 +19,9 @@ function App() {
       <Navbar isAuthenticated={isAuthenticated()} />
       <main className="container">
         <Routes>
-          <Route path="/aws/" element={<AwsGroups />}></Route>
-          <Route path="/aws/:groupName" element={<AwsStreams />}></Route>
-          <Route path="/aws/:groupName/:streamName" element={<AwsLogs />}></Route>
+          <Route path="/aws/groups" element={<AwsGroups />}></Route>
+          <Route path="/aws/streams" element={<AwsStreams />}></Route>
+          <Route path="/aws/logs" element={<AwsLogs />}></Route>
 
           <Route path="/azure" element={<Azure />}></Route>
           {/* <Route path="/azure/:groupId" element={<LogMessage type={ProviderTypes.AWS} />}></Route> */}

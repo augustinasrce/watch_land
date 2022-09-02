@@ -1,42 +1,38 @@
 import { useState, useEffect } from "react";
 import { IProviderGroup } from "../../../utils/interfaces";
-import { IAwsLogs } from "./spec";
+
 import { ITableCell } from "../../spec";
-import { getProviderGroups } from "../../../services/services";
 import { ProviderTypes } from "../../../utils/enum";
 import { tableCellObject } from "../../../utils/objects";
 import { slugifyString } from "../../../utils/strings";
 import Table from "../../Table/Table";
-
-interface IAWSProps {
-  groups: IProviderGroup[];
-  details: boolean;
-}
+import { getLogs } from "../../../services/services";
+import { useParams } from "react-router-dom";
+import { IAwsLogs } from "../../../services/aws/spec";
+import { useQuery } from "../../../utils/hooks";
 
 const AwsLogs = () => {
+  const groupName = useQuery().get('group') || "";
+  const stream = useQuery().get('stream') || "";
   const [logs, setLogs] = useState<IAwsLogs[]>([]);
   const [body, setBody] = useState<ITableCell[][]>([]);
   const loadLogs = async () => {
-    const logs: any[] = await getProviderGroups(ProviderTypes.AWS);
+    const logs: any[] = await getLogs(groupName, [stream], ProviderTypes.AWS);
     setLogs(logs);
   };
 
   useEffect(() => {
     loadLogs();
-  });
+  },[]);
 
   useEffect(() => {
     const bodyCells = () => {
       return [
         ...logs?.map((log: IAwsLogs) => {
-          const logName = tableCellObject(
-            log.logStreamName,
-            true,
-            slugifyString(log.logStreamName)
-          );
+          const logTimeStamp = tableCellObject(`${log.timestamp}`, false, "");
           const logMessage = tableCellObject(log.message, false, "");
-          const logTimeStamp = tableCellObject(log.timestamp.toString(), false, "");
-          return [logName, logMessage, logTimeStamp];
+          const streamName = tableCellObject(log.logStreamName, true, `/aws/logs?group=${groupName}&stream=${log.logStreamName}`);
+          return [logTimeStamp, logMessage, streamName ];
         })
       ];
     };
@@ -51,7 +47,7 @@ const AwsLogs = () => {
 
             Display all inside the table component
      */
-  return <Table headers={["Log stream name", "Log message"]} body={body} />;
+  return <Table headers={["Timestamp", "Message", "Log stream name"]} body={body} />;
 };
 
 export default AwsLogs;
