@@ -3,7 +3,6 @@ import { IAwsLogGroups } from "../../../services/aws/spec";
 import { getGroups } from "../../../services/services";
 import { ProviderTypes } from "../../../utils/enum";
 import { tableCellObject } from "../../../utils/objects";
-import { slugifyString } from "../../../utils/strings";
 import { ITableCell } from "../../spec";
 import Table from "../../Table/Table";
 
@@ -17,14 +16,12 @@ const AwsGroups = () => {
 
   useEffect(() => {
     loadGroups();
-  },[]);
+  }, []);
 
   useEffect(() => {
-
     const bodyCells = () => {
       return [
         ...groups?.map((group: IAwsLogGroups) => {
-          console.log('Group ', group)
           const groupName = tableCellObject(
             group.logGroupName,
             true,
