@@ -1,11 +1,11 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.scss";
 
 interface NavbarProps {
   isAuthenticated: boolean;
 }
-const Navbar: FC<NavbarProps> = ({ isAuthenticated }) => {
+const Navbar = ({ isAuthenticated }: NavbarProps) => {
   const [selected, setSelected] = useState<String | undefined>(undefined);
 
   return (
