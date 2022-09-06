@@ -26,6 +26,8 @@
     {
       "group":"/aws/lambda/test",
       "logStreamName": "2022/05/23/[$LATEST]abcdefg123456789",
+      "timestamp": "1",
+      "message": "Test-1",
       "creationTime": 1653341251145,
       "firstEventTimestamp": 1653341246695,
       "lastEventTimestamp": 1653341322821,
@@ -37,6 +39,8 @@
     {
       "group":"/aws/lambda/test",
       "logStreamName": "2022/05/23/abcdefg123456789-2",
+      "timestamp": "2",
+      "message": "Test-2",
       "creationTime": 1653341251145,
       "firstEventTimestamp": 1653341246695,
       "lastEventTimestamp": 1653341322821,
@@ -48,6 +52,8 @@
     {
       "group":"/aws/lambda/test-two",
       "logStreamName": "2022/05/23/[$LATEST]abcdefg123456789-test-2",
+      "timestamp": "3",
+      "message": "Test-3",
       "creationTime": 1653341251145,
       "firstEventTimestamp": 1653341246695,
       "lastEventTimestamp": 1653341322821,
@@ -59,6 +65,8 @@
     {
       "group":"/aws/lambda/test-three",
       "logStreamName": "2022/05/23/abcdefg123456789-test-3",
+      "timestamp": "4",
+      "message": "Test-4",
       "creationTime": 1653341251145,
       "firstEventTimestamp": 1653341246695,
       "lastEventTimestamp": 1653341322821,
