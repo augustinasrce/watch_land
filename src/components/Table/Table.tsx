@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import { ITableCell } from "../spec";
+import TableRow from "./TableRow";
 import "./Table.scss";
 
 interface ITableProps {
@@ -23,23 +23,7 @@ const Table = ({ headers, body }: ITableProps) => {
         <tbody>
           {[
             ...body.map((cells: ITableCell[]) => {
-              return (
-                <tr>
-                  {[
-                    ...cells.map((cell: ITableCell) => {
-                      return (
-                        <td>
-                          {cell.isLink ? (
-                            <Link to={{ pathname: cell.link }}>{cell.message}</Link>
-                          ) : (
-                            cell.message
-                          )}
-                        </td>
-                      );
-                    })
-                  ]}
-                </tr>
-              );
+              return <TableRow cells={cells} />;
             })
           ]}
         </tbody>
