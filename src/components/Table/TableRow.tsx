@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { ITableCell } from "../spec";
 
 interface ITableRow {
@@ -18,7 +19,11 @@ const TableRow = ({ cells }: ITableRow) => {
           ...cells.map((cell: ITableCell) => {
             return (
               <td style={open ? { borderBottom: "none" } : {}} onClick={toggle}>
-                {cell.isLink ? <>{cell.message} </> : cell.message}
+                {cell.isLink ? (
+                  <Link to={{ pathname: cell.link }}>{cell.message} </Link>
+                ) : (
+                  cell.message
+                )}
               </td>
             );
           })
