@@ -31,7 +31,7 @@ const Navbar = ({ isAuthenticated }: NavbarProps) => {
               <li className="nav-item">
                 <Link
                   className={selected === "aws" ? "nav-link active" : "nav-link"}
-                  to="/aws/groups/"
+                  to="/aws/"
                   onClick={() => setSelected("aws")}
                 >
                   AWS
@@ -40,7 +40,7 @@ const Navbar = ({ isAuthenticated }: NavbarProps) => {
               <li className="nav-item">
                 <Link
                   className={selected === "azure" ? "nav-link active" : "nav-link"}
-                  to="/azure/groups/"
+                  to="/azure/"
                   onClick={() => setSelected("azure")}
                 >
                   Azure
@@ -49,7 +49,7 @@ const Navbar = ({ isAuthenticated }: NavbarProps) => {
               <li className="nav-item">
                 <Link
                   className={selected === "google" ? "nav-link active" : "nav-link"}
-                  to="/google/groups/"
+                  to="/google/"
                   onClick={() => setSelected("google")}
                 >
                   Google Cloud
