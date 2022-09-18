@@ -8,14 +8,10 @@ import AwsLogs from "./components/Providers/AWS/AwsLogs";
 import "./App.scss";
 import AWS from "./components/Providers/AWS/AWS";
 
-const isAuthenticated = () => {
-  return true;
-};
-
 function App() {
   return (
     <div className="App">
-      <Navbar isAuthenticated={isAuthenticated()} />
+      <Navbar isAuthenticated={true } />
       <main className="container">
         <Routes>
 
@@ -26,12 +22,6 @@ function App() {
                 <Route path="logs" element={<AwsLogs />}></Route>
               </Route>
           </Route>
-
-            {/* <Route element={<AWS></AWS>}>
-              <Route path="/aws/auth" element={<AwsGroups />}></Route>
-              <Route path="/aws/groups" element={<AwsGroups />}></Route>
-              <Route path="/aws/streams" element={<AwsStreams />}></Route>
-            </Route> */}
           
           <Route path="/azure" element={<Azure />}></Route>
           <Route path="/google" element={<GoogleCloud />}></Route>
