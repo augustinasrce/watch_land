@@ -1,8 +1,12 @@
-import { createStore, compose } from "redux";
-import combinedReducers from "./reducers";
+import { configureStore } from "@reduxjs/toolkit";
+import authSlice from "./reducers/auth";
 
-export const composeEnhancers =
-  (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+export const store = configureStore({
+  reducer: {
+    auth: authSlice
+  }
+});
 
+export type RootState = ReturnType<typeof store.getState>;
 
-export default createStore(combinedReducers, composeEnhancers());
+export type AppDispatch = typeof store.dispatch;

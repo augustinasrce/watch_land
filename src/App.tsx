@@ -11,18 +11,17 @@ import AWS from "./components/Providers/AWS/AWS";
 function App() {
   return (
     <div className="App">
-      <Navbar isAuthenticated={true } />
+      <Navbar isAuthenticated={true} />
       <main className="container">
         <Routes>
-
           <Route path="/aws">
-              <Route element={<AWS />}>
-                <Route index element={<AwsGroups />}></Route>
-                <Route path="streams" element={<AwsStreams />}></Route>
-                <Route path="logs" element={<AwsLogs />}></Route>
-              </Route>
+            <Route element={<AWS />}>
+              <Route index element={<AwsGroups />}></Route>
+              <Route path="streams" element={<AwsStreams />}></Route>
+              <Route path="logs" element={<AwsLogs />}></Route>
+            </Route>
           </Route>
-          
+
           <Route path="/azure" element={<Azure />}></Route>
           <Route path="/google" element={<GoogleCloud />}></Route>
         </Routes>
