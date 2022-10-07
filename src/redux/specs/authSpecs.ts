@@ -1,26 +1,20 @@
-import { IAction } from "./index";
+import { WLDevProfiles } from "../../services/specs";
 
-export interface IDevTest {
-  dev: boolean;
+export interface IProfile {
+  id: string;
+  type: WLDevProfiles;
+  profile?: string;
+  key?: string;
+  secret?: string;
 }
-export interface IAwsProgrammatic {
-  key: string;
-  secret: string;
+export interface IAuthCurrent {
+  id: string;
+  provider: AuthTarget;
 }
-export interface IAwsProfile {
-  profile: string;
-}
-export interface IAzureAuthState {} // TODO
-export interface IgCloudAuthState {} // TODO
-
-export type AwsState = IDevTest | IAwsProgrammatic | IAwsProfile;
-export type AzureState = IDevTest | IAzureAuthState;
-export type gCloudState = IDevTest | IgCloudAuthState;
 
 export interface IAuthState {
-  aws: AwsState[];
-  azure: AzureState[];
-  gcloud: gCloudState[];
+  current: IAuthCurrent | null;
+  methods: IProfile[];
 }
 
 export enum AuthType {
@@ -38,5 +32,5 @@ export interface IAuthConnectData {
 export interface IAuthAction {
   type: AuthType;
   target: AuthTarget;
-  data: AwsState | AzureState | gCloudState;
+  data: IProfile;
 }
