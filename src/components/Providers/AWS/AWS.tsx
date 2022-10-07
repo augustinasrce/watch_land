@@ -1,41 +1,36 @@
+import * as uuid from "uuid";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { cloudConnect } from "../../../redux/reducers/auth";
 import * as Auth from "../../../redux/actions/authActions";
-import {
-  AuthTarget,
-  IAuthState,
-  IAwsProfile,
-  IAwsProgrammatic,
-  IDevTest
-} from "../../../redux/specs/authSpecs";
+import { AuthTarget, IProfile } from "../../../redux/specs/authSpecs";
 import { WLDevProfiles } from "../../../services/specs";
 import { RootState } from "../../../redux/store";
 
 const AWS = (props: any) => {
   const dispatch = useDispatch();
   const isAuth = useSelector((state: RootState) => {
-    return state.auth.aws.length > 0;
+    return state.auth.current?.provider === AuthTarget.AWS;
   });
 
   const [profile, setProfile] = useState(WLDevProfiles.Programmatic);
   const [key, setKey] = useState("");
   const [secret, setSecret] = useState("");
 
-  // TODO
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    let data: IDevTest | IAwsProgrammatic | IAwsProfile = { profile: profile };
 
-    if (profile == WLDevProfiles.Programmatic) {
-      data = { key: key, secret: secret };
-    }
+    let loginData: IProfile = {
+      id: uuid.v4(),
+      type: profile
+    };
 
-    if (profile == WLDevProfiles.Dev) {
-      data = { dev: true };
+    if (profile === WLDevProfiles.Programmatic) {
+      loginData.key = key;
+      loginData.secret = secret;
     }
-    dispatch(cloudConnect(Auth.Connect(AuthTarget.AWS, data)));
+    dispatch(cloudConnect(Auth.Connect(AuthTarget.AWS, loginData)));
   };
 
   return isAuth ? (
@@ -72,15 +67,15 @@ const AWS = (props: any) => {
               </div>
               <div className="col-sm-12 col-md-4">
                 <span id="aws-profile-helper" className="form-text">
-                  {profile == WLDevProfiles.Programmatic
+                  {profile === WLDevProfiles.Programmatic
                     ? ""
-                    : profile == WLDevProfiles.Dev
+                    : profile === WLDevProfiles.Dev
                     ? "Watchland test profile"
                     : "AWS Profile"}
                 </span>
               </div>
             </div>
-            {profile == WLDevProfiles.Programmatic
+            {profile === WLDevProfiles.Programmatic
               ? [
                   <div className="row align-items-center pt-3">
                     <div className="col-sm-12 col-md-2">
@@ -131,7 +126,7 @@ const AWS = (props: any) => {
             <div className="row">
               <div className="col-sm-12 col-md-8 text-right pt-3">
                 <button className="btn btn-primary">
-                  {profile == WLDevProfiles.Programmatic ? "Authenticate" : "Connect"}
+                  {profile === WLDevProfiles.Programmatic ? "Authenticate" : "Connect"}
                 </button>
               </div>
             </div>

@@ -1,18 +1,9 @@
-import {
-  AuthTarget,
-  AuthType,
-  AwsState,
-  AzureState,
-  gCloudState,
-  IAuthAction,
-  IAuthState
-} from "../specs/authSpecs";
+import { IAuthAction, IAuthState } from "../specs/authSpecs";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: IAuthState = {
-  aws: [],
-  azure: [],
-  gcloud: []
+  current: null,
+  methods: []
 };
 
 export const authSlice = createSlice({
@@ -20,9 +11,26 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     cloudConnect: (state, action: PayloadAction<IAuthAction>) => {
-      if (action.payload.target == AuthTarget.AWS) state.aws.push(action.payload.data as AwsState);
+      state.current = {
+        id: action.payload.data.id,
+        provider: action.payload.target
+      };
+      state.methods.push(action.payload.data);
     },
-    cloudDisconnect: state => {}
+    cloudDisconnect: (state, action) => {
+      // Abort if there is no current connection to disconnect
+      if (state.current == null) return;
+
+      const id = state.current.id;
+      const provider = state.current.provider;
+      state.methods = state.methods.filter(loginMethod => loginMethod.id !== id);
+
+      if (state.methods.length > 0) {
+        state.current = { id: state.methods[0].id, provider: provider };
+      } else {
+        state.current = null;
+      }
+    }
   }
 });
 
