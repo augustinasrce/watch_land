@@ -7,6 +7,7 @@ import AwsStreams from "./components/Providers/AWS/AwsStreams";
 import AwsLogs from "./components/Providers/AWS/AwsLogs";
 import "./App.scss";
 import AWS from "./components/Providers/AWS/AWS";
+import Login from "./components/Navbar/Login";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
               <Route path="logs" element={<AwsLogs />}></Route>
             </Route>
           </Route>
-
+          <Route path="/login" element={<Login />}></Route>
           <Route path="/azure" element={<Azure />}></Route>
           <Route path="/google" element={<GoogleCloud />}></Route>
         </Routes>
