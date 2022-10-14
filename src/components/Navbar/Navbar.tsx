@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { cloudDisconnect } from "../../redux/reducers/auth";
 import { RootState } from "../../redux/store";
@@ -11,6 +12,7 @@ interface NavbarProps {
 }
 const Navbar = ({ isAuthenticated }: NavbarProps) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isAuth = useSelector((state: RootState) => {
     return state.auth.current != null;
   });
@@ -20,6 +22,7 @@ const Navbar = ({ isAuthenticated }: NavbarProps) => {
   const handleLogout = (e: any) => {
     e.preventDefault();
     dispatch(cloudDisconnect(Auth.Logout));
+    navigate("/");
   };
 
   return (
@@ -71,11 +74,11 @@ const Navbar = ({ isAuthenticated }: NavbarProps) => {
               </li>
               <li className="nav-item">
                 {isAuth ? (
-                  <Link className="nav-link" to="/aws" onClick={e => handleLogout(e)}>
+                  <Link className="nav-link" to="/" onClick={e => handleLogout(e)}>
                     Logout
                   </Link>
                 ) : (
-                  <Link className="nav-link" to="/aws">
+                  <Link className="nav-link" to="/login">
                     Login
                   </Link>
                 )}
