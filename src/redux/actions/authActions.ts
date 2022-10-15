@@ -1,4 +1,12 @@
-import { AuthTarget, AuthType, IAuthAction, IAuthState, IProfile } from "../specs/authSpecs";
+import {
+  AuthTarget,
+  AuthType,
+  IAuthAction,
+  IAuthActionDisconnect,
+  IAuthConnectionAction,
+  IAuthState,
+  IProfile
+} from "../specs/authSpecs";
 
 export const Connect = (target: AuthTarget, stateData: IProfile): IAuthAction => {
   return {
@@ -7,10 +15,13 @@ export const Connect = (target: AuthTarget, stateData: IProfile): IAuthAction =>
     data: stateData
   };
 };
-export const Logout = (target: AuthTarget, stateData: IProfile): IAuthAction => {
+export const Logout = (id: string): IAuthActionDisconnect => {
   return {
-    type: AuthType.Disconnect,
-    target: target,
-    data: stateData
+    id: id
+  };
+};
+export const SyncAuthMethods = (methods: IProfile[]): IAuthConnectionAction => {
+  return {
+    data: methods
   };
 };
