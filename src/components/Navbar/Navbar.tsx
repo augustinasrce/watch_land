@@ -1,29 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router";
-import { useSelector, useDispatch } from "react-redux";
-import { cloudDisconnect } from "../../redux/reducers/auth";
-import { RootState } from "../../redux/store";
-import * as Auth from "../../redux/actions/authActions";
 import "./Navbar.scss";
 
-interface NavbarProps {
-  isAuthenticated: boolean;
-}
-const Navbar = ({ isAuthenticated }: NavbarProps) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const isAuth = useSelector((state: RootState) => {
-    return state.auth.current != null;
-  });
-
+const Navbar = () => {
   const [selected, setSelected] = useState<String | undefined>(undefined);
-
-  const handleLogout = (e: any) => {
-    e.preventDefault();
-    dispatch(cloudDisconnect(Auth.Logout));
-    navigate("/");
-  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -71,17 +51,6 @@ const Navbar = ({ isAuthenticated }: NavbarProps) => {
                 >
                   Google Cloud
                 </Link>
-              </li>
-              <li className="nav-item">
-                {isAuth ? (
-                  <Link className="nav-link" to="/" onClick={e => handleLogout(e)}>
-                    Logout
-                  </Link>
-                ) : (
-                  <Link className="nav-link" to="/login">
-                    Login
-                  </Link>
-                )}
               </li>
             </ul>
           </div>
