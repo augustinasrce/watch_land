@@ -6,23 +6,25 @@ import AwsGroups from "./components/Providers/AWS/AwsGroups";
 import AwsStreams from "./components/Providers/AWS/AwsStreams";
 import AwsLogs from "./components/Providers/AWS/AwsLogs";
 import "./App.scss";
-import AWS from "./components/Providers/AWS/AWS";
-import Login from "./components/Navbar/Login";
+import AwsAuth from "./components/Providers/AWS/AwsAuth";
+import Login from "./components/Auth/Login";
+import AwsAccounts from "./components/Providers/AWS/AwsAccounts";
 
 function App() {
   return (
     <div className="App">
-      <Navbar isAuthenticated={true} />
+      <Navbar />
       <main className="container">
         <Routes>
           <Route path="/aws">
-            <Route element={<AWS />}>
-              <Route index element={<AwsGroups />}></Route>
+            <Route element={<AwsAuth />}>
+              <Route index element={<AwsAccounts />}></Route>
+              <Route path="groups" element={<AwsGroups />}></Route>
               <Route path="streams" element={<AwsStreams />}></Route>
               <Route path="logs" element={<AwsLogs />}></Route>
             </Route>
           </Route>
-          <Route path="/login" element={<Login />}></Route>
+          {/* <Route path="/login" element={<Login />}></Route> */}
           <Route path="/azure" element={<Azure />}></Route>
           <Route path="/google" element={<GoogleCloud />}></Route>
         </Routes>
