@@ -7,12 +7,14 @@ import { cloudConnect } from "../../redux/reducers/auth";
 import * as Auth from "../../redux/actions/authActions";
 import { AuthTarget, IProfile } from "../../redux/specs/authSpecs";
 import { WLDevProfiles } from "../../services/specs";
+import { AuthSessions } from "../../utils";
 
 interface LoginProps {
   isAuth?: boolean;
+  provider: AuthTarget;
 }
 
-const Login = ({ isAuth }: LoginProps) => {
+const Login = ({ isAuth, provider }: LoginProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,13 +28,15 @@ const Login = ({ isAuth }: LoginProps) => {
 
     let loginData: IProfile = {
       id: uuid.v4(),
-      type: profile
+      type: profile,
+      provider: provider
     };
 
     if (profile === WLDevProfiles.Programmatic) {
       loginData.key = key;
       loginData.secret = secret;
     }
+    AuthSessions.updateMethods(loginData);
     dispatch(cloudConnect(Auth.Connect(authTarget, loginData)));
     navigate(`/${authTarget}`);
   };
