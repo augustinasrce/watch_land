@@ -6,6 +6,7 @@ export interface IProfile {
   profile?: string;
   key?: string;
   secret?: string;
+  provider: AuthTarget;
 }
 export interface IAuthCurrent {
   id: string;
@@ -33,4 +34,11 @@ export interface IAuthAction {
   type: AuthType;
   target: AuthTarget;
   data: IProfile;
+}
+export interface IAuthActionDisconnect {
+  id: string;
+}
+
+export interface IAuthConnectionAction {
+  data: IProfile[];
 }
