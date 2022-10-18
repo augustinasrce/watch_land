@@ -8,15 +8,13 @@ import { RootState } from "../../../redux/store";
 import { AuthSessions } from "../../../utils";
 import Login from "../../Auth/Login";
 
-const SESSION_KEY = "auth_methods";
-
 const AwsAuth = (props: any) => {
   const dispatch = useDispatch();
 
   const [isAuth, setIsAuth] = useState(false);
   const auth = useSelector((state: RootState) => {
     const auths = state.auth.methods?.filter(
-      (method: IProfile) => method.provider == AuthTarget.AWS
+      (method: IProfile) => method.provider === AuthTarget.AWS
     );
     return auths.length > 0;
   });
@@ -32,7 +30,7 @@ const AwsAuth = (props: any) => {
       setIsAuth(false);
     }
   }, [auth]);
-  return isAuth ? <Outlet></Outlet> : <Login isAuth={isAuth} provider={AuthTarget.AWS} />;
+  return isAuth ? <Outlet></Outlet> : <Login isAuth={isAuth} />;
 };
 
 export default AwsAuth;
