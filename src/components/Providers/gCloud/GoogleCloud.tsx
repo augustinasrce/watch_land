@@ -9,7 +9,7 @@ const GoogleCloud = () => {
     return state.auth.current?.provider === AuthTarget.gCloud;
   });
 
-  return isAuth ? <Outlet></Outlet> : <Login isAuth={isAuth} provider={AuthTarget.gCloud} />;
+  return isAuth ? <Outlet></Outlet> : <Login isAuth={isAuth} />;
 };
 
 export default GoogleCloud;

@@ -3,18 +3,17 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { cloudConnect } from "../../redux/reducers/auth";
-import * as Auth from "../../redux/actions/authActions";
+import { updateConnections } from "../../redux/reducers/auth";
 import { AuthTarget, IProfile } from "../../redux/specs/authSpecs";
 import { WLDevProfiles } from "../../services/specs";
 import { AuthSessions } from "../../utils";
+import { SyncAuthMethods } from "../../redux/actions/authActions";
 
 interface LoginProps {
   isAuth?: boolean;
-  provider: AuthTarget;
 }
 
-const Login = ({ isAuth, provider }: LoginProps) => {
+const Login = ({ isAuth }: LoginProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -29,7 +28,7 @@ const Login = ({ isAuth, provider }: LoginProps) => {
     let loginData: IProfile = {
       id: uuid.v4(),
       type: profile,
-      provider: provider
+      provider: authTarget
     };
 
     if (profile === WLDevProfiles.Programmatic) {
@@ -37,7 +36,7 @@ const Login = ({ isAuth, provider }: LoginProps) => {
       loginData.secret = secret;
     }
     AuthSessions.updateMethods(loginData);
-    dispatch(cloudConnect(Auth.Connect(authTarget, loginData)));
+    dispatch(updateConnections(SyncAuthMethods(AuthSessions.getMethods())));
     navigate(`/${authTarget}`);
   };
 

@@ -9,7 +9,7 @@ const Azure = () => {
     return state.auth.current?.provider === AuthTarget.Azure;
   });
 
-  return isAuth ? <Outlet></Outlet> : <Login isAuth={isAuth} provider={AuthTarget.Azure} />;
+  return isAuth ? <Outlet></Outlet> : <Login isAuth={isAuth} />;
 };
 
 export default Azure;

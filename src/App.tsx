@@ -24,7 +24,7 @@ function App() {
               <Route path="logs" element={<AwsLogs />}></Route>
             </Route>
           </Route>
-          {/* <Route path="/login" element={<Login />}></Route> */}
+          <Route path="/login" element={<Login />}></Route>
           <Route path="/azure" element={<Azure />}></Route>
           <Route path="/google" element={<GoogleCloud />}></Route>
         </Routes>
