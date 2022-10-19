@@ -20,17 +20,29 @@ const AwsAccounts = (props: any) => {
   };
 
   return (
-    <div>
-      <h1>Active AWS Accounts</h1>
-      <ul>
+    <div className="container mt-3">
+      <h4>Active AWS Accounts</h4>
+      <ul className="list-group">
         {[
           ...loginMethods.map((method: IProfile) => {
             return (
-              <li key={method.id}>
-                <button onClick={e => disconnect(method)} type="button" className="btn btn-primary">
-                  Primary
-                </button>
-                {method.id} - {method.type}
+              <li className="list-group-item container" key={method.id}>
+                <div className="row align-items-center">
+                  <div className="col-9">
+                    <p className="mb-0">
+                      {method.id} - <strong>{method.type}</strong>
+                    </p>
+                  </div>
+                  <div className="col-3 text-right">
+                    <button
+                      onClick={e => disconnect(method)}
+                      type="button"
+                      className="btn btn-danger"
+                    >
+                      Disconnect
+                    </button>
+                  </div>
+                </div>
               </li>
             );
           })
