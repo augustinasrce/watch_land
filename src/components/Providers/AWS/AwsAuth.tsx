@@ -23,13 +23,14 @@ const AwsAuth = (props: any) => {
     if (auth) return setIsAuth(true);
 
     const methods = AuthSessions.getMethods();
-    if (methods.length > 0) {
+    if (methods.filter((method: IProfile) => method.provider === AuthTarget.AWS).length > 0) {
       dispatch(updateConnections(SyncAuthMethods(methods)));
       setIsAuth(true);
     } else {
       setIsAuth(false);
     }
   }, [auth]);
+
   return isAuth ? <Outlet></Outlet> : <Login isAuth={isAuth} />;
 };
 
