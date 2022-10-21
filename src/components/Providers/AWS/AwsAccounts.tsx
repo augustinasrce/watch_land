@@ -4,6 +4,7 @@ import { RootState } from "../../../redux/store";
 import { updateConnections } from "../../../redux/reducers/auth";
 import { SyncAuthMethods } from "../../../redux/actions/authActions";
 import { AuthSessions } from "../../../utils";
+import { Link } from "react-router-dom";
 
 const AwsAccounts = (props: any) => {
   const dispatch = useDispatch();
@@ -22,6 +23,9 @@ const AwsAccounts = (props: any) => {
   return (
     <div className="container mt-3">
       <h4>Active AWS Accounts</h4>
+      <Link className="btn btn-danger" to="groups">
+        Logs
+      </Link>
       <ul className="list-group">
         {[
           ...loginMethods.map((method: IProfile) => {
