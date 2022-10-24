@@ -23,9 +23,14 @@ const AwsAccounts = (props: any) => {
   return (
     <div className="container mt-3">
       <h4>Active AWS Accounts</h4>
-      <Link className="btn btn-danger" to="groups">
-        Logs
-      </Link>
+      <div className="col-14 text-right mb-2">
+        <Link className="btn btn-secondary mr-2" to="/login">
+          Login
+        </Link>
+        <Link className="btn btn-primary" to="groups">
+          Logs
+        </Link>
+      </div>
       <ul className="list-group">
         {[
           ...loginMethods.map((method: IProfile) => {
