@@ -5,6 +5,7 @@ import { ProviderTypes } from "../../../utils/enum";
 import { tableCellObject } from "../../../utils/objects";
 import { ITableCell } from "../../spec";
 import Table from "../../Table/Table";
+import NavigationButton from "../../NavButtons/NavigationButton";
 
 const AwsGroups = () => {
   const [groups, setGroups] = useState<IAwsLogGroups[]>([]);
@@ -35,7 +36,12 @@ const AwsGroups = () => {
     setBody(bodyCells);
   }, [groups]);
 
-  return <Table headers={["Log group", "Creation time"]} body={body} />;
+  return (
+    <>
+      <NavigationButton />
+      <Table headers={["Log group", "Creation time"]} body={body} />
+    </>
+  );
 };
 
 export default AwsGroups;
