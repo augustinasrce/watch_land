@@ -24,11 +24,11 @@ const AwsAccounts = (props: any) => {
     <div className="container mt-3">
       <h4>Active AWS Accounts</h4>
       <div className="col-14 text-right mb-2">
-        <Link className="btn btn-secondary mr-2" to="/login">
+        <Link className="btn btn-info mr-2" to="/login">
           Login
         </Link>
-        <Link className="btn btn-primary" to="groups">
-          Logs
+        <Link className="btn btn-warning" to="groups">
+          Log Groups
         </Link>
       </div>
       <ul className="list-group">

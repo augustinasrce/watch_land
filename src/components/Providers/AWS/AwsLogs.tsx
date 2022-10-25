@@ -6,7 +6,7 @@ import { getLogs } from "../../../services/services";
 import { IAwsLogs } from "../../../services/aws/spec";
 import { useQuery } from "../../../utils/hooks";
 import Table from "../../Table/Table";
-import NavigationButton from "../../NavButtons/NavigationButton";
+import BackButton from "../../BackButton/BackButton";
 
 const AwsLogs = () => {
   const groupName = useQuery().get("group") || "";
@@ -41,7 +41,7 @@ const AwsLogs = () => {
   }, [logs]);
   return (
     <>
-      <NavigationButton />
+      <BackButton />
       <Table headers={["Timestamp", "Message", "Log stream name"]} body={body} />
     </>
   );

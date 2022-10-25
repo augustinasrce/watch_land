@@ -6,7 +6,7 @@ import { useQuery } from "../../../utils/hooks";
 import { tableCellObject } from "../../../utils/objects";
 import { ITableCell } from "../../spec";
 import Table from "../../Table/Table";
-import NavigationButton from "../../NavButtons/NavigationButton";
+import BackButton from "../../BackButton/BackButton";
 
 const AwsStreams = () => {
   const groupName = useQuery().get("group") || "";
@@ -40,7 +40,7 @@ const AwsStreams = () => {
   }, [streams]);
   return (
     <>
-      <NavigationButton />
+      <BackButton />
       <Table headers={["Log stream", "First event time", "Last event time"]} body={body} />
     </>
   );
