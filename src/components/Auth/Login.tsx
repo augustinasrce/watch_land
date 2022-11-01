@@ -3,11 +3,12 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { updateConnections } from "../../redux/reducers/auth";
+import { cloudConnect } from "../../redux/reducers/auth";
 import { AuthTarget, IProfile } from "../../redux/specs/authSpecs";
 import { WLDevProfiles } from "../../services/specs";
 import { AuthSessions } from "../../utils";
-import { SyncAuthMethods } from "../../redux/actions/authActions";
+import { Connect, SyncAuthMethods } from "../../redux/actions/authActions";
+import { configClient } from "../../services/aws/aws";
 
 interface LoginProps {
   isAuth?: boolean;
@@ -34,9 +35,16 @@ const Login = ({ isAuth }: LoginProps) => {
     if (profile === WLDevProfiles.Programmatic) {
       loginData.key = key;
       loginData.secret = secret;
+      const region = "eu-west-1";
+      configClient(key, secret, region);
     }
-    AuthSessions.updateMethods(loginData);
-    dispatch(updateConnections(SyncAuthMethods(AuthSessions.getMethods())));
+
+    // AuthSessions.updateMethods(loginData);
+    // const data = AuthSessions.getMethods();
+    const payload = Connect(loginData.provider, loginData);
+    const action = cloudConnect(payload);
+    dispatch(action);
+
     navigate(`/${authTarget}`);
   };
 
@@ -83,9 +91,7 @@ const Login = ({ isAuth }: LoginProps) => {
                     aria-label="Default select example"
                   >
                     <option value={WLDevProfiles.Programmatic}>Programmatic Access</option>
-                    <option value={WLDevProfiles.Dev}>Watchland dev</option>
-                    <option value="aws:profile:1">profile-1</option>
-                    <option value="aws:profile:2">profile-2</option>
+                    {/* <option value={WLDevProfiles.Dev}>Watchland dev</option> */}
                   </select>
                 </div>
                 <div className="col-sm-12 col-md-4">
