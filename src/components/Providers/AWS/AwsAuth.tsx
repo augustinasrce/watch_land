@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
-import { SyncAuthMethods } from "../../../redux/actions/authActions";
-import { updateConnections } from "../../../redux/reducers/auth";
+import { SyncAuthMethods, Connect } from "../../../redux/actions/authActions";
+import { cloudConnect } from "../../../redux/reducers/auth";
 import { AuthTarget, IProfile } from "../../../redux/specs/authSpecs";
 import { RootState } from "../../../redux/store";
 import { AuthSessions } from "../../../utils";
@@ -24,7 +24,9 @@ const AwsAuth = (props: any) => {
 
     const methods = AuthSessions.getMethods();
     if (methods.filter((method: IProfile) => method.provider === AuthTarget.AWS).length > 0) {
-      dispatch(updateConnections(SyncAuthMethods(methods)));
+      //const payload = Connect(method.provider, method)
+      //const action = cloudConnect()
+      //dispatch(updateConnections(SyncAuthMethods(methods)));
       setIsAuth(true);
     } else {
       setIsAuth(false);

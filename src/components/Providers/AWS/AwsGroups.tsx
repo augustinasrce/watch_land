@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { IAwsLogGroups } from "../../../services/aws/spec";
-import { getGroups } from "../../../services/services";
-import { ProviderTypes } from "../../../utils/enum";
 import { tableCellObject } from "../../../utils/objects";
 import { ITableCell } from "../../spec";
 import Table from "../../Table/Table";
 import BackButton from "../../BackButton/BackButton";
+import { CloudWatch } from "../../../services/aws/aws";
 
 const AwsGroups = () => {
   const [groups, setGroups] = useState<IAwsLogGroups[]>([]);
   const [body, setBody] = useState<ITableCell[][]>([]);
   const loadGroups = async () => {
-    const groups: any[] = await getGroups(ProviderTypes.AWS);
-    setGroups(groups);
+    CloudWatch.groups().observe(data => {
+      setGroups(data);
+    });
   };
 
   useEffect(() => {
