@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { cloudConnect } from "../../redux/reducers/auth";
-import { AuthTarget, IProfile } from "../../redux/specs/authSpecs";
+import { AuthTarget, IProfile, AuthRegion } from "../../redux/specs/authSpecs";
 import { WLDevProfiles } from "../../services/specs";
 import { AuthSessions } from "../../utils";
 import { Connect, SyncAuthMethods } from "../../redux/actions/authActions";
@@ -20,6 +20,7 @@ const Login = ({ isAuth }: LoginProps) => {
 
   const [profile, setProfile] = useState(WLDevProfiles.Programmatic);
   const [authTarget, setAuthTarget] = useState<AuthTarget>(AuthTarget.AWS);
+  const [authRegion, setAuthRegion] = useState<AuthRegion>(AuthRegion.EU_West_1);
   const [key, setKey] = useState("");
   const [secret, setSecret] = useState("");
 
@@ -29,18 +30,19 @@ const Login = ({ isAuth }: LoginProps) => {
     let loginData: IProfile = {
       id: uuid.v4(),
       type: profile,
-      provider: authTarget
+      provider: authTarget,
+      region: authRegion
     };
 
     if (profile === WLDevProfiles.Programmatic) {
       loginData.key = key;
       loginData.secret = secret;
-      const region = "eu-west-1";
-      configClient(key, secret, region);
+      loginData.region = authRegion;
+      configClient(key, secret, authRegion);
     }
 
-    // AuthSessions.updateMethods(loginData);
-    // const data = AuthSessions.getMethods();
+    AuthSessions.updateMethods(loginData);
+    const data = AuthSessions.getMethods();
     const payload = Connect(loginData.provider, loginData);
     const action = cloudConnect(payload);
     dispatch(action);
@@ -101,6 +103,33 @@ const Login = ({ isAuth }: LoginProps) => {
                       : profile === WLDevProfiles.Dev
                       ? "Watchland test profile"
                       : "AWS Profile"}
+                  </span>
+                </div>
+              </div>
+              <div className="row align-items-center pt-3">
+                <div className="col-sm-12 col-md-2">
+                  <label htmlFor="aws-region" className="col-form-label">
+                    Region
+                  </label>
+                </div>
+                <div className="col-sm-12 col-md-6">
+                  <select
+                    defaultValue={AuthRegion.EU_West_1}
+                    onChange={(ev: any) => setAuthRegion(ev.target.value)}
+                    name="authRegion"
+                    required
+                    className="form-select"
+                    id="authRegion"
+                    aria-label="Default select example"
+                  >
+                    {Object.keys(AuthRegion).map(key => (
+                      <option value={key}>{key}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="col-sm-12 col-md-4">
+                  <span id="aws-region" className="form-text">
+                    AWS Region
                   </span>
                 </div>
               </div>
