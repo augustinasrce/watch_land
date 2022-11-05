@@ -13,5 +13,4 @@ export const configClient = (key: string, secret: string, region: string = "eu-w
   };
   // Add the watchers to the client
   CloudWatch.addWatcher(config);
-  //throw new Error("Connection failed");
 };
