@@ -7,7 +7,7 @@ import { cloudConnect } from "../../redux/reducers/auth";
 import { AuthTarget, IProfile, AuthRegion } from "../../redux/specs/authSpecs";
 import { WLDevProfiles } from "../../services/specs";
 import { AuthSessions } from "../../utils";
-import { Connect, SyncAuthMethods } from "../../redux/actions/authActions";
+import { Connect } from "../../redux/actions/authActions";
 import { configClient } from "../../services/aws/aws";
 
 interface LoginProps {
