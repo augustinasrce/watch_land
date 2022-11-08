@@ -2,10 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.scss";
 
-interface NavbarProps {
-  isAuthenticated: boolean;
-}
-const Navbar = ({ isAuthenticated }: NavbarProps) => {
+const Navbar = () => {
   const [selected, setSelected] = useState<String | undefined>(undefined);
 
   return (
@@ -31,7 +28,7 @@ const Navbar = ({ isAuthenticated }: NavbarProps) => {
               <li className="nav-item">
                 <Link
                   className={selected === "aws" ? "nav-link active" : "nav-link"}
-                  to="/aws/groups/"
+                  to="/aws/"
                   onClick={() => setSelected("aws")}
                 >
                   AWS
@@ -40,7 +37,7 @@ const Navbar = ({ isAuthenticated }: NavbarProps) => {
               <li className="nav-item">
                 <Link
                   className={selected === "azure" ? "nav-link active" : "nav-link"}
-                  to="/azure/groups/"
+                  to="/azure/"
                   onClick={() => setSelected("azure")}
                 >
                   Azure
@@ -49,7 +46,7 @@ const Navbar = ({ isAuthenticated }: NavbarProps) => {
               <li className="nav-item">
                 <Link
                   className={selected === "google" ? "nav-link active" : "nav-link"}
-                  to="/google/groups/"
+                  to="/google/"
                   onClick={() => setSelected("google")}
                 >
                   Google Cloud

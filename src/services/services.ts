@@ -1,11 +1,8 @@
 import { ProviderTypes } from "../utils/enum";
-import { AwsService } from "./aws/aws";
 import { AzureService } from "./azure/azure";
 import { GoogleService } from "./google/google";
 
-
-const providers:any = {
-  aws: AwsService,
+const providers: any = {
   azure: AzureService,
   google: GoogleService
 };
@@ -20,7 +17,7 @@ export const getStreams = (group: string, type: ProviderTypes) => {
   return service.streams(group);
 };
 
-export const getLogs = (group:string, streams:string[], type: ProviderTypes) => {
+export const getLogs = (group: string, streams: string[], type: ProviderTypes) => {
   const service = new providers[type]();
   return service.streams(group, streams);
 };

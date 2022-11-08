@@ -1,17 +1,16 @@
-import { BaseCloudService } from "../base";
-import { IAwsLogGroups, IAwsLogs, IAwsProvider, IAwsStreams } from "./spec";
+import * as Watchland from "watch-land-ts-client";
 
-export class AwsService extends BaseCloudService implements IAwsProvider{
-  async groups():Promise<IAwsLogGroups[]|[]>{
-    const response = await fetch("http://localhost:3004/groups");
-    return await response.json();
-  } 
-  async streams(groupName:string):Promise<IAwsStreams[]|[]> {
-    const response = await fetch("http://localhost:3004/streams");
-    return await response.json();
-  }
-  async  logs(grouName:string, streams:string[]):Promise<IAwsLogs[]|[]>{
-    const response = await fetch("http://localhost:3004/logs");
-    return await response.json();
-  }
-}
+export const CloudWatch = new Watchland.CloudWatch.Client();
+
+export const configClient = (key: string, secret: string, region: string = "eu-west-1") => {
+  // AWS connection
+  const config: Watchland.CloudWatch.Specs.ICloudWatchConfig = {
+    options: {
+      region: region,
+      accessKeyId: key,
+      secretAccessKey: secret
+    }
+  };
+  // Add the watchers to the client
+  CloudWatch.addWatcher(config);
+};

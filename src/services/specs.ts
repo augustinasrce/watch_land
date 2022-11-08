@@ -1,2 +1,6 @@
-
-export interface IBaseCloudService{}
+export interface IBaseCloudService {}
+export enum WLDevProfiles {
+  Dev = "dev",
+  Programmatic = "programmatic",
+  Creds = "creds"
+}

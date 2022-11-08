@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 import { IAwsLogGroups } from "../../../services/aws/spec";
-import { getGroups } from "../../../services/services";
-import { ProviderTypes } from "../../../utils/enum";
 import { tableCellObject } from "../../../utils/objects";
 import { ITableCell } from "../../spec";
 import Table from "../../Table/Table";
+import BackButton from "../../BackButton/BackButton";
+import { CloudWatch } from "../../../services/aws/aws";
+import ErrorAlert from "../../Alert/ErrorAlert";
 
 const AwsGroups = () => {
   const [groups, setGroups] = useState<IAwsLogGroups[]>([]);
   const [body, setBody] = useState<ITableCell[][]>([]);
+  const [error, setError] = useState<boolean>(false);
   const loadGroups = async () => {
-    const groups: any[] = await getGroups(ProviderTypes.AWS);
-    setGroups(groups);
+    CloudWatch.groups()
+      .observe(data => {
+        setGroups(data);
+      })
+      .catch(() => setError(true));
   };
 
   useEffect(() => {
@@ -35,7 +40,13 @@ const AwsGroups = () => {
     setBody(bodyCells);
   }, [groups]);
 
-  return <Table headers={["Log group", "Creation time"]} body={body} />;
+  return (
+    <>
+      {error ? <ErrorAlert /> : null}
+      <BackButton />
+      <Table headers={["Log group", "Creation time"]} body={body} />
+    </>
+  );
 };
 
 export default AwsGroups;

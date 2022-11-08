@@ -1,14 +1,15 @@
-import { IProviderGroup } from "../../../utils/interfaces";
-
-interface IGoogleCloudProps {
-  groups: IProviderGroup[];
-  details: boolean;
-}
+import { useSelector } from "react-redux";
+import { Outlet } from "react-router-dom";
+import { AuthTarget } from "../../../redux/specs/authSpecs";
+import { RootState } from "../../../redux/store";
+import Login from "../../Auth/Login";
 
 const GoogleCloud = () => {
-  return (
-    <div>Google</div>
-  );
+  const isAuth = useSelector((state: RootState) => {
+    return state.auth.current?.provider === AuthTarget.gCloud;
+  });
+
+  return isAuth ? <Outlet></Outlet> : <Login isAuth={isAuth} />;
 };
 
 export default GoogleCloud;
