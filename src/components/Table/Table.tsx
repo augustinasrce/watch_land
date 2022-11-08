@@ -1,3 +1,4 @@
+import * as uuid from "uuid";
 import { ITableCell } from "../spec";
 import TableRow from "./TableRow";
 import "./Table.scss";
@@ -15,7 +16,11 @@ const Table = ({ headers, body }: ITableProps) => {
           <tr>
             {[
               ...headers.map((header: string) => {
-                return <th scope="col">{header}</th>;
+                return (
+                  <th scope="col" key={uuid.v4()}>
+                    {header}
+                  </th>
+                );
               })
             ]}
           </tr>

@@ -7,7 +7,7 @@ import { cloudConnect } from "../../redux/reducers/auth";
 import { AuthTarget, IProfile, AuthRegion } from "../../redux/specs/authSpecs";
 import { WLDevProfiles } from "../../services/specs";
 import { AuthSessions } from "../../utils";
-import { Connect } from "../../redux/actions/authActions";
+import { Connect, SyncAuthMethods } from "../../redux/actions/authActions";
 import { configClient } from "../../services/aws/aws";
 
 interface LoginProps {
@@ -78,7 +78,9 @@ const Login = ({ isAuth }: LoginProps) => {
                     aria-label="Default select example"
                   >
                     {Object.keys(AuthTarget).map(key => (
-                      <option value={key}>{key}</option>
+                      <option value={key} key={key}>
+                        {key}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -92,7 +94,9 @@ const Login = ({ isAuth }: LoginProps) => {
                     id="aws-profile"
                     aria-label="Default select example"
                   >
-                    <option value={WLDevProfiles.Programmatic}>Programmatic Access</option>
+                    <option value={WLDevProfiles.Programmatic} key={WLDevProfiles.Programmatic}>
+                      Programmatic Access
+                    </option>
                     {/* <option value={WLDevProfiles.Dev}>Watchland dev</option> */}
                   </select>
                 </div>
@@ -122,8 +126,10 @@ const Login = ({ isAuth }: LoginProps) => {
                     id="authRegion"
                     aria-label="Default select example"
                   >
-                    {Object.keys(AuthRegion).map(key => (
-                      <option value={key}>{key}</option>
+                    {Object.values(AuthRegion).map(key => (
+                      <option value={key} key={key}>
+                        {key}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -148,7 +154,7 @@ const Login = ({ isAuth }: LoginProps) => {
                           onChange={(ev: any) => setKey(ev.target.value)}
                           className="form-control"
                           required
-                          aria-describedby="aws-key"
+                          autoComplete={"on"}
                         />
                       </div>
                       <div className="col-sm-12 col-md-4">
@@ -170,7 +176,7 @@ const Login = ({ isAuth }: LoginProps) => {
                           id="aws-key-secret"
                           required
                           className="form-control"
-                          aria-describedby="aws-key-secret"
+                          autoComplete={"on"}
                         />
                       </div>
                       <div className="col-sm-12 col-md-4">

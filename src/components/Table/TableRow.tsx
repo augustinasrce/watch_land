@@ -1,3 +1,4 @@
+import * as uuid from "uuid";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ITableCell } from "../spec";
@@ -18,7 +19,7 @@ const TableRow = ({ cells }: ITableRow) => {
         {[
           ...cells.map((cell: ITableCell) => {
             return (
-              <td style={open ? { borderBottom: "none" } : {}} onClick={toggle}>
+              <td style={open ? { borderBottom: "none" } : {}} onClick={toggle} key={uuid.v4()}>
                 {cell.isLink ? (
                   <Link to={{ pathname: cell.link }}>{cell.message} </Link>
                 ) : (
