@@ -36,7 +36,7 @@ const AwsLogs = () => {
             true,
             `/aws/logs?group=${groupName}&stream=${log.logStreamName}`
           );
-          return [logTimeStamp, logMessage, streamName];
+          return [logMessage, streamName, logTimeStamp];
         })
       ];
     };
@@ -46,7 +46,7 @@ const AwsLogs = () => {
     <>
       {error ? <ErrorAlert /> : null}
       <BackButton />
-      <Table headers={["Timestamp", "Message", "Log stream name"]} body={body} />
+      <Table headers={["Log stream name", "Message", "Timestamp"]} body={body} />
     </>
   );
 };
