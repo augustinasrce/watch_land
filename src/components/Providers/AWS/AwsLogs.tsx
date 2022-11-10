@@ -7,6 +7,7 @@ import Table from "../../Table/Table";
 import BackButton from "../../BackButton/BackButton";
 import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
+import { timestampToDate } from "../../timestampToDate";
 
 const AwsLogs = () => {
   const groupName = useQuery().get("group") || "";
@@ -29,7 +30,7 @@ const AwsLogs = () => {
     const bodyCells = () => {
       return [
         ...logs?.map((log: IAwsLogs) => {
-          const logTimeStamp = tableCellObject(`${log.timestamp}`, false, "");
+          const logTimeStamp = tableCellObject(`${timestampToDate(log.timestamp)}`, false, "");
           const logMessage = tableCellObject(log.message, false, "");
           const streamName = tableCellObject(
             log.logStreamName,

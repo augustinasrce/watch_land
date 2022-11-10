@@ -7,6 +7,7 @@ import Table from "../../Table/Table";
 import BackButton from "../../BackButton/BackButton";
 import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
+import { timestampToDate } from "../../timestampToDate";
 
 const AwsStreams = () => {
   const groupName = useQuery().get("group") || "";
@@ -35,8 +36,17 @@ const AwsStreams = () => {
             true,
             `/aws/logs?group=${groupName}&stream=${stream.logStreamName}`
           );
-          const firstEvent = tableCellObject(`${stream.firstEventTimestamp}`, false, "");
-          const lastEvent = tableCellObject(`${stream.lastEventTimestamp}`, false, "");
+
+          const firstEvent = tableCellObject(
+            `${timestampToDate(stream.firstEventTimestamp)}`,
+            false,
+            ""
+          );
+          const lastEvent = tableCellObject(
+            `${timestampToDate(stream.lastEventTimestamp)}`,
+            false,
+            ""
+          );
           return [streamName, firstEvent, lastEvent];
         })
       ];

@@ -6,6 +6,7 @@ import Table from "../../Table/Table";
 import BackButton from "../../BackButton/BackButton";
 import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
+import { timestampToDate } from "../../timestampToDate";
 
 const AwsGroups = () => {
   const [groups, setGroups] = useState<IAwsLogGroups[]>([]);
@@ -32,7 +33,7 @@ const AwsGroups = () => {
             true,
             `/aws/streams?group=${group.logGroupName}`
           );
-          const creationTime = tableCellObject(group.creationTime, false, "");
+          const creationTime = tableCellObject(timestampToDate(group.creationTime), false, "");
           return [groupName, creationTime];
         })
       ];
