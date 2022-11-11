@@ -55,7 +55,7 @@ const AwsLogs = () => {
       ) : (
         <>
           <BackButton />
-          <Table headers={["Log stream name", "Message", "Timestamp"]} body={body} />
+          <Table headers={["Log stream name", "Message", "Timestamp"]} body={body} openable />
         </>
       )}
     </>

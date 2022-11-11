@@ -5,13 +5,14 @@ import { ITableCell } from "../spec";
 
 interface ITableRow {
   cells: ITableCell[];
+  openable: Boolean;
 }
 
-const TableRow = ({ cells }: ITableRow) => {
+const TableRow = ({ cells, openable }: ITableRow) => {
   const [open, setOpen] = useState<Boolean>(false);
 
   const toggle = () => {
-    setOpen(!open);
+    setOpen(openable && !open);
   };
   return (
     <>
@@ -33,7 +34,7 @@ const TableRow = ({ cells }: ITableRow) => {
       {open ? (
         <tr>
           <td style={{ borderTop: "none" }} colSpan={3}>
-            {cells[2].message}
+            <>{cells[2].message}</>
           </td>
         </tr>
       ) : null}

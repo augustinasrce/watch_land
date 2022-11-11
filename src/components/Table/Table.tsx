@@ -6,9 +6,10 @@ import "./Table.scss";
 interface ITableProps {
   headers: string[];
   body: ITableCell[][];
+  openable?: Boolean;
 }
 
-const Table = ({ headers, body }: ITableProps) => {
+const Table = ({ headers, body, openable = false }: ITableProps) => {
   return (
     <div className="container">
       <table className="table">
@@ -28,7 +29,7 @@ const Table = ({ headers, body }: ITableProps) => {
         <tbody>
           {[
             ...body.map((cells: ITableCell[]) => {
-              return <TableRow cells={cells} />;
+              return <TableRow cells={cells} openable={openable} />;
             })
           ]}
         </tbody>

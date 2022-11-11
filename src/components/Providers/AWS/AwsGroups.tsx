@@ -53,7 +53,7 @@ const AwsGroups = () => {
       ) : (
         <>
           <BackButton />
-          <Table headers={["Log group", "Creation time"]} body={body} />
+          <Table headers={["Log group", "Creation time"]} body={body} openable={false} />
         </>
       )}
     </>

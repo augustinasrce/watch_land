@@ -65,7 +65,11 @@ const AwsStreams = () => {
       ) : (
         <>
           <BackButton />
-          <Table headers={["Log stream", "First event time", "Last event time"]} body={body} />
+          <Table
+            headers={["Log stream", "First event time", "Last event time"]}
+            body={body}
+            openable={false}
+          />
         </>
       )}
     </>
