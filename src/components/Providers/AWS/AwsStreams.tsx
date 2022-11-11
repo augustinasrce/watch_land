@@ -8,17 +8,21 @@ import BackButton from "../../BackButton/BackButton";
 import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
 import { timestampToDate } from "../../timestampToDate";
+import Spinner from "../../Spinner/Spinner";
 
 const AwsStreams = () => {
   const groupName = useQuery().get("group") || "";
   const [streams, setStreams] = useState<IAwsStreams[]>([]);
   const [body, setBody] = useState<ITableCell[][]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const loadStreams = async () => {
     const groups = [groupName];
+    setLoading(true);
     CloudWatch.streams(groups)
       .observe(data => {
         setStreams(data);
+        setLoading(false);
       })
       .catch(() => setError(true));
   };
@@ -56,8 +60,14 @@ const AwsStreams = () => {
   return (
     <>
       {error ? <ErrorAlert /> : null}
-      <BackButton />
-      <Table headers={["Log stream", "First event time", "Last event time"]} body={body} />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <BackButton />
+          <Table headers={["Log stream", "First event time", "Last event time"]} body={body} />
+        </>
+      )}
     </>
   );
 };

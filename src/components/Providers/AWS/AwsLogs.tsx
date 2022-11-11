@@ -7,18 +7,22 @@ import Table from "../../Table/Table";
 import BackButton from "../../BackButton/BackButton";
 import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
+import Spinner from "../../Spinner/Spinner";
 import { timestampToDate } from "../../timestampToDate";
 
 const AwsLogs = () => {
   const groupName = useQuery().get("group") || "";
   const [logs, setLogs] = useState<IAwsLogs[]>([]);
   const [body, setBody] = useState<ITableCell[][]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const loadLogs = async () => {
     const logGroups = [{ group: groupName }];
+    setLoading(true);
     CloudWatch.logs(logGroups)
       .observe(data => {
         setLogs(data);
+        setLoading(false);
       })
       .catch(() => setError(true));
   };
@@ -46,8 +50,14 @@ const AwsLogs = () => {
   return (
     <>
       {error ? <ErrorAlert /> : null}
-      <BackButton />
-      <Table headers={["Log stream name", "Message", "Timestamp"]} body={body} />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <BackButton />
+          <Table headers={["Log stream name", "Message", "Timestamp"]} body={body} />
+        </>
+      )}
     </>
   );
 };
