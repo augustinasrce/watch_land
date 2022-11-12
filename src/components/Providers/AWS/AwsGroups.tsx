@@ -8,6 +8,7 @@ import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
 import { timestampToDate } from "../../timestampToDate";
 import Spinner from "../../Spinner/Spinner";
+import SearcButton from "../../SearchButton/searcButton";
 
 const AwsGroups = () => {
   const [groups, setGroups] = useState<IAwsLogGroups[]>([]);
@@ -52,7 +53,10 @@ const AwsGroups = () => {
         <Spinner />
       ) : (
         <>
-          <BackButton />
+          <div className="d-flex justify-content-between">
+            <BackButton />
+            <SearcButton />
+          </div>
           <Table headers={["Log group", "Creation time"]} body={body} openable={false} />
         </>
       )}
