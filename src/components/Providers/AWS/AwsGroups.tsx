@@ -8,7 +8,7 @@ import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
 import { timestampToDate } from "../../timestampToDate";
 import Spinner from "../../Spinner/Spinner";
-import SearcButton from "../../SearchButton/searcButton";
+import SearcButton from "../../SearchButton/searchButton";
 
 const AwsGroups = () => {
   const [groups, setGroups] = useState<IAwsLogGroups[]>([]);

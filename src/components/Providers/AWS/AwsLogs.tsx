@@ -8,7 +8,7 @@ import BackButton from "../../BackButton/BackButton";
 import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
 import Spinner from "../../Spinner/Spinner";
-import SearcButton from "../../SearchButton/searcButton";
+import SearcButton from "../../SearchButton/searchButton";
 import { timestampToDate } from "../../timestampToDate";
 
 const AwsLogs = () => {
