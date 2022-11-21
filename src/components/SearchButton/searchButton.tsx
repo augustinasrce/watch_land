@@ -3,8 +3,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./searchButton.scss";
 
-const SearcButton = () => {
+interface IsearchButtonProps {
+  search: (input: string) => void;
+}
+
+const SearcButton = ({ search }: IsearchButtonProps) => {
   const [startDate, setStartDate] = useState<any>(new Date());
+  const [inputValue, setInputValue] = useState<string>("");
 
   return (
     <div className="input-group m-2 w-25 d-flex">
@@ -16,9 +21,20 @@ const SearcButton = () => {
         name="data-picker"
         dateFormat="yyyy-MM-dd"
       />
-      <input type="text" className="form-control" placeholder="Search" aria-label="Search-form" />
+      <input
+        type="text"
+        className="form-control"
+        onChange={e => setInputValue(e.target.value)}
+        placeholder="Search"
+        aria-label="Search-form"
+      />
       <div className="input-group-append">
-        <span className="input-group-text" id="basic-addon2" role="button">
+        <span
+          className="input-group-text"
+          id="basic-addon2"
+          role="button"
+          onClick={() => search(inputValue)}
+        >
           search
         </span>
       </div>

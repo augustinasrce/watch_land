@@ -46,6 +46,11 @@ const AwsGroups = () => {
     setBody(bodyCells);
   }, [groups]);
 
+  const search = (value: string) => {
+    const filter = groups.filter(g => g.logGroupName.toLowerCase().includes(value.toLowerCase()));
+    setGroups(filter);
+  };
+
   return (
     <>
       {error ? <ErrorAlert /> : null}
@@ -55,7 +60,7 @@ const AwsGroups = () => {
         <>
           <div className="d-flex justify-content-between">
             <BackButton />
-            <SearcButton />
+            <SearcButton search={search} />
           </div>
           <Table headers={["Log group", "Creation time"]} body={body} openable={false} />
         </>

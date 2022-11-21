@@ -48,6 +48,12 @@ const AwsLogs = () => {
     };
     setBody(bodyCells);
   }, [logs]);
+
+  const search = (value: string) => {
+    const filter = logs.filter(l => l.logStreamName.toLowerCase().includes(value.toLowerCase()));
+    setLogs(filter);
+  };
+
   return (
     <>
       {error ? <ErrorAlert /> : null}
@@ -57,7 +63,7 @@ const AwsLogs = () => {
         <>
           <div className="d-flex justify-content-between">
             <BackButton />
-            <SearcButton />
+            <SearcButton search={search} />
           </div>
           <Table headers={["Log stream name", "Message", "Timestamp"]} body={body} openable />
         </>
