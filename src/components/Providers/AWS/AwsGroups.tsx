@@ -8,18 +8,18 @@ import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
 import { timestampToDate } from "../../timestampToDate";
 import Spinner from "../../Spinner/Spinner";
-import SearcButton from "../../SearchButton/searchButton";
+import SearcBar from "../../SearchBar/searchBar";
 
 const AwsGroups = () => {
   const [groups, setGroups] = useState<IAwsLogGroups[]>([]);
   const [body, setBody] = useState<ITableCell[][]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  const loadGroups = async () => {
+  const loadGroups = async (prefix?: string | undefined) => {
     setLoading(true);
-    CloudWatch.groups()
+    CloudWatch.groups(prefix)
       .observe(data => {
-        setGroups(data);
+        setGroups([...groups, ...data]);
         setLoading(false);
       })
       .catch(() => setError(true));
@@ -46,11 +46,6 @@ const AwsGroups = () => {
     setBody(bodyCells);
   }, [groups]);
 
-  const search = (value: string) => {
-    const filter = groups.filter(g => g.logGroupName.toLowerCase().includes(value.toLowerCase()));
-    setGroups(filter);
-  };
-
   return (
     <>
       {error ? <ErrorAlert /> : null}
@@ -60,7 +55,7 @@ const AwsGroups = () => {
         <>
           <div className="d-flex justify-content-between">
             <BackButton />
-            <SearcButton search={search} />
+            <SearcBar search={loadGroups} />
           </div>
           <Table headers={["Log group", "Creation time"]} body={body} openable={false} />
         </>
