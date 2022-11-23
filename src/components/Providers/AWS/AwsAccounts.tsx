@@ -25,7 +25,7 @@ const AwsAccounts = (props: any) => {
       <h4>Active AWS Accounts</h4>
       <div className="col-14 text-right mb-2">
         <Link className="btn btn-info mr-2" to="/login">
-          Login
+          Add Connection
         </Link>
         <Link className="btn btn-warning" to="groups">
           Log Groups
