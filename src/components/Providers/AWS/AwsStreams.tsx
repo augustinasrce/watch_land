@@ -9,7 +9,7 @@ import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
 import { timestampToDate } from "../../timestampToDate";
 import Spinner from "../../Spinner/Spinner";
-import SearcButton from "../../SearchButton/searchButton";
+import SearcBar from "../../SearchBar/searchBar";
 
 const AwsStreams = () => {
   const groupName = useQuery().get("group") || "";
@@ -73,7 +73,7 @@ const AwsStreams = () => {
         <>
           <div className="d-flex justify-content-between">
             <BackButton />
-            <SearcButton search={search} />
+            <SearcBar search={search} />
           </div>
           <Table
             headers={["Log stream", "First event time", "Last event time"]}
