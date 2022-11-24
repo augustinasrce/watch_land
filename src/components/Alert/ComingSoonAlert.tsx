@@ -1,11 +1,16 @@
+import BackButton from "../BackButton/BackButton";
+
 const ComingSoonAlert = () => {
   return (
-    <div
-      className="alert alert-warning col-sm-12 col-md-6 offset-md-3 text-center mt-4"
-      role="alert"
-    >
-      Coming Soon!!!
-    </div>
+    <>
+      <BackButton />
+      <div
+        className="alert alert-warning col-sm-12 col-md-6 offset-md-3 text-center mt-4"
+        role="alert"
+      >
+        Coming Soon!!!
+      </div>
+    </>
   );
 };
 
