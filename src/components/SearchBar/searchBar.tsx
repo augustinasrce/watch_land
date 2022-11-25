@@ -6,15 +6,16 @@ import "./searchBar.scss";
 interface IsearchButtonProps {
   search: (input: string) => void;
   isFinishDate: boolean;
+  isDropDownButton: boolean;
 }
 
-const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
+const SearcButton = ({ search, isFinishDate, isDropDownButton }: IsearchButtonProps) => {
   const [startDate, setStartDate] = useState<any>(new Date());
   const [finishDate, setFinishDate] = useState<any>(new Date());
   const [inputValue, setInputValue] = useState<string>("");
 
   return (
-    <div className="input-group m-2 col-5 d-flex">
+    <div className={isFinishDate ? "input-group m-2 col-8 d-flex" : "input-group m-2 col-5 d-flex"}>
       <DatePicker
         className="form-control"
         wrapperClassName="datePicker"
@@ -49,6 +50,35 @@ const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
           onClick={() => search(inputValue)}
         >
           search
+          {isDropDownButton ? (
+            <>
+              <a
+                className="dropdown-toggle"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              ></a>
+              <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Something else here
+                  </a>
+                </li>
+              </ul>
+            </>
+          ) : null}
         </span>
       </div>
     </div>
