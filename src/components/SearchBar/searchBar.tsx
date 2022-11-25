@@ -5,10 +5,12 @@ import "./searchBar.scss";
 
 interface IsearchButtonProps {
   search: (input: string) => void;
+  isFinishDate: boolean;
 }
 
-const SearcButton = ({ search }: IsearchButtonProps) => {
+const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
   const [startDate, setStartDate] = useState<any>(new Date());
+  const [finishDate, setFinishDate] = useState<any>(new Date());
   const [inputValue, setInputValue] = useState<string>("");
 
   return (
@@ -21,6 +23,17 @@ const SearcButton = ({ search }: IsearchButtonProps) => {
         name="data-picker"
         dateFormat="yyyy-MM-dd"
       />
+      {isFinishDate ? (
+        <DatePicker
+          className="form-control"
+          wrapperClassName="datePicker"
+          onChange={(date: Date) => setFinishDate(date)}
+          selected={finishDate}
+          name="data-picker"
+          dateFormat="yyyy-MM-dd"
+        />
+      ) : null}
+
       <input
         type="text"
         className="form-control"
