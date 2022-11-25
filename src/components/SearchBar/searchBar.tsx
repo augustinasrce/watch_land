@@ -12,7 +12,7 @@ const SearcButton = ({ search }: IsearchButtonProps) => {
   const [inputValue, setInputValue] = useState<string>("");
 
   return (
-    <div className="input-group m-2 w-25 d-flex">
+    <div className="input-group m-2 col-5 d-flex">
       <DatePicker
         className="form-control"
         wrapperClassName="datePicker"
