@@ -9,7 +9,7 @@ import { WLDevProfiles } from "../../services/specs";
 import { AuthSessions } from "../../utils";
 import { Connect, SyncAuthMethods } from "../../redux/actions/authActions";
 import { configClient } from "../../services/aws/aws";
-// import { CloudWatch } from "../../services/aws/aws";
+import { CloudWatch } from "../../services/aws/aws";
 
 interface LoginProps {
   isAuth?: boolean;
@@ -25,8 +25,10 @@ const Login = ({ isAuth }: LoginProps) => {
   const [key, setKey] = useState("");
   const [secret, setSecret] = useState("");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    let isConnected = false;
 
     let loginData: IProfile = {
       id: uuid.v4(),
@@ -39,13 +41,17 @@ const Login = ({ isAuth }: LoginProps) => {
       loginData.key = key;
       loginData.secret = secret;
       loginData.region = authRegion;
-      configClient(key, secret, authRegion);
+      isConnected = await configClient(key, secret, authRegion);
     }
-    // CloudWatch.groups("test-connection-")
-    //   .observe(data => {
-    //     console.log("data");
-    //   })
-    //   .catch(err => console.log(err, "err"));
+
+    if (!isConnected) {
+      alert("connection failed");
+      return;
+    }
+
+    let watchers = CloudWatch.listWatchers();
+    let tag = watchers[watchers.length - 1];
+    loginData.tag = tag;
 
     AuthSessions.updateMethods(loginData);
     const data = AuthSessions.getMethods();

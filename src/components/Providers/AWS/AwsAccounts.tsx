@@ -5,6 +5,7 @@ import { updateConnections } from "../../../redux/reducers/auth";
 import { SyncAuthMethods } from "../../../redux/actions/authActions";
 import { AuthSessions } from "../../../utils";
 import { Link } from "react-router-dom";
+import { CloudWatch } from "../../../services/aws/aws";
 
 const AwsAccounts = (props: any) => {
   const dispatch = useDispatch();
@@ -15,9 +16,12 @@ const AwsAccounts = (props: any) => {
 
   const disconnect = (method: IProfile) => {
     const existingMethods = AuthSessions.getMethods();
-    const filter = existingMethods.filter(existingMethod => existingMethod.id !== method.id);
-    AuthSessions.setMethods(filter);
-    dispatch(updateConnections(SyncAuthMethods(filter)));
+    const remainingConnections = existingMethods.filter(
+      existingMethod => existingMethod.id !== method.id
+    );
+    CloudWatch.removeWatcher(method.tag!);
+    AuthSessions.setMethods(remainingConnections);
+    dispatch(updateConnections(SyncAuthMethods(remainingConnections)));
   };
 
   return (
@@ -39,7 +43,7 @@ const AwsAccounts = (props: any) => {
                 <div className="row align-items-center">
                   <div className="col-9">
                     <p className="mb-0">
-                      {method.id} - <strong>{method.type}</strong>
+                      {method.tag} - <strong>{method.type}</strong>
                     </p>
                   </div>
                   <div className="col-3 text-right">

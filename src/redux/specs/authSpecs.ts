@@ -8,6 +8,7 @@ export interface IProfile {
   secret?: string;
   provider: AuthTarget;
   region: AuthRegion;
+  tag?: string;
 }
 export interface IAuthCurrent {
   id: string;

@@ -2,7 +2,7 @@ import * as Watchland from "watch-land-ts-client";
 
 export const CloudWatch = new Watchland.CloudWatch.Client();
 
-export const configClient = (key: string, secret: string, region: string = "eu-west-1") => {
+export const configClient = async (key: string, secret: string, region: string = "eu-west-1") => {
   // AWS connection
   const config: Watchland.CloudWatch.Specs.ICloudWatchConfig = {
     options: {
@@ -11,15 +11,14 @@ export const configClient = (key: string, secret: string, region: string = "eu-w
       secretAccessKey: secret
     }
   };
+
+  let isConnected = false;
   // Add the watchers to the client
-  CloudWatch.addWatcher(config);
-
-  // const watchers = CloudWatch.listWatchers();
-  // console.log(watchers);
-
-  // for (const w of watchers) {
-  //   const watcher = CloudWatch.getWatcher(w);
-  //   const wConfig = watcher?.getConfig();
-  //   console.log(wConfig);
-  // }
+  try {
+    await CloudWatch.addWatcher(config);
+    isConnected = true;
+  } catch {
+  } finally {
+    return isConnected;
+  }
 };
