@@ -19,7 +19,7 @@ const AwsGroups = () => {
     setLoading(true);
     CloudWatch.groups(prefix)
       .observe(data => {
-        setGroups([...groups, ...data]);
+        setGroups(data);
         setLoading(false);
       })
       .catch(() => setError(true));
@@ -55,7 +55,7 @@ const AwsGroups = () => {
         <>
           <div className="d-flex justify-content-between">
             <BackButton />
-            <SearcBar search={loadGroups} />
+            <SearcBar search={loadGroups} isFinishDate={false} isDropDownButton={false} />
           </div>
           <Table headers={["Log group", "Creation time"]} body={body} openable={false} />
         </>

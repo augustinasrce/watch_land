@@ -9,6 +9,7 @@ import { WLDevProfiles } from "../../services/specs";
 import { AuthSessions } from "../../utils";
 import { Connect, SyncAuthMethods } from "../../redux/actions/authActions";
 import { configClient } from "../../services/aws/aws";
+// import { CloudWatch } from "../../services/aws/aws";
 
 interface LoginProps {
   isAuth?: boolean;
@@ -40,6 +41,11 @@ const Login = ({ isAuth }: LoginProps) => {
       loginData.region = authRegion;
       configClient(key, secret, authRegion);
     }
+    // CloudWatch.groups("test-connection-")
+    //   .observe(data => {
+    //     console.log("data");
+    //   })
+    //   .catch(err => console.log(err, "err"));
 
     AuthSessions.updateMethods(loginData);
     const data = AuthSessions.getMethods();

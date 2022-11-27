@@ -13,4 +13,13 @@ export const configClient = (key: string, secret: string, region: string = "eu-w
   };
   // Add the watchers to the client
   CloudWatch.addWatcher(config);
+
+  // const watchers = CloudWatch.listWatchers();
+  // console.log(watchers);
+
+  // for (const w of watchers) {
+  //   const watcher = CloudWatch.getWatcher(w);
+  //   const wConfig = watcher?.getConfig();
+  //   console.log(wConfig);
+  // }
 };

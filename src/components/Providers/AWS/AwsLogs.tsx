@@ -8,7 +8,7 @@ import BackButton from "../../BackButton/BackButton";
 import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
 import Spinner from "../../Spinner/Spinner";
-import SearcButton from "../../SearchButton/searchButton";
+import SearcBar from "../../SearchBar/searchBar";
 import { timestampToDate } from "../../timestampToDate";
 
 const AwsLogs = () => {
@@ -20,9 +20,10 @@ const AwsLogs = () => {
   const loadLogs = async () => {
     const logGroups = [{ group: groupName }];
     setLoading(true);
-    CloudWatch.logs(logGroups)
+    CloudWatch.logs(logGroups, { limit: 3 })
       .observe(data => {
-        setLogs(data);
+        const l = logs.concat(data);
+        setLogs(l);
         setLoading(false);
       })
       .catch(() => setError(true));
@@ -63,7 +64,7 @@ const AwsLogs = () => {
         <>
           <div className="d-flex justify-content-between">
             <BackButton />
-            <SearcButton search={search} />
+            <SearcBar search={search} isFinishDate={false} isDropDownButton />
           </div>
           <Table headers={["Log stream name", "Message", "Timestamp"]} body={body} openable />
         </>
