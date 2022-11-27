@@ -70,7 +70,7 @@ const Login = ({ isAuth }: LoginProps) => {
                 <div className="col-sm-12 col-md-3">
                   <select
                     defaultValue={AuthTarget.AWS}
-                    onChange={(ev: any) => setAuthTarget(ev.target.value)}
+                    onChange={(ev: any) => setAuthTarget(ev.target.value.toLowerCase())}
                     name="authTarget"
                     required
                     className="form-select"
@@ -78,7 +78,7 @@ const Login = ({ isAuth }: LoginProps) => {
                     aria-label="Default select example"
                   >
                     {Object.keys(AuthTarget).map(key => (
-                      <option value={key} key={key}>
+                      <option value={key.toLowerCase()} key={key}>
                         {key}
                       </option>
                     ))}
