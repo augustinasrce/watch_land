@@ -17,10 +17,10 @@ const AwsStreams = () => {
   const [body, setBody] = useState<ITableCell[][]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  const loadStreams = async () => {
+  const loadStreams = async (prefix?: string | undefined) => {
     const groups = [groupName];
     setLoading(true);
-    CloudWatch.streams(groups)
+    CloudWatch.streams(groups, prefix)
       .observe(data => {
         setStreams(data);
         setLoading(false);
@@ -59,11 +59,6 @@ const AwsStreams = () => {
     setBody(bodyCells);
   }, [streams]);
 
-  // const search = (value: string) => {
-  //   const filter = streams.filter(s => s.logStreamName.toLowerCase().includes(value.toLowerCase()));
-  //   setStreams(filter);
-  // };
-
   return (
     <>
       {error ? <ErrorAlert /> : null}
@@ -73,7 +68,7 @@ const AwsStreams = () => {
         <>
           <div className="d-flex justify-content-between">
             <BackButton />
-            <SearcBar search={loadStreams} isFinishDate isDropDownButton={false} />
+            <SearcBar search={loadStreams} isFinishDate={false} />
           </div>
           <Table
             headers={["Log stream", "First event time", "Last event time"]}
