@@ -20,6 +20,10 @@ export interface IAuthState {
   methods: IProfile[];
 }
 
+export interface ILogState {
+  limit: number;
+}
+
 export enum AuthType {
   Connect = "connect",
   Disconnect = "disconnect"

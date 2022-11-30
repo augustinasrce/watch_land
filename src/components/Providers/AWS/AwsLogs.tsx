@@ -10,6 +10,8 @@ import ErrorAlert from "../../Alert/ErrorAlert";
 import Spinner from "../../Spinner/Spinner";
 import SearcBar from "../../SearchBar/searchBar";
 import { timestampToDate } from "../../timestampToDate";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
 
 const AwsLogs = () => {
   const groupName = useQuery().get("group") || "";
@@ -17,10 +19,12 @@ const AwsLogs = () => {
   const [body, setBody] = useState<ITableCell[][]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const limit = useSelector((state: RootState) => state.logs.limit);
+
   const loadLogs = async () => {
     const logGroups = [{ group: groupName }];
     setLoading(true);
-    CloudWatch.logs(logGroups, { limit: 3 })
+    CloudWatch.logs(logGroups, { limit: limit, start: 0, end: new Date().getTime() })
       .observe(data => {
         const l = logs.concat(data);
         setLogs(l);
@@ -28,9 +32,10 @@ const AwsLogs = () => {
       })
       .catch(() => setError(true));
   };
+
   useEffect(() => {
     loadLogs();
-  }, []);
+  }, [limit]);
 
   useEffect(() => {
     const bodyCells = () => {
@@ -64,7 +69,7 @@ const AwsLogs = () => {
         <>
           <div className="d-flex justify-content-between">
             <BackButton />
-            <SearcBar search={search} isFinishDate={false} isDropDownButton />
+            <SearcBar search={search} isFinishDate />
           </div>
           <Table headers={["Log stream name", "Message", "Timestamp"]} body={body} openable />
         </>
