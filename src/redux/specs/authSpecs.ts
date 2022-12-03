@@ -24,6 +24,11 @@ export interface ILogState {
   limit: number;
 }
 
+export interface IDateState {
+  startDate: any;
+  endDate: any;
+}
+
 export enum AuthType {
   Connect = "connect",
   Disconnect = "disconnect"

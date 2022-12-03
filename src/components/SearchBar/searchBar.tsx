@@ -3,7 +3,9 @@ import DatePicker from "react-datepicker";
 import { useSelector, useDispatch } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
 import "./searchBar.scss";
+import { RootState } from "../../redux/store";
 import { updateLogLimit } from "../../redux/reducers/logs";
+import { updateStartDate, updateEndDate } from "../../redux/reducers/searchDate";
 
 interface IsearchButtonProps {
   search: (input: string) => void;
@@ -13,13 +15,25 @@ interface IsearchButtonProps {
 
 const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
   const dispatch = useDispatch();
-  const [startDate, setStartDate] = useState<any>(new Date());
-  const [finishDate, setFinishDate] = useState<any>(new Date());
   const [inputValue, setInputValue] = useState<string>("");
+  const startDate = useSelector((state: RootState) => state.date.startDate);
+  const endDate = useSelector((state: RootState) => state.date.endDate);
 
   const setLimit = (limit: number) => {
     const payload = { logLimit: limit };
     const action = updateLogLimit(payload);
+    dispatch(action);
+  };
+
+  const setStartDate = (startDate: any) => {
+    const payload = { dateStartLimit: startDate };
+    const action = updateStartDate(payload);
+    dispatch(action);
+  };
+
+  const setEndDate = (endDate: any) => {
+    const payload = { dateEndLimit: endDate };
+    const action = updateEndDate(payload);
     dispatch(action);
   };
 
@@ -46,8 +60,8 @@ const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
             <DatePicker
               className="form-control"
               wrapperClassName="datePicker"
-              onChange={(date: Date) => setFinishDate(date)}
-              selected={finishDate}
+              onChange={(date: Date) => setEndDate(date)}
+              selected={endDate}
               name="data-picker"
               dateFormat="yyyy-MM-dd"
             />
