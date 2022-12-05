@@ -4,9 +4,6 @@ import { ILogLimitAction } from "../specs/logSpecs";
 
 const initialState: ILogState = {
   limit: 15
-  // startDate:0,//unix timestamp
-  // endDate: 0,// TODAYs date
-  // searchString:''
 };
 
 export const logsSlice = createSlice({

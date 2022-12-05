@@ -5,3 +5,8 @@ export interface IDateStartAction {
 export interface IDateEndAction {
   dateEndLimit: any;
 }
+
+export interface IDateState {
+  startDate: any;
+  endDate: any;
+}

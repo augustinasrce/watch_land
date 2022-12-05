@@ -1,10 +1,9 @@
-import { IDateState } from "../specs/authSpecs";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IDateStartAction, IDateEndAction } from "../specs/dataSpecs";
+import { IDateState, IDateStartAction, IDateEndAction } from "../specs/dataSpecs";
 
 const initialState: IDateState = {
-  startDate: 0, //unix timestamp
-  endDate: new Date() // endDate: 0,// TODAYs date
+  startDate: new Date().setFullYear(new Date().getFullYear() - 1),
+  endDate: new Date()
   // searchString:''
 };
 
