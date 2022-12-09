@@ -13,17 +13,27 @@ import SearcBar from "../../SearchBar/searchBar";
 const AwsGroups = () => {
   const [groups, setGroups] = useState<IAwsLogGroups[]>([]);
   const [body, setBody] = useState<ITableCell[][]>([]);
+  const [empty, setEmpty] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const loadGroups = async (prefix?: string | undefined) => {
     setLoading(true);
+    setGroups([]);
     CloudWatch.groups(prefix)
       .observe(data => {
         setGroups(data);
         setLoading(false);
       })
+      .done(() => {
+        setLoading(false);
+      })
       .catch(() => setError(true));
   };
+
+  useEffect(() => {
+    if (groups.length === 0) setEmpty(true);
+    else setEmpty(false);
+  }, [loading, groups]);
 
   useEffect(() => {
     loadGroups();
@@ -55,9 +65,13 @@ const AwsGroups = () => {
         <>
           <div className="d-flex justify-content-between">
             <BackButton />
-            <SearcBar search={loadGroups} isFinishDate={false} isDropDownButton={false} />
+            <SearcBar search={loadGroups} isFinishDate={false} />
           </div>
-          <Table headers={["Log group", "Creation time"]} body={body} openable={false} />
+          {empty ? (
+            <p>No results</p>
+          ) : (
+            <Table headers={["Log group", "Creation time"]} body={body} openable={false} />
+          )}
         </>
       )}
     </>

@@ -9,7 +9,6 @@ import { updateStartDate, updateEndDate } from "../../redux/reducers/searchDate"
 
 interface IsearchButtonProps {
   search: (input: string) => void;
-  // searchType:'groups' | 'streams' | 'logs'
   isFinishDate: boolean;
 }
 
@@ -25,22 +24,17 @@ const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
     dispatch(action);
   };
 
-  const setStartDate = (startDate: any) => {
+  const setStartDate = (startDate: Date) => {
     const payload = { dateStartLimit: startDate };
     const action = updateStartDate(payload);
     dispatch(action);
   };
 
-  const setEndDate = (endDate: any) => {
+  const setEndDate = (endDate: Date) => {
     const payload = { dateEndLimit: endDate };
     const action = updateEndDate(payload);
     dispatch(action);
   };
-
-  // const search = ()=>{
-  // check search type and dispatch the apporiate action
-
-  // }
 
   return (
     <>

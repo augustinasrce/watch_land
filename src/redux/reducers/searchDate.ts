@@ -3,8 +3,7 @@ import { IDateState, IDateStartAction, IDateEndAction } from "../specs/dataSpecs
 
 const initialState: IDateState = {
   startDate: new Date().setFullYear(new Date().getFullYear() - 1),
-  endDate: new Date()
-  // searchString:''
+  endDate: new Date().setFullYear(new Date().getFullYear())
 };
 
 export const dateSlice = createSlice({
