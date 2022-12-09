@@ -6,10 +6,11 @@ import {
   IProfile
 } from "../specs/authSpecs";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AuthSessions } from "../../utils";
 
 const initialState: IAuthState = {
   current: null,
-  methods: []
+  methods: AuthSessions.getMethods()
 };
 
 export const authSlice = createSlice({
