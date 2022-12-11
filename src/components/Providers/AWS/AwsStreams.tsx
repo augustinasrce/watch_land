@@ -15,18 +15,28 @@ const AwsStreams = () => {
   const groupName = useQuery().get("group") || "";
   const [streams, setStreams] = useState<IAwsStreams[]>([]);
   const [body, setBody] = useState<ITableCell[][]>([]);
+  const [empty, setEmpty] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const loadStreams = async (prefix?: string | undefined) => {
     const groups = [groupName];
     setLoading(true);
+    setStreams([]);
     CloudWatch.streams(groups, prefix)
       .observe(data => {
         setStreams(data);
         setLoading(false);
       })
+      .done(() => {
+        setLoading(false);
+      })
       .catch(() => setError(true));
   };
+
+  useEffect(() => {
+    if (streams.length === 0) setEmpty(true);
+    else setEmpty(false);
+  }, [loading, streams]);
 
   useEffect(() => {
     loadStreams();
@@ -70,11 +80,15 @@ const AwsStreams = () => {
             <BackButton />
             <SearcBar search={loadStreams} isFinishDate={false} />
           </div>
-          <Table
-            headers={["Log stream", "First event time", "Last event time"]}
-            body={body}
-            openable={false}
-          />
+          {empty ? (
+            <p>No results</p>
+          ) : (
+            <Table
+              headers={["Log stream", "First event time", "Last event time"]}
+              body={body}
+              openable={false}
+            />
+          )}
         </>
       )}
     </>

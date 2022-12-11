@@ -17,6 +17,7 @@ const AwsLogs = () => {
   const groupName = useQuery().get("group") || "";
   const [logs, setLogs] = useState<IAwsLogs[]>([]);
   const [body, setBody] = useState<ITableCell[][]>([]);
+  const [empty, setEmpty] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const limit = useSelector((state: RootState) => state.logs.limit);
@@ -24,14 +25,23 @@ const AwsLogs = () => {
   const loadLogs = async () => {
     const logGroups = [{ group: groupName }];
     setLoading(true);
+    setLogs([]);
     CloudWatch.logs(logGroups, { limit: limit, start: 0, end: new Date().getTime() })
       .observe(data => {
         const l = logs.concat(data);
         setLogs(l);
         setLoading(false);
       })
+      .done(() => {
+        setLoading(false);
+      })
       .catch(() => setError(true));
   };
+
+  useEffect(() => {
+    if (logs.length === 0) setEmpty(true);
+    else setEmpty(false);
+  }, [loading, logs]);
 
   useEffect(() => {
     loadLogs();
@@ -71,7 +81,11 @@ const AwsLogs = () => {
             <BackButton />
             <SearcBar search={search} isFinishDate />
           </div>
-          <Table headers={["Log stream name", "Message", "Timestamp"]} body={body} openable />
+          {empty ? (
+            <p>No results</p>
+          ) : (
+            <Table headers={["Log stream name", "Message", "Timestamp"]} body={body} openable />
+          )}
         </>
       )}
     </>
