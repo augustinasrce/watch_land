@@ -10,17 +10,25 @@ import ErrorAlert from "../../Alert/ErrorAlert";
 import Spinner from "../../Spinner/Spinner";
 import SearcBar from "../../SearchBar/searchBar";
 import { timestampToDate } from "../../timestampToDate";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/store";
+import { updateLoadingState } from "../../../redux/reducers/loading";
 
 const AwsLogs = () => {
+  const dispatch = useDispatch();
   const groupName = useQuery().get("group") || "";
   const [logs, setLogs] = useState<IAwsLogs[]>([]);
   const [body, setBody] = useState<ITableCell[][]>([]);
   const [empty, setEmpty] = useState<boolean>(true);
-  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const limit = useSelector((state: RootState) => state.logs.limit);
+  const stateLoading = useSelector((state: RootState) => state.loading.loading);
+
+  const setLoading = (loading: boolean) => {
+    const payload = { loadingData: loading };
+    const action = updateLoadingState(payload);
+    dispatch(action);
+  };
 
   const loadLogs = async () => {
     const logGroups = [{ group: groupName }];
@@ -41,7 +49,7 @@ const AwsLogs = () => {
   useEffect(() => {
     if (logs.length === 0) setEmpty(true);
     else setEmpty(false);
-  }, [loading, logs]);
+  }, [stateLoading, logs]);
 
   useEffect(() => {
     loadLogs();
@@ -73,7 +81,7 @@ const AwsLogs = () => {
   return (
     <>
       {error ? <ErrorAlert /> : null}
-      {loading ? (
+      {stateLoading ? (
         <Spinner />
       ) : (
         <>

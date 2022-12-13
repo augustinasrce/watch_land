@@ -10,14 +10,25 @@ import ErrorAlert from "../../Alert/ErrorAlert";
 import { timestampToDate } from "../../timestampToDate";
 import Spinner from "../../Spinner/Spinner";
 import SearcBar from "../../SearchBar/searchBar";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../../redux/store";
+import { updateLoadingState } from "../../../redux/reducers/loading";
 
 const AwsStreams = () => {
+  const dispatch = useDispatch();
   const groupName = useQuery().get("group") || "";
   const [streams, setStreams] = useState<IAwsStreams[]>([]);
   const [body, setBody] = useState<ITableCell[][]>([]);
   const [empty, setEmpty] = useState<boolean>(true);
-  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const stateLoading = useSelector((state: RootState) => state.loading.loading);
+
+  const setLoading = (loading: boolean) => {
+    const payload = { loadingData: loading };
+    const action = updateLoadingState(payload);
+    dispatch(action);
+  };
+
   const loadStreams = async (prefix?: string | undefined) => {
     const groups = [groupName];
     setLoading(true);
@@ -36,7 +47,7 @@ const AwsStreams = () => {
   useEffect(() => {
     if (streams.length === 0) setEmpty(true);
     else setEmpty(false);
-  }, [loading, streams]);
+  }, [stateLoading, streams]);
 
   useEffect(() => {
     loadStreams();
@@ -72,7 +83,7 @@ const AwsStreams = () => {
   return (
     <>
       {error ? <ErrorAlert /> : null}
-      {loading ? (
+      {stateLoading ? (
         <Spinner />
       ) : (
         <>
