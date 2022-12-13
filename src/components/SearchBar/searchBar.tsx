@@ -39,26 +39,32 @@ const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
   return (
     <>
       <div
-        className={isFinishDate ? "input-group m-2 col-6 d-flex" : "input-group m-2 col-4 d-flex"}
+        className={isFinishDate ? "input-group m-2 col-9 d-flex" : "input-group m-2 col-4 d-flex"}
       >
         {isFinishDate ? (
           <>
-            <DatePicker
-              className="form-control"
-              wrapperClassName="datePicker"
-              onChange={(date: Date) => setStartDate(date)}
-              selected={startDate}
-              name="data-picker"
-              dateFormat="yyyy-MM-dd"
-            />
-            <DatePicker
-              className="form-control"
-              wrapperClassName="datePicker"
-              onChange={(date: Date) => setEndDate(date)}
-              selected={endDate}
-              name="data-picker"
-              dateFormat="yyyy-MM-dd"
-            />
+            <>
+              <label className="datepicker-label">Starting date</label>
+              <DatePicker
+                className="form-control"
+                wrapperClassName="datePicker"
+                onChange={(date: Date) => setStartDate(date)}
+                selected={startDate}
+                name="data-picker"
+                dateFormat="yyyy-MM-dd"
+              />
+            </>
+            <>
+              <label className="datepicker-label">Finishing date</label>
+              <DatePicker
+                className="form-control"
+                wrapperClassName="datePicker"
+                onChange={(date: Date) => setEndDate(date)}
+                selected={endDate}
+                name="data-picker"
+                dateFormat="yyyy-MM-dd"
+              />
+            </>
           </>
         ) : null}
 
