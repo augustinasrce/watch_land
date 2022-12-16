@@ -1,11 +1,11 @@
 import { useState } from "react";
-import DatePicker from "react-datepicker";
 import { useSelector, useDispatch } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
 import "./searchBar.scss";
 import { RootState } from "../../redux/store";
 import { updateLogLimit } from "../../redux/reducers/logs";
 import { updateStartDate, updateEndDate } from "../../redux/reducers/searchDate";
+import { dateToDateTimeStr } from "../../utils/dates";
 
 interface IsearchButtonProps {
   search: (input: string) => void;
@@ -24,13 +24,13 @@ const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
     dispatch(action);
   };
 
-  const setStartDate = (startDate: Date) => {
+  const setStartDate = (startDate: number) => {
     const payload = { dateStartLimit: startDate };
     const action = updateStartDate(payload);
     dispatch(action);
   };
 
-  const setEndDate = (endDate: Date) => {
+  const setEndDate = (endDate: number) => {
     const payload = { dateEndLimit: endDate };
     const action = updateEndDate(payload);
     dispatch(action);
@@ -44,26 +44,32 @@ const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
         {isFinishDate ? (
           <>
             <>
-              <label className="datepicker-label">Starting date</label>
-              <DatePicker
+              <label className="datepicker-label">Star date</label>
+              <input
                 className="form-control"
-                wrapperClassName="datePicker"
-                onChange={(date: Date) => setStartDate(date)}
-                selected={startDate}
-                name="data-picker"
-                dateFormat="yyyy-MM-dd"
-              />
+                type="datetime-local"
+                onChange={ev => {
+                  const date = new Date(ev.target.value);
+                  const timeStamp = date.getTime();
+                  setStartDate(timeStamp);
+                }}
+                defaultValue={dateToDateTimeStr(startDate)}
+                max={dateToDateTimeStr(endDate)}
+              ></input>
             </>
             <>
-              <label className="datepicker-label">Finishing date</label>
-              <DatePicker
+              <label className="datepicker-label">End date</label>
+              <input
                 className="form-control"
-                wrapperClassName="datePicker"
-                onChange={(date: Date) => setEndDate(date)}
-                selected={endDate}
-                name="data-picker"
-                dateFormat="yyyy-MM-dd"
-              />
+                type="datetime-local"
+                onChange={ev => {
+                  const date = new Date(ev.target.value);
+                  const timeStamp = date.getTime();
+                  setEndDate(timeStamp);
+                }}
+                defaultValue={dateToDateTimeStr(endDate)}
+                min={dateToDateTimeStr(startDate)}
+              ></input>
             </>
           </>
         ) : null}

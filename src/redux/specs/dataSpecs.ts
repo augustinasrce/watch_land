@@ -1,12 +1,12 @@
 export interface IDateStartAction {
-  dateStartLimit: any;
+  dateStartLimit: number;
 }
 
 export interface IDateEndAction {
-  dateEndLimit: any;
+  dateEndLimit: number;
 }
 
 export interface IDateState {
-  startDate: any;
-  endDate: any;
+  startDate: number;
+  endDate: number;
 }

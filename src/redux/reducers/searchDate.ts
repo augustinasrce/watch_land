@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { getFullYear } from "../../utils/dates";
 import { IDateState, IDateStartAction, IDateEndAction } from "../specs/dataSpecs";
 
 const initialState: IDateState = {
-  startDate: new Date().setFullYear(new Date().getFullYear() - 1),
-  endDate: new Date().setFullYear(new Date().getFullYear())
+  startDate: getFullYear(1),
+  endDate: getFullYear()
 };
 
 export const dateSlice = createSlice({
