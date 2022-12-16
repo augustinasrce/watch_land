@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "react-datepicker/dist/react-datepicker.css";
 import "./searchBar.scss";
 import { RootState } from "../../redux/store";
 import { updateLogLimit } from "../../redux/reducers/logs";
