@@ -23,6 +23,8 @@ const AwsLogs = () => {
   const [error, setError] = useState<boolean>(false);
   const limit = useSelector((state: RootState) => state.logs.limit);
   const stateLoading = useSelector((state: RootState) => state.loading.loading);
+  const startDate = useSelector((state: RootState) => state.date.startDate);
+  const endDate = useSelector((state: RootState) => state.date.endDate);
 
   const setLoading = (loading: boolean) => {
     const payload = { loadingData: loading };
@@ -33,8 +35,7 @@ const AwsLogs = () => {
   const loadLogs = async () => {
     const logGroups = [{ group: groupName }];
     setLoading(true);
-    setLogs([]);
-    CloudWatch.logs(logGroups, { limit: limit, start: 0, end: new Date().getTime() })
+    CloudWatch.logs(logGroups, { limit: limit, start: startDate, end: endDate })
       .observe(data => {
         const l = logs.concat(data);
         setLogs(l);
@@ -53,7 +54,7 @@ const AwsLogs = () => {
 
   useEffect(() => {
     loadLogs();
-  }, [limit]);
+  }, []);
 
   useEffect(() => {
     const bodyCells = () => {
@@ -73,11 +74,6 @@ const AwsLogs = () => {
     setBody(bodyCells);
   }, [logs]);
 
-  const search = (value: string) => {
-    const filter = logs.filter(l => l.logStreamName.toLowerCase().includes(value.toLowerCase()));
-    setLogs(filter);
-  };
-
   return (
     <>
       {error ? <ErrorAlert /> : null}
@@ -87,7 +83,7 @@ const AwsLogs = () => {
         <>
           <div className="d-flex justify-content-between">
             <BackButton />
-            <SearcBar search={search} isFinishDate />
+            <SearcBar search={loadLogs} isFinishDate />
           </div>
           {empty ? (
             <p>No results</p>
