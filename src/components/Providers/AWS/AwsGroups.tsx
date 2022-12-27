@@ -30,8 +30,10 @@ const AwsGroups = () => {
   const loadGroups = async (prefix?: string | undefined) => {
     setLoading(true);
     setGroups([]);
+    console.log("log before");
     CloudWatch.groups(prefix)
       .observe(data => {
+        console.log("after");
         setGroups(data);
         setLoading(false);
       })
