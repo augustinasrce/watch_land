@@ -8,9 +8,11 @@ import {
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AuthSessions } from "../../utils";
 
+const methods = AuthSessions.getMethods();
+
 const initialState: IAuthState = {
-  current: null,
-  methods: AuthSessions.getMethods()
+  current: methods.length == 0 ? null : methods[0],
+  methods: methods
 };
 
 export const authSlice = createSlice({
