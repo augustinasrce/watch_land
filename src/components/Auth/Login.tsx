@@ -1,5 +1,5 @@
 import * as uuid from "uuid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router";
@@ -7,7 +7,7 @@ import { cloudConnect } from "../../redux/reducers/auth";
 import { AuthTarget, IProfile, AuthRegion } from "../../redux/specs/authSpecs";
 import { WLDevProfiles } from "../../services/specs";
 import { AuthSessions } from "../../utils";
-import { Connect, SyncAuthMethods } from "../../redux/actions/authActions";
+import { Connect } from "../../redux/actions/authActions";
 import { configClient } from "../../services/aws/aws";
 import { CloudWatch } from "../../services/aws/aws";
 
@@ -61,6 +61,18 @@ const Login = ({ isAuth }: LoginProps) => {
 
     navigate(`/${authTarget}`);
   };
+
+  const syncClients = async () => {
+    const methods = AuthSessions.getMethods();
+    for (let method of methods) {
+      let config = await configClient(method.key, method.secret, method.region);
+      console.log(config);
+    }
+  };
+
+  useEffect(() => {
+    syncClients();
+  }, []);
 
   return isAuth ? (
     <Outlet></Outlet>
