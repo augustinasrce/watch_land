@@ -43,7 +43,7 @@ const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
         {isFinishDate ? (
           <>
             <>
-              <label className="datepicker-label">Star date</label>
+              <label className="datepicker-label">Start date</label>
               <input
                 className="form-control"
                 type="datetime-local"
