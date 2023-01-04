@@ -12,8 +12,8 @@ interface ITableProps {
 const Table = ({ headers, body, openable = false }: ITableProps) => {
   return (
     <div className="container">
-      <table className="table">
-        <thead>
+      <table className="table table-bordered">
+        <thead className="thead-dark">
           <tr>
             {[
               ...headers.map((header: string) => {
