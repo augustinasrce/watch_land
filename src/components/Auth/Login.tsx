@@ -1,5 +1,5 @@
 import * as uuid from "uuid";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router";
@@ -61,18 +61,6 @@ const Login = ({ isAuth }: LoginProps) => {
 
     navigate(`/${authTarget}`);
   };
-
-  const syncClients = async () => {
-    const methods = AuthSessions.getMethods();
-    for (let method of methods) {
-      let config = await configClient(method.key, method.secret, method.region);
-      console.log(config);
-    }
-  };
-
-  useEffect(() => {
-    syncClients();
-  }, []);
 
   return isAuth ? (
     <Outlet></Outlet>

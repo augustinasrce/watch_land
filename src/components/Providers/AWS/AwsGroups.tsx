@@ -10,8 +10,8 @@ import BackButton from "../../BackButton/BackButton";
 import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
 import { timestampToDate } from "../../timestampToDate";
-import Spinner from "../../Spinner/Spinner";
 import SearcBar from "../../SearchBar/searchBar";
+import Spinner from "../../Spinner/Spinner";
 
 const AwsGroups = () => {
   const dispatch = useDispatch();
@@ -30,17 +30,17 @@ const AwsGroups = () => {
   const loadGroups = async (prefix?: string | undefined) => {
     setLoading(true);
     setGroups([]);
-    console.log("log before");
     CloudWatch.groups(prefix)
       .observe(data => {
-        console.log("after");
         setGroups(data);
         setLoading(false);
       })
       .done(() => {
         setLoading(false);
       })
-      .catch(() => setError(true));
+      .catch(() => {
+        setError(true);
+      });
   };
 
   useEffect(() => {
