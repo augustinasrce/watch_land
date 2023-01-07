@@ -94,37 +94,21 @@ const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
       {isFinishDate ? (
         <>
           <div className="btn-group m-2">
-            <button
-              type="button"
-              className="btn btn-success dropdown-toggle"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Logs
-            </button>
-            <ul className="dropdown-menu">
-              <li>
-                <a className="dropdown-item" onClick={() => setLimit(5)}>
-                  5
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={() => setLimit(10)}>
-                  10
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={() => setLimit(15)}>
-                  15
-                </a>
-              </li>
-              <li></li>
-              <li>
-                <a className="dropdown-item" onClick={() => setLimit(20)}>
-                  20
-                </a>
-              </li>
-            </ul>
+            <select className="form-select">
+              <option selected>Limit</option>
+              <option value="5" onClick={() => setLimit(5)}>
+                5
+              </option>
+              <option value="10" onClick={() => setLimit(10)}>
+                10
+              </option>
+              <option value="15" onClick={() => setLimit(15)}>
+                15
+              </option>
+              <option value="20" onClick={() => setLimit(20)}>
+                20
+              </option>
+            </select>
           </div>
         </>
       ) : null}
