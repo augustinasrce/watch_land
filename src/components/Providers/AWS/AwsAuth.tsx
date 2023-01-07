@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { AuthTarget, IProfile } from "../../../redux/specs/authSpecs";
 import { RootState } from "../../../redux/store";
@@ -41,13 +41,7 @@ const AwsAuth = (props: any) => {
     }
   }, [auth]);
 
-  return isAuth && loading == false ? (
-    <Outlet></Outlet>
-  ) : loading ? (
-    <Spinner />
-  ) : (
-    <Login isAuth={isAuth} />
-  );
+  return isAuth && !loading ? <Outlet></Outlet> : loading ? <Spinner /> : <Login isAuth={isAuth} />;
 };
 
 export default AwsAuth;
