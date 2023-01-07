@@ -95,7 +95,7 @@ const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
         <>
           <div className="btn-group m-2">
             <select className="form-select">
-              <option selected>Limit</option>
+              <option defaultValue="">Limit</option>
               <option value="5" onClick={() => setLimit(5)}>
                 5
               </option>
