@@ -34,7 +34,7 @@ const TableRow = ({ cells, openable }: ITableRow) => {
       {open ? (
         <tr>
           <td style={{ borderTop: "none" }} colSpan={3}>
-            <>{cells[2].message}</>
+            {cells[2].message}
           </td>
         </tr>
       ) : null}
