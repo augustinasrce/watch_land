@@ -81,7 +81,7 @@ const AwsLogs = () => {
         <Spinner />
       ) : (
         <>
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between p-2">
             <BackButton />
             <SearcBar search={loadLogs} isFinishDate />
           </div>
