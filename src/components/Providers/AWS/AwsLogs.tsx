@@ -31,17 +31,18 @@ const AwsLogs = () => {
     dispatch(action);
   };
 
-  const loadLogs = async () => {
+  const loadLogs = async (searchPattern: string | undefined = undefined) => {
     let dataLogs: IAwsLogs[] = [];
     const logGroups = [{ group: groupName }];
     setLoading(true);
-    CloudWatch.logs(logGroups, { start: startDate, end: endDate })
+    CloudWatch.logs(logGroups, { start: startDate, end: endDate, pattern: searchPattern })
       .observe(data => {
         dataLogs = dataLogs.concat(data);
         setLogs(dataLogs);
         setLoading(false);
       })
       .done(() => {
+        if (dataLogs.length === 0) setLogs(dataLogs);
         setLoading(false);
       })
       .catch(() => setError(true));
@@ -81,9 +82,9 @@ const AwsLogs = () => {
         <Spinner />
       ) : (
         <>
-          <div className="d-flex justify-content-between p-2">
+          <div className="d-flex justify-content-between pt-4 pb-4">
             <BackButton />
-            <SearcBar search={loadLogs} isFinishDate />
+            <SearcBar placeHolder="Search pattern" search={loadLogs} isFinishDate />
           </div>
           {empty ? (
             <p>No results</p>

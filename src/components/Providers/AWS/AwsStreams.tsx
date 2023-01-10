@@ -88,9 +88,9 @@ const AwsStreams = () => {
         <Spinner />
       ) : (
         <>
-          <div className="d-flex justify-content-between p-2">
+          <div className="d-flex justify-content-between pt-4 pb-4">
             <BackButton />
-            <SearcBar search={loadStreams} isFinishDate={false} />
+            <SearcBar placeHolder="Search prefix" search={loadStreams} isFinishDate={false} />
           </div>
           {empty ? (
             <p>No results</p>

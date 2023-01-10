@@ -77,9 +77,9 @@ const AwsGroups = () => {
         <Spinner />
       ) : (
         <>
-          <div className="d-flex justify-content-between p-2">
+          <div className="d-flex justify-content-between pt-4 pb-4">
             <BackButton />
-            <SearcBar search={loadGroups} isFinishDate={false} />
+            <SearcBar placeHolder="Search prefix" search={loadGroups} isFinishDate={false} />
           </div>
           {empty ? (
             <p>No results</p>

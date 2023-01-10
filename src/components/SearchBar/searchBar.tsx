@@ -6,11 +6,12 @@ import { updateStartDate, updateEndDate } from "../../redux/reducers/searchDate"
 import { dateToDateTimeStr } from "../../utils/dates";
 
 interface IsearchButtonProps {
+  placeHolder: string;
   search: (input: string) => void;
   isFinishDate: boolean;
 }
 
-const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
+const SearcButton = ({ placeHolder, search, isFinishDate }: IsearchButtonProps) => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState<string>("");
   const startDate = useSelector((state: RootState) => state.date.startDate);
@@ -30,9 +31,7 @@ const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
 
   return (
     <>
-      <div
-        className={isFinishDate ? "input-group m-2 col-9 d-flex" : "input-group m-2 col-4 d-flex"}
-      >
+      <div className={isFinishDate ? "input-group col-9 d-flex" : "input-group col-4 d-flex"}>
         {isFinishDate ? (
           <>
             <>
@@ -70,7 +69,7 @@ const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
           type="text"
           className="form-control"
           onChange={e => setInputValue(e.target.value)}
-          placeholder="Search"
+          placeholder={placeHolder}
           aria-label="Search-form"
         />
         <div className="input-group-append">
@@ -80,7 +79,7 @@ const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
             role="button"
             onClick={() => search(inputValue)}
           >
-            search
+            Search
           </span>
         </div>
       </div>
