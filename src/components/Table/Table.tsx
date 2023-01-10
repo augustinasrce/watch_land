@@ -29,7 +29,7 @@ const Table = ({ headers, body, openable = false }: ITableProps) => {
         <tbody>
           {[
             ...body.map((cells: ITableCell[]) => {
-              return <TableRow cells={cells} openable={openable} />;
+              return <TableRow cells={cells} openable={openable} key={uuid.v4()} />;
             })
           ]}
         </tbody>
