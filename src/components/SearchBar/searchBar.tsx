@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./searchBar.scss";
 import { RootState } from "../../redux/store";
-import { updateLogLimit } from "../../redux/reducers/logs";
 import { updateStartDate, updateEndDate } from "../../redux/reducers/searchDate";
 import { dateToDateTimeStr } from "../../utils/dates";
 
@@ -16,12 +15,6 @@ const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
   const [inputValue, setInputValue] = useState<string>("");
   const startDate = useSelector((state: RootState) => state.date.startDate);
   const endDate = useSelector((state: RootState) => state.date.endDate);
-
-  const setLimit = (limit: number) => {
-    const payload = { logLimit: limit };
-    const action = updateLogLimit(payload);
-    dispatch(action);
-  };
 
   const setStartDate = (startDate: number) => {
     const payload = { dateStartLimit: startDate };
@@ -91,27 +84,6 @@ const SearcButton = ({ search, isFinishDate }: IsearchButtonProps) => {
           </span>
         </div>
       </div>
-      {isFinishDate ? (
-        <>
-          <div className="btn-group m-2">
-            <select className="form-select">
-              <option defaultValue="">Limit</option>
-              <option value="5" onClick={() => setLimit(5)}>
-                5
-              </option>
-              <option value="10" onClick={() => setLimit(10)}>
-                10
-              </option>
-              <option value="15" onClick={() => setLimit(15)}>
-                15
-              </option>
-              <option value="20" onClick={() => setLimit(20)}>
-                20
-              </option>
-            </select>
-          </div>
-        </>
-      ) : null}
     </>
   );
 };
