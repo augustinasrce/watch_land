@@ -30,12 +30,13 @@ const AwsStreams = () => {
   };
 
   const loadStreams = async (prefix?: string | undefined) => {
+    let dataStreams: IAwsStreams[] = [];
     const groups = [groupName];
     setLoading(true);
-    setStreams([]);
     CloudWatch.streams(groups, prefix)
       .observe(data => {
-        setStreams(data);
+        dataStreams = dataStreams.concat(data);
+        setStreams(dataStreams);
         setLoading(false);
       })
       .done(() => {

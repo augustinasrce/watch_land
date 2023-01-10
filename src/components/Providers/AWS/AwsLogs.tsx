@@ -21,7 +21,6 @@ const AwsLogs = () => {
   const [body, setBody] = useState<ITableCell[][]>([]);
   const [empty, setEmpty] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-  const limit = useSelector((state: RootState) => state.logs.limit);
   const stateLoading = useSelector((state: RootState) => state.loading.loading);
   const startDate = useSelector((state: RootState) => state.date.startDate);
   const endDate = useSelector((state: RootState) => state.date.endDate);
@@ -33,12 +32,13 @@ const AwsLogs = () => {
   };
 
   const loadLogs = async () => {
+    let dataLogs: IAwsLogs[] = [];
     const logGroups = [{ group: groupName }];
     setLoading(true);
-    CloudWatch.logs(logGroups, { limit: limit, start: startDate, end: endDate })
+    CloudWatch.logs(logGroups, { start: startDate, end: endDate })
       .observe(data => {
-        const l = logs.concat(data);
-        setLogs(l);
+        dataLogs = dataLogs.concat(data);
+        setLogs(dataLogs);
         setLoading(false);
       })
       .done(() => {

@@ -28,10 +28,11 @@ const AwsGroups = () => {
   };
 
   const loadGroups = async (prefix?: string | undefined) => {
+    let dataGroups: IAwsLogGroups[] = [];
     setLoading(true);
-    setGroups([]);
     CloudWatch.groups(prefix)
       .observe(data => {
+        dataGroups = dataGroups.concat(data);
         setGroups(data);
         setLoading(false);
       })
