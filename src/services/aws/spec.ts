@@ -29,4 +29,5 @@ export interface IAwsLogs {
   message: string;
   ingestionTime: number;
   eventId: string;
+  tag: string;
 }
