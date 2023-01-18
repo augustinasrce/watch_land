@@ -33,7 +33,7 @@ const AwsGroups = () => {
     CloudWatch.groups(prefix)
       .observe(data => {
         dataGroups = dataGroups.concat(data);
-        setGroups(data);
+        setGroups(dataGroups);
         setLoading(false);
       })
       .done(() => {
