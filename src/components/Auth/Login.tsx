@@ -9,6 +9,7 @@ import { WLDevProfiles } from "../../services/specs";
 import { AuthSessions } from "../../utils";
 import { Connect } from "../../redux/actions/authActions";
 import { configClient } from "../../services/aws/aws";
+import { CloudWatch } from "../../services/aws/aws";
 
 interface LoginProps {
   isAuth?: boolean;
@@ -24,8 +25,10 @@ const Login = ({ isAuth }: LoginProps) => {
   const [key, setKey] = useState("");
   const [secret, setSecret] = useState("");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    let isConnected = false;
 
     let loginData: IProfile = {
       id: uuid.v4(),
@@ -38,8 +41,17 @@ const Login = ({ isAuth }: LoginProps) => {
       loginData.key = key;
       loginData.secret = secret;
       loginData.region = authRegion;
-      configClient(key, secret, authRegion);
+      isConnected = await configClient(key, secret, authRegion);
     }
+
+    if (!isConnected) {
+      alert("connection failed");
+      return;
+    }
+
+    let watchers = CloudWatch.listWatchers();
+    let tag = watchers[watchers.length - 1];
+    loginData.tag = tag;
 
     AuthSessions.updateMethods(loginData);
     const data = AuthSessions.getMethods();
@@ -70,7 +82,7 @@ const Login = ({ isAuth }: LoginProps) => {
                 <div className="col-sm-12 col-md-3">
                   <select
                     defaultValue={AuthTarget.AWS}
-                    onChange={(ev: any) => setAuthTarget(ev.target.value)}
+                    onChange={(ev: any) => setAuthTarget(ev.target.value.toLowerCase())}
                     name="authTarget"
                     required
                     className="form-select"
@@ -78,7 +90,9 @@ const Login = ({ isAuth }: LoginProps) => {
                     aria-label="Default select example"
                   >
                     {Object.keys(AuthTarget).map(key => (
-                      <option value={key}>{key}</option>
+                      <option value={key.toLowerCase()} key={key}>
+                        {key}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -92,7 +106,9 @@ const Login = ({ isAuth }: LoginProps) => {
                     id="aws-profile"
                     aria-label="Default select example"
                   >
-                    <option value={WLDevProfiles.Programmatic}>Programmatic Access</option>
+                    <option value={WLDevProfiles.Programmatic} key={WLDevProfiles.Programmatic}>
+                      Programmatic Access
+                    </option>
                     {/* <option value={WLDevProfiles.Dev}>Watchland dev</option> */}
                   </select>
                 </div>
@@ -122,8 +138,10 @@ const Login = ({ isAuth }: LoginProps) => {
                     id="authRegion"
                     aria-label="Default select example"
                   >
-                    {Object.keys(AuthRegion).map(key => (
-                      <option value={key}>{key}</option>
+                    {Object.values(AuthRegion).map(key => (
+                      <option value={key} key={key}>
+                        {key}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -148,7 +166,7 @@ const Login = ({ isAuth }: LoginProps) => {
                           onChange={(ev: any) => setKey(ev.target.value)}
                           className="form-control"
                           required
-                          aria-describedby="aws-key"
+                          autoComplete={"on"}
                         />
                       </div>
                       <div className="col-sm-12 col-md-4">
@@ -170,7 +188,7 @@ const Login = ({ isAuth }: LoginProps) => {
                           id="aws-key-secret"
                           required
                           className="form-control"
-                          aria-describedby="aws-key-secret"
+                          autoComplete={"on"}
                         />
                       </div>
                       <div className="col-sm-12 col-md-4">

@@ -1,3 +1,4 @@
+import * as uuid from "uuid";
 import { ITableCell } from "../spec";
 import TableRow from "./TableRow";
 import "./Table.scss";
@@ -5,17 +6,22 @@ import "./Table.scss";
 interface ITableProps {
   headers: string[];
   body: ITableCell[][];
+  openable?: Boolean;
 }
 
-const Table = ({ headers, body }: ITableProps) => {
+const Table = ({ headers, body, openable = false }: ITableProps) => {
   return (
     <div className="container">
-      <table className="table">
-        <thead>
+      <table className="table table-bordered">
+        <thead className="thead-dark">
           <tr>
             {[
               ...headers.map((header: string) => {
-                return <th scope="col">{header}</th>;
+                return (
+                  <th scope="col" key={uuid.v4()}>
+                    {header}
+                  </th>
+                );
               })
             ]}
           </tr>
@@ -23,7 +29,7 @@ const Table = ({ headers, body }: ITableProps) => {
         <tbody>
           {[
             ...body.map((cells: ITableCell[]) => {
-              return <TableRow cells={cells} />;
+              return <TableRow cells={cells} openable={openable} key={uuid.v4()} />;
             })
           ]}
         </tbody>

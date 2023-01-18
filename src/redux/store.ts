@@ -1,9 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./reducers/auth";
+import logsSlice from "./reducers/logs";
+import dateSlice from "./reducers/searchDate";
+import loadingSlice from "./reducers/loading";
 
 export const store = configureStore({
   reducer: {
-    auth: authSlice
+    auth: authSlice,
+    logs: logsSlice,
+    date: dateSlice,
+    loading: loadingSlice
   }
 });
 
