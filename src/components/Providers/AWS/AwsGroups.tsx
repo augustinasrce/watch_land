@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { IAwsLogGroups } from "../../../services/aws/spec";
-import { tableCellObject } from "../../../utils/objects";
 import { ITableCell } from "../../spec";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/store";
@@ -9,9 +8,9 @@ import Table from "../../Table/Table";
 import BackButton from "../../BackButton/BackButton";
 import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
-import { timestampToDate } from "../../timestampToDate";
 import SearcBar from "../../SearchBar/searchBar";
 import Spinner from "../../Spinner/Spinner";
+import { generateTable } from "../../../utils/table";
 
 const AwsGroups = () => {
   const dispatch = useDispatch();
@@ -54,19 +53,7 @@ const AwsGroups = () => {
   }, []);
 
   useEffect(() => {
-    const bodyCells = () => {
-      return [
-        ...groups?.map((group: IAwsLogGroups) => {
-          const groupName = tableCellObject(
-            group.logGroupName,
-            true,
-            `/aws/streams?group=${group.logGroupName}`
-          );
-          const creationTime = tableCellObject(timestampToDate(group.creationTime), false, "");
-          return [groupName, creationTime];
-        })
-      ];
-    };
+    const bodyCells = generateTable(groups, "", "/aws/streams/");
     setBody(bodyCells);
   }, [groups]);
 

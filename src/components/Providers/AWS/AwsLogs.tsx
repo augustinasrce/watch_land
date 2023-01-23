@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { ITableCell } from "../../spec";
-import { tableCellObject } from "../../../utils/objects";
 import { IAwsLogs } from "../../../services/aws/spec";
 import { useQuery } from "../../../utils/hooks";
 import Table from "../../Table/Table";
@@ -9,10 +8,10 @@ import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
 import Spinner from "../../Spinner/Spinner";
 import SearcBar from "../../SearchBar/searchBar";
-import { timestampToDate } from "../../timestampToDate";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { updateLoadingState } from "../../../redux/reducers/loading";
+import { generateTable } from "../../../utils/table";
 
 const AwsLogs = () => {
   const dispatch = useDispatch();
@@ -58,20 +57,8 @@ const AwsLogs = () => {
   }, []);
 
   useEffect(() => {
-    const bodyCells = () => {
-      return [
-        ...logs?.map((log: IAwsLogs) => {
-          const logTimeStamp = tableCellObject(`${timestampToDate(log.timestamp)}`, false, "");
-          const logMessage = tableCellObject(log.message, false, "");
-          const streamName = tableCellObject(
-            log.logStreamName,
-            true,
-            `/aws/logs?group=${groupName}&stream=${log.logStreamName}`
-          );
-          return [logMessage, streamName, logTimeStamp];
-        })
-      ];
-    };
+    const url = `/aws/logs`;
+    const bodyCells = generateTable(logs, groupName, url);
     setBody(bodyCells);
   }, [logs]);
 
