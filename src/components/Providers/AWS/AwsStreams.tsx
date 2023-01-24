@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { updateLoadingState } from "../../../redux/reducers/loading";
 import { generateTable } from "../../../utils/table";
+import Pagination from "../../Pagination/pagination";
 
 const AwsStreams = () => {
   const dispatch = useDispatch();
@@ -72,11 +73,14 @@ const AwsStreams = () => {
           {empty ? (
             <p>No results</p>
           ) : (
-            <Table
-              headers={["Log stream", "First event time", "Last event time"]}
-              body={body}
-              openable={false}
-            />
+            [
+              <Table
+                headers={["Log stream", "First event time", "Last event time"]}
+                body={body}
+                openable={false}
+              />,
+              <Pagination active={2} pageCount={3} />
+            ]
           )}
         </>
       )}
