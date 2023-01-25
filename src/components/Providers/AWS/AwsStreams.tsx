@@ -13,9 +13,12 @@ import { RootState } from "../../../redux/store";
 import { updateLoadingState } from "../../../redux/reducers/loading";
 import { generateTable } from "../../../utils/table";
 import Pagination from "../../Pagination/pagination";
+import { getNumberOfPages, sliceArray } from "../../../utils/arrays";
+import NoResult from "../../Alert/NoResult";
 
 const AwsStreams = () => {
   const dispatch = useDispatch();
+  const page = Number(useQuery().get("page") || "1");
   const groupName = useQuery().get("group") || "";
   const [streams, setStreams] = useState<IAwsStreams[]>([]);
   const [body, setBody] = useState<ITableCell[][]>([]);
@@ -55,9 +58,10 @@ const AwsStreams = () => {
   }, []);
 
   useEffect(() => {
-    const bodyCells = generateTable(streams, groupName, "/aws/logs/");
+    const streamCells = sliceArray(streams, page);
+    const bodyCells = generateTable(streamCells, groupName, "/aws/logs/");
     setBody(bodyCells);
-  }, [streams]);
+  }, [streams, page]);
 
   return (
     <>
@@ -71,7 +75,7 @@ const AwsStreams = () => {
             <SearcBar placeHolder="Search prefix" search={loadStreams} isFinishDate={false} />
           </div>
           {empty ? (
-            <p>No results</p>
+            <NoResult />
           ) : (
             [
               <Table
@@ -79,7 +83,7 @@ const AwsStreams = () => {
                 body={body}
                 openable={false}
               />,
-              <Pagination active={2} pageCount={3} />
+              <Pagination active={page} pageCount={getNumberOfPages(streams)} />
             ]
           )}
         </>

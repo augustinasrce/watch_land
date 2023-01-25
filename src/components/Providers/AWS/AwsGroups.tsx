@@ -11,9 +11,14 @@ import ErrorAlert from "../../Alert/ErrorAlert";
 import SearcBar from "../../SearchBar/searchBar";
 import Spinner from "../../Spinner/Spinner";
 import { generateTable } from "../../../utils/table";
+import { getNumberOfPages, sliceArray } from "../../../utils/arrays";
+import Pagination from "../../Pagination/pagination";
+import { useQuery } from "../../../utils/hooks";
+import NoResult from "../../Alert/NoResult";
 
 const AwsGroups = () => {
   const dispatch = useDispatch();
+  const page = Number(useQuery().get("page") || "1");
   const [groups, setGroups] = useState<IAwsLogGroups[]>([]);
   const [body, setBody] = useState<ITableCell[][]>([]);
   const [empty, setEmpty] = useState<boolean>(true);
@@ -53,9 +58,10 @@ const AwsGroups = () => {
   }, []);
 
   useEffect(() => {
-    const bodyCells = generateTable(groups, "", "/aws/streams/");
+    const groupCells = sliceArray(groups, page);
+    const bodyCells = generateTable(groupCells, "", "/aws/streams/");
     setBody(bodyCells);
-  }, [groups]);
+  }, [groups, page]);
 
   return (
     <>
@@ -69,9 +75,12 @@ const AwsGroups = () => {
             <SearcBar placeHolder="Search prefix" search={loadGroups} isFinishDate={false} />
           </div>
           {empty ? (
-            <p>No results</p>
+            <NoResult />
           ) : (
-            <Table headers={["Log group", "Creation time"]} body={body} openable={false} />
+            [
+              <Table headers={["Log group", "Creation time"]} body={body} openable={false} />,
+              <Pagination active={page} pageCount={getNumberOfPages(groups)} />
+            ]
           )}
         </>
       )}
