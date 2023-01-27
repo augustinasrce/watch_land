@@ -1,4 +1,4 @@
-FROM node AS watchland
+FROM node:16 AS watchland
 WORKDIR /watchland
 COPY package*.json ./
 RUN npm install

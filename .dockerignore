@@ -5,3 +5,5 @@
 **/.dockerignore
 **/node_modules
 **/Dockerfile
+**/build
+**/coverage
