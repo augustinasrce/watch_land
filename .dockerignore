@@ -1,0 +1,9 @@
+**/.git
+**/.gitignore
+**/local
+**/run.sh
+**/.dockerignore
+**/node_modules
+**/Dockerfile
+**/build
+**/coverage

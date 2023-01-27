@@ -1,0 +1,20 @@
+# Login to docker
+docker login -u <username>
+
+# Build the image
+docker build --tag watch_land:latest .
+
+# Run the container
+docker run -dit -p 3000:80 --name watchland watch_land:latest
+
+# To get the container ID
+docker ps 
+
+# Commit the container
+docker container commit <container-id> watch_land:latest
+
+# Tag the image tag for the repository
+docker tag watch_land:latest watchland/watch_land:latest
+
+# Push to docker
+docker push watchland/watch_land:latest
