@@ -9,7 +9,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/">
             WatchLand 1.0
           </a>
           <button
