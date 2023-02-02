@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import { IAwsStreams } from "../../../services/aws/spec";
 import { useQuery } from "../../../utils/hooks";
-import { ITableCell } from "../../spec";
+import { ITableCell } from "../../../utils/spec";
 import Table from "../../Table/Table";
-import BackButton from "../../BackButton/BackButton";
+import BackButton from "../../Buttons/BackButton";
 import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
 import Spinner from "../../Spinner/Spinner";
-import SearcBar from "../../SearchBar/searchBar";
+import SearcBar from "../../SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { updateLoadingState } from "../../../redux/reducers/loading";
 import { generateTable } from "../../../utils/table";
-import Pagination from "../../Pagination/pagination";
+import Pagination from "../../Pagination/Pagination";
 import { getNumberOfPages, sliceArray } from "../../../utils/arrays";
-import NoResult from "../../Alert/NoResult";
+import NoResultAlert from "../../Alert/NoResultAlert";
 
 const AwsStreams = () => {
   const dispatch = useDispatch();
@@ -75,7 +75,7 @@ const AwsStreams = () => {
             <SearcBar placeHolder="Search prefix" search={loadStreams} isFinishDate={false} />
           </div>
           {empty ? (
-            <NoResult />
+            <NoResultAlert />
           ) : (
             [
               <Table

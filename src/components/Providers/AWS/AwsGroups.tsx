@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import { IAwsLogGroups } from "../../../services/aws/spec";
-import { ITableCell } from "../../spec";
+import { ITableCell } from "../../../utils/spec";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { updateLoadingState } from "../../../redux/reducers/loading";
 import Table from "../../Table/Table";
-import BackButton from "../../BackButton/BackButton";
+import BackButton from "../../Buttons/BackButton";
 import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
-import SearcBar from "../../SearchBar/searchBar";
+import SearcBar from "../../SearchBar/SearchBar";
 import Spinner from "../../Spinner/Spinner";
 import { generateTable } from "../../../utils/table";
 import { getNumberOfPages, sliceArray } from "../../../utils/arrays";
-import Pagination from "../../Pagination/pagination";
+import Pagination from "../../Pagination/Pagination";
 import { useQuery } from "../../../utils/hooks";
-import NoResult from "../../Alert/NoResult";
+import NoResultAlert from "../../Alert/NoResultAlert";
 
 const AwsGroups = () => {
   const dispatch = useDispatch();
@@ -75,7 +75,7 @@ const AwsGroups = () => {
             <SearcBar placeHolder="Search prefix" search={loadGroups} isFinishDate={false} />
           </div>
           {empty ? (
-            <NoResult />
+            <NoResultAlert />
           ) : (
             [
               <Table headers={["Log group", "Creation time"]} body={body} openable={false} />,
