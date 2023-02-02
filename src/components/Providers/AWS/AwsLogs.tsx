@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
-import { ITableCell } from "../../spec";
+import { ITableCell } from "../../../utils/spec";
 import { IAwsLogs } from "../../../services/aws/spec";
 import { useQuery } from "../../../utils/hooks";
 import Table from "../../Table/Table";
-import BackButton from "../../BackButton/BackButton";
+import BackButton from "../../Buttons/BackButton";
 import { CloudWatch } from "../../../services/aws/aws";
 import ErrorAlert from "../../Alert/ErrorAlert";
 import Spinner from "../../Spinner/Spinner";
-import SearcBar from "../../SearchBar/searchBar";
+import SearcBar from "../../SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { updateLoadingState } from "../../../redux/reducers/loading";
 import { generateTable } from "../../../utils/table";
 import { getNumberOfPages, sliceArray } from "../../../utils/arrays";
-import Pagination from "../../Pagination/pagination";
+import Pagination from "../../Pagination/Pagination";
 import NoResultAlert from "../../Alert/NoResultAlert";
 
 const AwsLogs = () => {

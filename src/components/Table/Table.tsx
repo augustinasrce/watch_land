@@ -1,5 +1,5 @@
 import * as uuid from "uuid";
-import { ITableCell } from "../spec";
+import { ITableCell } from "../../utils/spec";
 import TableRow from "./TableRow";
 import "./Table.scss";
 
