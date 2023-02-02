@@ -14,7 +14,7 @@ import { updateLoadingState } from "../../../redux/reducers/loading";
 import { generateTable } from "../../../utils/table";
 import Pagination from "../../Pagination/pagination";
 import { getNumberOfPages, sliceArray } from "../../../utils/arrays";
-import NoResult from "../../Alert/NoResult";
+import NoResultAlert from "../../Alert/NoResultAlert";
 
 const AwsStreams = () => {
   const dispatch = useDispatch();
@@ -75,7 +75,7 @@ const AwsStreams = () => {
             <SearcBar placeHolder="Search prefix" search={loadStreams} isFinishDate={false} />
           </div>
           {empty ? (
-            <NoResult />
+            <NoResultAlert />
           ) : (
             [
               <Table

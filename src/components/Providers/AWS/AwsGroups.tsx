@@ -14,7 +14,7 @@ import { generateTable } from "../../../utils/table";
 import { getNumberOfPages, sliceArray } from "../../../utils/arrays";
 import Pagination from "../../Pagination/pagination";
 import { useQuery } from "../../../utils/hooks";
-import NoResult from "../../Alert/NoResult";
+import NoResultAlert from "../../Alert/NoResultAlert";
 
 const AwsGroups = () => {
   const dispatch = useDispatch();
@@ -75,7 +75,7 @@ const AwsGroups = () => {
             <SearcBar placeHolder="Search prefix" search={loadGroups} isFinishDate={false} />
           </div>
           {empty ? (
-            <NoResult />
+            <NoResultAlert />
           ) : (
             [
               <Table headers={["Log group", "Creation time"]} body={body} openable={false} />,
