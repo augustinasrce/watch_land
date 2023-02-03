@@ -9,7 +9,7 @@ import "./App.scss";
 import AwsAuth from "./components/Providers/AWS/AwsAuth";
 import Login from "./components/Auth/Login";
 import AwsAccounts from "./components/Providers/AWS/AwsAccounts";
-import HomePage from "./components/HomePage/HomePage";
+import HomePage from "./components/HomePage/homePage";
 
 function App() {
   return (
