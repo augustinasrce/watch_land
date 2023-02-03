@@ -1,4 +1,4 @@
-import { timestampToDate } from "../components/timestampToDate";
+import { timestampToDate } from "./timestampToDate";
 import { IAwsLogGroups, IAwsLogs, IAwsStreams } from "../services/aws/spec";
 import { tableCellObject } from "./objects";
 

@@ -1,7 +1,7 @@
 import * as uuid from "uuid";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ITableCell } from "../spec";
+import { ITableCell } from "../../utils/spec";
 
 interface ITableRow {
   cells: ITableCell[];

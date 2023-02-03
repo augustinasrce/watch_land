@@ -1,4 +1,4 @@
-import { timestampToDate } from "../../components/timestampToDate";
+import { timestampToDate } from "../../utils/timestampToDate";
 
 test("test timestampToDate dateObject type", () => {
   const dateObject = timestampToDate("Wed 2022/05/04");

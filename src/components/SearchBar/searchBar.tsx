@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./searchBar.scss";
+import "./SearchBar.scss";
 import { RootState } from "../../redux/store";
 import { updateStartDate, updateEndDate } from "../../redux/reducers/searchDate";
 import { dateToDateTimeStr } from "../../utils/dates";

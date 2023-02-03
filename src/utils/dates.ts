@@ -1,3 +1,9 @@
+/**
+ *
+ * @param timeStamp
+ * @returns
+ * date
+ */
 export const dateToDateTimeStr = (timeStamp: number) => {
   const dateObj = new Date(timeStamp);
   const year = dateObj.getFullYear();
@@ -10,6 +16,12 @@ export const dateToDateTimeStr = (timeStamp: number) => {
   return `${year}-${month}-${day}T${hour}:${minute}`;
 };
 
+/**
+ *
+ * @param mYear
+ * @returns
+ * years
+ */
 export const getFullYear = (mYear: number = 0) => {
   const fullYear = new Date().getFullYear() - mYear;
   return new Date().setFullYear(fullYear);

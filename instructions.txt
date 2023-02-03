@@ -5,7 +5,7 @@ docker login -u <username>
 docker build --tag watch_land:latest .
 
 # Run the container
-docker run -dit -p 3000:80 --name watchland watch_land:latest
+docker run -dit -p 4000:80 --name watchland dominykassueris/watch_land:latest
 
 # To get the container ID
 docker ps 
@@ -13,8 +13,13 @@ docker ps
 # Commit the container
 docker container commit <container-id> watch_land:latest
 
+======== Reference ==================
+docker tag local-image:tagname new-repo:tagname
+docker push new-repo:tagname
+=====================================
+
 # Tag the image tag for the repository
-docker tag watch_land:latest watchland/watch_land:latest
+docker tag watch_land:latest dominykassueris/watch_land:latest
 
 # Push to docker
-docker push watchland/watch_land:latest
+docker push dominykassueris/watch_land:latest
