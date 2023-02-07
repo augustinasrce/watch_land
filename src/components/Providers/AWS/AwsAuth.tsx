@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+
+/** Redux */
+/** Cloud Services */
+/** Components  */
+/** Utils */
 import { AuthTarget, IProfile } from "../../../redux/specs/authSpecs";
 import { RootState } from "../../../redux/store";
 import { AuthSessions } from "../../../utils";
@@ -21,7 +26,7 @@ const AwsAuth = (props: any) => {
   const syncClients = async () => {
     const methods = AuthSessions.getMethods();
     for (let method of methods) {
-      let config = await configClient(method.key, method.secret, method.region);
+      await configClient(method.key, method.secret, method.region);
     }
     setLoading(false);
   };

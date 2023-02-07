@@ -1,10 +1,10 @@
-import { timestampToDate } from "./timestampToDate";
-import { IAwsLogGroups, IAwsLogs, IAwsStreams } from "../services/aws/spec";
-import { tableCellObject } from "./objects";
+import { IAwsLogGroups, IAwsLogs, IAwsStreams } from "../../../services/aws/spec";
+import { dates } from "../../../utils/";
+import { tableCellObject } from "../../../utils/objects";
 
 type AwsAny = IAwsLogGroups | IAwsStreams | IAwsLogs;
 
-export const generateTable = <T extends AwsAny>(
+export const generateAwsTable = <T extends AwsAny>(
   dataArray: T[],
   groupName: string,
   baseUrl: string
@@ -16,11 +16,11 @@ export const generateTable = <T extends AwsAny>(
       const url = `${baseUrl}?group=${group}${queryString}`;
       const time = "timestamp" in dataEntry ? dataEntry.timestamp : dataEntry.creationTime;
       const name = "logStreamName" in dataEntry ? dataEntry.logStreamName : dataEntry.logGroupName;
-      const entryTimeStamp = tableCellObject(`${timestampToDate(time)}`, false, "");
+      const entryTimeStamp = tableCellObject(`${dates.timestampToDate(time)}`, false, "");
       const entryName = tableCellObject(name, true, url);
 
       if ("lastEventTimestamp" in dataEntry) {
-        const lastEvent = `${timestampToDate(dataEntry.lastEventTimestamp)}`;
+        const lastEvent = `${dates.timestampToDate(dataEntry.lastEventTimestamp)}`;
         const lastEventTimeStamp = tableCellObject(lastEvent, false, "");
         return [entryName, entryTimeStamp, lastEventTimeStamp];
       }

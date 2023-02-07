@@ -1,11 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
-import { AuthTarget, IProfile } from "../../../redux/specs/authSpecs";
-import { RootState } from "../../../redux/store";
-import { updateConnections } from "../../../redux/reducers/auth";
-import { SyncAuthMethods } from "../../../redux/actions/authActions";
-import { AuthSessions } from "../../../utils";
 import { Link } from "react-router-dom";
+
+/** Redux */
+import { RootState }            from "../../../redux/store";
+import { AuthTarget, IProfile } from "../../../redux/specs/authSpecs";
+import { updateConnections }    from "../../../redux/reducers/auth";
+import { SyncAuthMethods }      from "../../../redux/actions/authActions";
+
+/** Cloud Services */
 import { CloudWatch } from "../../../services/aws/aws";
+
+/** Utils */
+import { AuthSessions } from "../../../utils";
 
 const AwsAccounts = (props: any) => {
   const dispatch = useDispatch();

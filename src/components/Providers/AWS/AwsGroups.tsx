@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
-import { IAwsLogGroups } from "../../../services/aws/spec";
-import { ITableCell } from "../../../utils/spec";
 import { useSelector, useDispatch } from "react-redux";
+
+/** Redux */
 import { RootState } from "../../../redux/store";
 import { updateLoadingState } from "../../../redux/reducers/loading";
-import Table from "../../Table/Table";
-import BackButton from "../../Buttons/BackButton";
-import { CloudWatch } from "../../../services/aws/aws";
-import ErrorAlert from "../../Alert/ErrorAlert";
-import SearcBar from "../../SearchBar/SearchBar";
-import Spinner from "../../Spinner/Spinner";
-import { generateTable } from "../../../utils/table";
-import { getNumberOfPages, sliceArray } from "../../../utils/arrays";
-import Pagination from "../../Pagination/Pagination";
-import { useQuery } from "../../../utils/hooks";
+
+/** Cloud Services */
+import { CloudWatch }    from "../../../services/aws/aws";
+import { IAwsLogGroups } from "../../../services/aws/spec";
+
+/** Components  */
+import BackButton    from "../../Buttons/BackButton";
 import NoResultAlert from "../../Alert/NoResultAlert";
+import SearchBar     from "../../SearchBar/SearchBar";
+import Pagination    from "../../Pagination/Pagination";
+import ErrorAlert    from "../../Alert/ErrorAlert";
+import Spinner       from "../../Spinner/Spinner";
+import Table         from "../../Table/Table";
+
+/** Utils */
+import { generateAwsTable } from "./utils";
+import { ITableCell }       from "../../../utils/spec";
+import { arrays }           from "../../../utils/";
+import { useQuery }         from "../../../utils/hooks";
 
 const AwsGroups = () => {
   const dispatch = useDispatch();
@@ -58,28 +66,28 @@ const AwsGroups = () => {
   }, []);
 
   useEffect(() => {
-    const groupCells = sliceArray(groups, page);
-    const bodyCells = generateTable(groupCells, "", "/aws/streams/");
+    const groupCells = arrays.sliceArray(groups, page);
+    const bodyCells = generateAwsTable(groupCells, "", "/aws/streams/");
     setBody(bodyCells);
   }, [groups, page]);
 
   return (
     <>
-      {error ? <ErrorAlert /> : null}
-      {stateLoading ? (
+      { error ? <ErrorAlert /> : null }
+      { stateLoading ? (
         <Spinner />
       ) : (
         <>
           <div className="d-flex justify-content-between pt-4 pb-4">
             <BackButton />
-            <SearcBar placeHolder="Search prefix" search={loadGroups} isFinishDate={false} />
+            <SearchBar placeHolder="Search prefix" search={ loadGroups } isFinishDate = { false } />
           </div>
-          {empty ? (
+          { empty ? (
             <NoResultAlert />
           ) : (
             [
-              <Table headers={["Log group", "Creation time"]} body={body} openable={false} />,
-              <Pagination active={page} pageCount={getNumberOfPages(groups)} />
+              <Table headers={["Log group", "Creation time"]} body={ body } openable={ false } />,
+              <Pagination active={ page } pageCount={ arrays.getNumberOfPages(groups) } />
             ]
           )}
         </>

@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
-import { IAwsStreams } from "../../../services/aws/spec";
-import { useQuery } from "../../../utils/hooks";
-import { ITableCell } from "../../../utils/spec";
-import Table from "../../Table/Table";
-import BackButton from "../../Buttons/BackButton";
-import { CloudWatch } from "../../../services/aws/aws";
-import ErrorAlert from "../../Alert/ErrorAlert";
-import Spinner from "../../Spinner/Spinner";
-import SearcBar from "../../SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../../redux/store";
+
+/** Redux */
+import { RootState }          from "../../../redux/store";
 import { updateLoadingState } from "../../../redux/reducers/loading";
-import { generateTable } from "../../../utils/table";
-import Pagination from "../../Pagination/Pagination";
-import { getNumberOfPages, sliceArray } from "../../../utils/arrays";
+
+/** Cloud Services */
+import { CloudWatch }  from "../../../services/aws/aws";
+import { IAwsStreams } from "../../../services/aws/spec";
+
+/** Components  */
+import BackButton    from "../../Buttons/BackButton";
 import NoResultAlert from "../../Alert/NoResultAlert";
+import SearchBar     from "../../SearchBar/SearchBar";
+import Pagination    from "../../Pagination/Pagination";
+import ErrorAlert    from "../../Alert/ErrorAlert";
+import Spinner       from "../../Spinner/Spinner";
+import Table         from "../../Table/Table";
+
+/** Utils */
+import { generateAwsTable } from "./utils";
+import { useQuery }         from "../../../utils/hooks";
+import { ITableCell }       from "../../../utils/spec";
+import { arrays }           from "../../../utils/";
 
 const AwsStreams = () => {
   const dispatch = useDispatch();
@@ -58,32 +66,32 @@ const AwsStreams = () => {
   }, []);
 
   useEffect(() => {
-    const streamCells = sliceArray(streams, page);
-    const bodyCells = generateTable(streamCells, groupName, "/aws/logs/");
+    const streamCells = arrays.sliceArray(streams, page);
+    const bodyCells = generateAwsTable(streamCells, groupName, "/aws/logs/");
     setBody(bodyCells);
   }, [streams, page]);
 
   return (
     <>
-      {error ? <ErrorAlert /> : null}
-      {stateLoading ? (
+      { error ? <ErrorAlert /> : null}
+      { stateLoading ? (
         <Spinner />
       ) : (
         <>
           <div className="d-flex justify-content-between pt-4 pb-4">
             <BackButton />
-            <SearcBar placeHolder="Search prefix" search={loadStreams} isFinishDate={false} />
+            <SearchBar placeHolder="Search prefix" search={ loadStreams } isFinishDate={ false } />
           </div>
-          {empty ? (
+          { empty ? (
             <NoResultAlert />
           ) : (
             [
               <Table
-                headers={["Log stream", "First event time", "Last event time"]}
-                body={body}
-                openable={false}
+                headers={ ["Log stream", "First event time", "Last event time"] }
+                body={ body }
+                openable={ false }
               />,
-              <Pagination active={page} pageCount={getNumberOfPages(streams)} />
+              <Pagination active={page} pageCount={ arrays.getNumberOfPages(streams) } />
             ]
           )}
         </>

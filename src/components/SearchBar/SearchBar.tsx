@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./SearchBar.scss";
+
+/** Redux */
 import { RootState } from "../../redux/store";
 import { updateStartDate, updateEndDate } from "../../redux/reducers/searchDate";
-import { dateToDateTimeStr } from "../../utils/dates";
+
+/** Utils */
+import { dates } from "../../utils/";
 
 interface IsearchButtonProps {
   placeHolder: string;
@@ -11,7 +15,7 @@ interface IsearchButtonProps {
   isFinishDate: boolean;
 }
 
-const SearcButton = ({ placeHolder, search, isFinishDate }: IsearchButtonProps) => {
+const SearchBar = ({ placeHolder, search, isFinishDate }: IsearchButtonProps) => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState<string>("");
   const startDate = useSelector((state: RootState) => state.date.startDate);
@@ -31,8 +35,8 @@ const SearcButton = ({ placeHolder, search, isFinishDate }: IsearchButtonProps) 
 
   return (
     <>
-      <div className={isFinishDate ? "input-group col-9 d-flex" : "input-group col-4 d-flex"}>
-        {isFinishDate ? (
+      <div className={ isFinishDate ? "input-group col-9 d-flex" : "input-group col-4 d-flex" }>
+        { isFinishDate ? (
           <>
             <>
               <label className="datepicker-label">Start date</label>
@@ -44,8 +48,8 @@ const SearcButton = ({ placeHolder, search, isFinishDate }: IsearchButtonProps) 
                   const timeStamp = date.getTime();
                   setStartDate(timeStamp);
                 }}
-                defaultValue={dateToDateTimeStr(startDate)}
-                max={dateToDateTimeStr(endDate)}
+                defaultValue={ dates.dateToDateTimeStr(startDate) }
+                max={ dates.dateToDateTimeStr(endDate) }
               ></input>
             </>
             <>
@@ -58,8 +62,8 @@ const SearcButton = ({ placeHolder, search, isFinishDate }: IsearchButtonProps) 
                   const timeStamp = date.getTime();
                   setEndDate(timeStamp);
                 }}
-                defaultValue={dateToDateTimeStr(endDate)}
-                min={dateToDateTimeStr(startDate)}
+                defaultValue={ dates.dateToDateTimeStr(endDate) }
+                min={ dates.dateToDateTimeStr(startDate) }
               ></input>
             </>
           </>
@@ -87,4 +91,4 @@ const SearcButton = ({ placeHolder, search, isFinishDate }: IsearchButtonProps) 
   );
 };
 
-export default SearcButton;
+export default SearchBar;
