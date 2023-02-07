@@ -10,13 +10,13 @@ import { CloudWatch }  from "../../../services/aws/aws";
 import { IAwsStreams } from "../../../services/aws/spec";
 
 /** Components  */
-import BackButton    from "../../Buttons/BackButton";
-import NoResultAlert from "../../Alert/NoResultAlert";
-import SearchBar     from "../../SearchBar/SearchBar";
-import Pagination    from "../../Pagination/Pagination";
-import ErrorAlert    from "../../Alert/ErrorAlert";
-import Spinner       from "../../Spinner/Spinner";
-import Table         from "../../Table/Table";
+import BackButton from "../../Buttons/BackButton";
+import SearchBar  from "../../SearchBar/SearchBar";
+import Pagination from "../../Pagination/Pagination";
+import AlertEmpty from "../../Alert/AlertEmpty";
+import AlertError from "../../Alert/AlertError";
+import Spinner    from "../../Spinner/Spinner";
+import Table      from "../../Table/Table";
 
 /** Utils */
 import { generateAwsTable } from "./utils";
@@ -73,7 +73,7 @@ const AwsStreams = () => {
 
   return (
     <>
-      { error ? <ErrorAlert /> : null}
+      { error ? <AlertError /> : null}
       { stateLoading ? (
         <Spinner />
       ) : (
@@ -83,7 +83,7 @@ const AwsStreams = () => {
             <SearchBar placeHolder="Search prefix" search={ loadStreams } isFinishDate={ false } />
           </div>
           { empty ? (
-            <NoResultAlert />
+            <AlertEmpty />
           ) : (
             [
               <Table

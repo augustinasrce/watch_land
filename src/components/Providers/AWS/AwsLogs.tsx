@@ -9,13 +9,13 @@ import { CloudWatch } from "../../../services/aws/aws";
 import { IAwsLogs }   from "../../../services/aws/spec";
 
 /** Components  */
-import SearchBar     from "../../SearchBar/SearchBar";
-import Pagination    from "../../Pagination/Pagination";
-import ErrorAlert    from "../../Alert/ErrorAlert";
-import Spinner       from "../../Spinner/Spinner";
-import NoResultAlert from "../../Alert/NoResultAlert";
-import BackButton    from "../../Buttons/BackButton";
-import Table         from "../../Table/Table";
+import SearchBar  from "../../SearchBar/SearchBar";
+import Pagination from "../../Pagination/Pagination";
+import Spinner    from "../../Spinner/Spinner";
+import AlertEmpty from "../../Alert/AlertEmpty";
+import AlertError from "../../Alert/AlertError";
+import BackButton from "../../Buttons/BackButton";
+import Table      from "../../Table/Table";
 
 /** Utils */
 import { generateAwsTable } from "./utils";
@@ -76,7 +76,7 @@ const AwsLogs = () => {
 
   return (
     <>
-      { error ? <ErrorAlert /> : null}
+      { error ? <AlertError /> : null}
       { stateLoading ? (
         <Spinner />
       ) : (
@@ -86,7 +86,7 @@ const AwsLogs = () => {
             <SearchBar placeHolder="Search pattern" search={ loadLogs } isFinishDate />
           </div>
           { empty ? (
-            <NoResultAlert />
+            <AlertEmpty />
           ) : (
             [
               <Table headers={ ["Log stream name", "Message", "Timestamp"] } body={ body } openable />,

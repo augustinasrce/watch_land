@@ -3,15 +3,18 @@ import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
 /** Redux */
-/** Cloud Services */
-/** Components  */
-/** Utils */
-import { AuthTarget, IProfile } from "../../../redux/specs/authSpecs";
 import { RootState } from "../../../redux/store";
-import { AuthSessions } from "../../../utils";
+import { AuthTarget, IProfile } from "../../../redux/specs/authSpecs";
+
+/** Cloud Services */
 import { configClient } from "../../../services/aws/aws";
+
+/** Components  */
 import Login from "../../Auth/Login";
 import Spinner from "../../Spinner/Spinner";
+
+/** Utils */
+import { AuthSessions } from "../../../utils";
 
 const AwsAuth = (props: any) => {
   const [isAuth, setIsAuth] = useState(false);

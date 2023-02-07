@@ -10,19 +10,20 @@ import { CloudWatch }    from "../../../services/aws/aws";
 import { IAwsLogGroups } from "../../../services/aws/spec";
 
 /** Components  */
-import BackButton    from "../../Buttons/BackButton";
-import NoResultAlert from "../../Alert/NoResultAlert";
-import SearchBar     from "../../SearchBar/SearchBar";
-import Pagination    from "../../Pagination/Pagination";
-import ErrorAlert    from "../../Alert/ErrorAlert";
-import Spinner       from "../../Spinner/Spinner";
-import Table         from "../../Table/Table";
+import BackButton from "../../Buttons/BackButton";
+import SearchBar  from "../../SearchBar/SearchBar";
+import Pagination from "../../Pagination/Pagination";
+import Spinner    from "../../Spinner/Spinner";
+import AlertEmpty from "../../Alert/AlertEmpty";
+import AlertError from "../../Alert/AlertError";
+import Table      from "../../Table/Table";
 
 /** Utils */
 import { generateAwsTable } from "./utils";
 import { ITableCell }       from "../../../utils/spec";
 import { arrays }           from "../../../utils/";
 import { useQuery }         from "../../../utils/hooks";
+
 
 const AwsGroups = () => {
   const dispatch = useDispatch();
@@ -73,7 +74,7 @@ const AwsGroups = () => {
 
   return (
     <>
-      { error ? <ErrorAlert /> : null }
+      { error ? <AlertError /> : null }
       { stateLoading ? (
         <Spinner />
       ) : (
@@ -83,7 +84,7 @@ const AwsGroups = () => {
             <SearchBar placeHolder="Search prefix" search={ loadGroups } isFinishDate = { false } />
           </div>
           { empty ? (
-            <NoResultAlert />
+            <AlertEmpty />
           ) : (
             [
               <Table headers={["Log group", "Creation time"]} body={ body } openable={ false } />,

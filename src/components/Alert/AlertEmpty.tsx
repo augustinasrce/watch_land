@@ -1,4 +1,4 @@
-const NoResultAlert = () => {
+const AlertEmpty = () => {
   return (
     <div className="alert alert-warning" role="alert">
       No results!
@@ -6,4 +6,4 @@ const NoResultAlert = () => {
   );
 };
 
-export default NoResultAlert;
+export default AlertEmpty;
