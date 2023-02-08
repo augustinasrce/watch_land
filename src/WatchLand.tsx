@@ -15,7 +15,7 @@ import GoogleCloud from "./components/Providers/gCloud/GoogleCloud";
 
 const WatchLand = () => {
   return (
-    <div className="App">
+    <div className="watchLand">
       <Navbar />
       <main className="container">
         <Routes>
