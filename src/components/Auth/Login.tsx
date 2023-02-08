@@ -70,13 +70,13 @@ const Login = ({ isAuth }: LoginProps) => {
         <div className="col-sm-12 col-md-6 offset-md-3">
           <form action="" className="card" onSubmit={handleSubmit}>
             <div className="card-header">
-              <p className="mb-0"> Authentication</p>
+              <p className="mb-0">Cloud Authentication</p>
             </div>
             <div className="card-body">
               <div className="row align-items-center">
                 <div className="col-sm-12 col-md-2">
                   <label htmlFor="aws-profile" className="col-form-label">
-                    Profile
+                    Provider
                   </label>
                 </div>
                 <div className="col-sm-12 col-md-3">
@@ -105,6 +105,7 @@ const Login = ({ isAuth }: LoginProps) => {
                     className="form-select"
                     id="aws-profile"
                     aria-label="Default select example"
+                    disabled={ authTarget != AuthTarget.AWS }
                   >
                     <option value={WLDevProfiles.Programmatic} key={WLDevProfiles.Programmatic}>
                       Programmatic Access
@@ -137,6 +138,7 @@ const Login = ({ isAuth }: LoginProps) => {
                     className="form-select"
                     id="authRegion"
                     aria-label="Default select example"
+                    disabled={ authTarget != AuthTarget.AWS }
                   >
                     {Object.values(AuthRegion).map(key => (
                       <option value={key} key={key}>
@@ -167,6 +169,7 @@ const Login = ({ isAuth }: LoginProps) => {
                           className="form-control"
                           required
                           autoComplete={"on"}
+                          disabled={ authTarget != AuthTarget.AWS }
                         />
                       </div>
                       <div className="col-sm-12 col-md-4">
@@ -189,6 +192,7 @@ const Login = ({ isAuth }: LoginProps) => {
                           required
                           className="form-control"
                           autoComplete={"on"}
+                          disabled={ authTarget != AuthTarget.AWS }
                         />
                       </div>
                       <div className="col-sm-12 col-md-4">
@@ -201,7 +205,7 @@ const Login = ({ isAuth }: LoginProps) => {
                 : null}
               <div className="row">
                 <div className="col-sm-12 col-md-8 text-right pt-3">
-                  <button className="btn btn-primary">
+                  <button className="btn btn-primary" disabled={ authTarget != AuthTarget.AWS }>
                     {profile === WLDevProfiles.Programmatic ? "Authenticate" : "Connect"}
                   </button>
                 </div>
