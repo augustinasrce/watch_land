@@ -1,12 +1,20 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
-import { AuthTarget, IProfile } from "../../../redux/specs/authSpecs";
+
+/** Redux */
 import { RootState } from "../../../redux/store";
-import { AuthSessions } from "../../../utils";
+import { AuthTarget, IProfile } from "../../../redux/specs/authSpecs";
+
+/** Cloud Services */
 import { configClient } from "../../../services/aws/aws";
+
+/** Components  */
 import Login from "../../Auth/Login";
 import Spinner from "../../Spinner/Spinner";
+
+/** Utils */
+import { AuthSessions } from "../../../utils";
 
 const AwsAuth = (props: any) => {
   const [isAuth, setIsAuth] = useState(false);
@@ -21,7 +29,7 @@ const AwsAuth = (props: any) => {
   const syncClients = async () => {
     const methods = AuthSessions.getMethods();
     for (let method of methods) {
-      let config = await configClient(method.key, method.secret, method.region);
+      await configClient(method.key, method.secret, method.region);
     }
     setLoading(false);
   };

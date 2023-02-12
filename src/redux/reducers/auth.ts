@@ -11,7 +11,7 @@ import { AuthSessions } from "../../utils";
 const methods = AuthSessions.getMethods();
 
 const initialState: IAuthState = {
-  current: methods.length == 0 ? null : methods[0],
+  current: methods.length === 0 ? null : methods[0],
   methods: methods
 };
 

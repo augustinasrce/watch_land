@@ -1,20 +1,31 @@
 import { Route, Routes } from "react-router-dom";
+import "./WatchLand.scss";
+
+/**Components */
+import HomePage from "./components/HomePage/HomePage";
 import Navbar from "./components/Navbar/Navbar";
-import Azure from "./components/Providers/Azure/Azure";
-import GoogleCloud from "./components/Providers/gCloud/GoogleCloud";
+import Login from "./components/Auth/Login";
+import AwsAuth from "./components/Providers/AWS/AwsAuth";
+import AwsAccounts from "./components/Providers/AWS/AwsAccounts";
 import AwsGroups from "./components/Providers/AWS/AwsGroups";
 import AwsStreams from "./components/Providers/AWS/AwsStreams";
 import AwsLogs from "./components/Providers/AWS/AwsLogs";
+<<<<<<< HEAD:src/App.tsx
 import "./App.scss";
 import AwsAuth from "./components/Providers/AWS/AwsAuth";
 import Login from "./components/Auth/Login";
 import AwsAccounts from "./components/Providers/AWS/AwsAccounts";
 import HomePage from "./components/HomePage/HomePage";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
+=======
+import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
+import Azure from "./components/Providers/Azure/Azure";
+import GoogleCloud from "./components/Providers/gCloud/GoogleCloud";
+>>>>>>> main:src/WatchLand.tsx
 
-function App() {
+const WatchLand = () => {
   return (
-    <div className="App">
+    <div className="watchLand">
       <Navbar />
       <main className="container">
         <Routes>
@@ -35,6 +46,6 @@ function App() {
       </main>
     </div>
   );
-}
+};
 
-export default App;
+export default WatchLand;
