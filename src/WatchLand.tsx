@@ -10,18 +10,9 @@ import AwsAccounts from "./components/Providers/AWS/AwsAccounts";
 import AwsGroups from "./components/Providers/AWS/AwsGroups";
 import AwsStreams from "./components/Providers/AWS/AwsStreams";
 import AwsLogs from "./components/Providers/AWS/AwsLogs";
-<<<<<<< HEAD:src/App.tsx
-import "./App.scss";
-import AwsAuth from "./components/Providers/AWS/AwsAuth";
-import Login from "./components/Auth/Login";
-import AwsAccounts from "./components/Providers/AWS/AwsAccounts";
-import HomePage from "./components/HomePage/HomePage";
-import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
-=======
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import Azure from "./components/Providers/Azure/Azure";
 import GoogleCloud from "./components/Providers/gCloud/GoogleCloud";
->>>>>>> main:src/WatchLand.tsx
 
 const WatchLand = () => {
   return (
