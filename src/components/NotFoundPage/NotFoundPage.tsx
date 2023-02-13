@@ -1,14 +1,10 @@
 import "./NotFoundPage.scss";
 import { ReactComponent as NotFoundPageLogo } from "../../assets/notFoundPageLogo/notFoundPageLogo.svg";
 
-/**Components */
-import BackButton from "../Buttons/BackButton";
-
 const NotFoundPage = () => {
   return (
-    <div className="page">
+    <div className="page mt-5">
       <NotFoundPageLogo style={{ height: "600px" }}></NotFoundPageLogo>
-      <BackButton />
     </div>
   );
 };
