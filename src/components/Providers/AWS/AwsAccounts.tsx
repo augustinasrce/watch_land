@@ -2,10 +2,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 /** Redux */
-import { RootState }            from "../../../redux/store";
+import { RootState } from "../../../redux/store";
 import { AuthTarget, IProfile } from "../../../redux/specs/authSpecs";
-import { updateConnections }    from "../../../redux/reducers/auth";
-import { SyncAuthMethods }      from "../../../redux/actions/authActions";
+import { updateConnections } from "../../../redux/reducers/auth";
+import { SyncAuthMethods } from "../../../redux/actions/authActions";
 
 /** Cloud Services */
 import { CloudWatch } from "../../../services/aws/aws";
@@ -32,7 +32,16 @@ const AwsAccounts = (props: any) => {
 
   return (
     <div className="container mt-3">
-      <h4>Active AWS Accounts</h4>
+      <div className="mt-5 mb-5">
+        <div className="mt-4 p-5 bg-info text-white rounded">
+          <h1>Active AWS Accounts</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..
+          </p>
+        </div>
+      </div>
       <div className="col-14 text-right mb-2">
         <Link className="btn btn-info mr-2" to="/login">
           Add Connection
