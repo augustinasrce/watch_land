@@ -74,7 +74,7 @@ const AwsStreams = () => {
   }, [filteredStreams, page]);
 
   const filterByStreamName = (streamName: string) => {
-    const result = streams.filter(stream => stream.logStreamName.startsWith(streamName));
+    const result = streams.filter(stream => stream.logStreamName.includes(streamName));
     setFilteredStreams(result);
   };
 
