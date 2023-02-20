@@ -74,7 +74,7 @@ const AwsGroups = () => {
   }, [filteredGroups, page]);
 
   const filterByGroupName = (groupName: string) => {
-    const result = groups.filter(group => group.logGroupName.startsWith(groupName));
+    const result = groups.filter(group => group.logGroupName.includes(groupName));
     setFilteredGroups(result);
   };
 
