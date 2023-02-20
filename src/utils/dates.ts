@@ -1,9 +1,9 @@
 /**
- * 
- * @param timestamp 
- * @returns 
+ *
+ * @param timestamp
+ * @returns
  */
-export const timestampToDate = (timestamp: number | string) => {
+export const timestampToDate = (timestamp: number) => {
   const dateObject = new Date(timestamp);
   return dateObject.toLocaleDateString("en-us", {
     weekday: "short",

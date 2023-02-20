@@ -1,8 +1,9 @@
 import { dates } from "../../utils/";
 
 test("test timestampToDate dateObject type", () => {
-  const dateObject = dates.timestampToDate("Wed 2022/05/04");
-  expect(dateObject).toBe("Wed, 5/4/2022");
+  const timeStamp = 649631482345;
+  const dateObject = dates.timestampToDate(timeStamp);
+  expect(dateObject).toBe("Thu, 8/2/1990");
 });
 
 test("test 02/08/1990 at 22:11 timestamp returns correct format", () => {

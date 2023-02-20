@@ -6,7 +6,7 @@ export interface IAwsProvider {
 
 export interface IAwsLogGroups {
   logGroupName: string;
-  creationTime: string;
+  creationTime: number;
   metricFilterCount: number;
   arn: string;
 }
