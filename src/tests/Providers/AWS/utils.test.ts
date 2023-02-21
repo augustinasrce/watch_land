@@ -1,4 +1,4 @@
-import { generateAwsTable } from "../../../components/Providers/AWS/utils";
+import { generateAwsGroupsTable } from "../../../components/Providers/AWS/utils";
 
 test("test if group recieved from client data", () => {
   const group = {
@@ -8,10 +8,9 @@ test("test if group recieved from client data", () => {
     arn: "arn:aws:logs:eu-west-1:123456:log-group:/test"
   };
   const dataArray = [group];
-  const groupName = "aws";
   const baseUrl = "/aws/groups";
 
-  const table = generateAwsTable(dataArray, groupName, baseUrl);
+  const table = generateAwsGroupsTable(dataArray, baseUrl);
   expect(typeof table).toBe("object");
   expect(table).toHaveLength(1);
 });
