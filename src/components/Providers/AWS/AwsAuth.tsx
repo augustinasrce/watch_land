@@ -14,7 +14,7 @@ import Login from "../../Auth/Login";
 import Spinner from "../../Spinner/Spinner";
 
 /** Utils */
-import { AuthSessions } from "../../../utils";
+import { AuthSessions } from "../../../authSessions";
 
 const AwsAuth = (props: any) => {
   const [isAuth, setIsAuth] = useState(false);

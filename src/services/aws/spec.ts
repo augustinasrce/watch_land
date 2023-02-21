@@ -12,7 +12,6 @@ export interface IAwsLogGroups {
 }
 
 export interface IAwsStreams {
-  group: string;
   logStreamName: string;
   creationTime: number;
   firstEventTimestamp: number;

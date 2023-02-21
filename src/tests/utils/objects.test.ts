@@ -2,10 +2,9 @@ import { tableCellObject } from "../../utils/objects";
 
 test("test tableCellObject returns an object with 3 keys", () => {
   const message = "test string";
-  const isLink = false;
   const link = "https://google.com";
 
-  const cell = tableCellObject(message, isLink, link);
+  const cell = tableCellObject(message, link);
   expect(typeof cell).toBe("object");
 
   const cellKeys = Object.keys(cell);
