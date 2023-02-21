@@ -1,27 +1,26 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 /** Redux */
-import { RootState }          from "../../../redux/store";
+import { RootState } from "../../../redux/store";
 import { updateLoadingState } from "../../../redux/reducers/loading";
 
 /** Cloud Services */
 import { CloudWatch } from "../../../services/aws/aws";
-import { IAwsLogs }   from "../../../services/aws/spec";
+import { IAwsLogs } from "../../../services/aws/spec";
 
 /** Components  */
-import SearchBar  from "../../SearchBar/SearchBar";
+import SearchBar from "../../SearchBar/SearchBar";
 import Pagination from "../../Pagination/Pagination";
-import Spinner    from "../../Spinner/Spinner";
+import Spinner from "../../Spinner/Spinner";
 import AlertEmpty from "../../Alert/AlertEmpty";
 import AlertError from "../../Alert/AlertError";
 import BackButton from "../../Buttons/BackButton";
-import Table      from "../../Table/Table";
+import Table from "../../Table/Table";
 
 /** Utils */
-import { generateAwsTable } from "./utils";
+import { generateAwsLogsTable } from "./utils";
 import { ITableCell } from "../../../utils/spec";
 import { arrays, useQuery } from "../../../utils/";
-
 
 const AwsLogs = () => {
   const dispatch = useDispatch();
@@ -40,7 +39,7 @@ const AwsLogs = () => {
     const action = updateLoadingState(payload);
     dispatch(action);
   };
-  
+
   const loadLogs = async (searchPattern: string | undefined = undefined) => {
     let dataLogs: IAwsLogs[] = [];
     const logGroups = [{ group: groupName }];
@@ -70,27 +69,27 @@ const AwsLogs = () => {
   useEffect(() => {
     const url = `/aws/logs`;
     const logCells = arrays.sliceArray(logs, page);
-    const bodyCells = generateAwsTable(logCells, groupName, url);
+    const bodyCells = generateAwsLogsTable(logCells);
     setBody(bodyCells);
   }, [logs, page]);
 
   return (
     <>
-      { error ? <AlertError /> : null}
-      { stateLoading ? (
+      {error ? <AlertError /> : null}
+      {stateLoading ? (
         <Spinner />
       ) : (
         <>
           <div className="d-flex justify-content-between pt-4 pb-4">
             <BackButton />
-            <SearchBar placeHolder="Search pattern" search={ loadLogs } isFinishDate />
+            <SearchBar placeHolder="Search pattern" search={loadLogs} isFinishDate />
           </div>
-          { empty ? (
+          {empty ? (
             <AlertEmpty />
           ) : (
             [
-              <Table headers={ ["Log stream name", "Message", "Timestamp"] } body={ body } openable />,
-              <Pagination active={ page } pageCount={ arrays.getNumberOfPages(logs) } />
+              <Table headers={["Log stream name", "Message", "Timestamp"]} body={body} openable />,
+              <Pagination active={page} pageCount={arrays.getNumberOfPages(logs)} />
             ]
           )}
         </>

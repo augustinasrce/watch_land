@@ -19,7 +19,7 @@ import AlertError from "../../Alert/AlertError";
 import Table from "../../Table/Table";
 
 /** Utils */
-import { generateAwsTable } from "./utils";
+import { generateAwsGroupsTable } from "./utils";
 import { ITableCell } from "../../../utils/spec";
 import { arrays } from "../../../utils/";
 import { useQuery } from "../../../utils/hooks";
@@ -69,7 +69,7 @@ const AwsGroups = () => {
 
   useEffect(() => {
     const groupCells = arrays.sliceArray(filteredGroups, page);
-    const bodyCells = generateAwsTable(groupCells, "", "/aws/streams/");
+    const bodyCells = generateAwsGroupsTable(groupCells, "/aws/streams/");
     setBody(bodyCells);
   }, [filteredGroups, page]);
 

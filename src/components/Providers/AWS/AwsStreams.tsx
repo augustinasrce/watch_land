@@ -19,7 +19,7 @@ import Spinner from "../../Spinner/Spinner";
 import Table from "../../Table/Table";
 
 /** Utils */
-import { generateAwsTable } from "./utils";
+import { generateAwsStreamsTable } from "./utils";
 import { useQuery } from "../../../utils/hooks";
 import { ITableCell } from "../../../utils/spec";
 import { arrays } from "../../../utils/";
@@ -69,7 +69,7 @@ const AwsStreams = () => {
 
   useEffect(() => {
     const streamCells = arrays.sliceArray(filteredStreams, page);
-    const bodyCells = generateAwsTable(streamCells, groupName, "/aws/logs/");
+    const bodyCells = generateAwsStreamsTable(streamCells, groupName, "/aws/logs/");
     setBody(bodyCells);
   }, [filteredStreams, page]);
 
