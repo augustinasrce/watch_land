@@ -2,6 +2,7 @@ import * as uuid from "uuid";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ITableCell } from "../../utils/spec";
+import { ReactComponent as ArrowLogo } from "../../assets/arrow/arrow.svg";
 
 interface ITableRow {
   cells: ITableCell[];
@@ -33,7 +34,15 @@ const TableRow = ({ cells, openable }: ITableRow) => {
       </tr>
       {open ? (
         <tr>
-          <td style={{ borderTop: "none" }} colSpan={3}>
+          <td style={{ borderTop: "none" }} onClick={toggle} colSpan={3}>
+            <ArrowLogo
+              style={{
+                height: "36px",
+                width: "36px",
+                transform: "rotate(-90deg)",
+                margin: "3px"
+              }}
+            ></ArrowLogo>
             {cells[2].message}
           </td>
         </tr>
