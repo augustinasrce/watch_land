@@ -16,7 +16,8 @@ import Pagination from "../../Pagination/Pagination";
 import AlertEmpty from "../../Alert/AlertEmpty";
 import AlertError from "../../Alert/AlertError";
 import Spinner from "../../Spinner/Spinner";
-import Table from "../../Table/Table";
+import Table from "../../Table/DefaultTable";
+import AwsStreamsRow from "./AwsStreamsRow";
 
 /** Utils */
 import { generateAwsStreamsTable } from "./utils";
@@ -47,6 +48,7 @@ const AwsStreams = () => {
     setLoading(true);
     CloudWatch.streams(groups, prefix)
       .observe(data => {
+        data.map((stream: { [x: string]: string }) => (stream["groupName"] = groupName));
         dataStreams = dataStreams.concat(data);
         setStreams(dataStreams);
         setFilteredStreams(dataStreams);
@@ -95,8 +97,9 @@ const AwsStreams = () => {
             [
               <Table
                 headers={["Log stream", "First event time", "Last event time"]}
-                body={body}
-                openable={false}
+                itemComponent={AwsStreamsRow}
+                items={streams}
+                resourceName="stream"
               />,
               <Pagination active={page} pageCount={arrays.getNumberOfPages(filteredStreams)} />
             ]
