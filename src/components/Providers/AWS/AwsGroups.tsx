@@ -16,7 +16,8 @@ import Pagination from "../../Pagination/Pagination";
 import Spinner from "../../Spinner/Spinner";
 import AlertEmpty from "../../Alert/AlertEmpty";
 import AlertError from "../../Alert/AlertError";
-import Table from "../../Table/Table";
+import Table from "../../Table/DefaultTable";
+import AwsGroupsRow from "./AwsGroupsRow";
 
 /** Utils */
 import { generateAwsGroupsTable } from "./utils";
@@ -92,10 +93,15 @@ const AwsGroups = () => {
           {empty ? (
             <AlertEmpty />
           ) : (
-            [
-              <Table headers={["Log group", "Creation time"]} body={body} openable={false} />,
+            <>
+              <Table
+                headers={["Log group", "Creation time"]}
+                itemComponent={AwsGroupsRow}
+                items={groups}
+                resourceName="group"
+              />
               <Pagination active={page} pageCount={arrays.getNumberOfPages(filteredGroups)} />
-            ]
+            </>
           )}
         </>
       )}
