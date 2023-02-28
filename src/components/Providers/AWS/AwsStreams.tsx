@@ -17,7 +17,7 @@ import AlertEmpty from "../../Alert/AlertEmpty";
 import AlertError from "../../Alert/AlertError";
 import Spinner from "../../Spinner/Spinner";
 import Table from "../../Table/Table";
-import AwsStreamsRow from "./AwsStreamsRow";
+import AwsStreamsRow from "../../Table/AwsTableRows/AwsStreamsRow";
 
 /** Utils */
 import { useQuery } from "../../../utils/hooks";

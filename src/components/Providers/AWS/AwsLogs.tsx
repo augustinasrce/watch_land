@@ -16,7 +16,7 @@ import AlertEmpty from "../../Alert/AlertEmpty";
 import AlertError from "../../Alert/AlertError";
 import BackButton from "../../Buttons/BackButton";
 import Table from "../../Table/Table";
-import AwsLogsRow from "./AwsLogsRow";
+import AwsLogsRow from "../../Table/AwsTableRows/AwsLogsRow";
 
 /** Utils */
 import { arrays, useQuery } from "../../../utils/";

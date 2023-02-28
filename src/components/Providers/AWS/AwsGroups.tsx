@@ -17,7 +17,7 @@ import Spinner from "../../Spinner/Spinner";
 import AlertEmpty from "../../Alert/AlertEmpty";
 import AlertError from "../../Alert/AlertError";
 import Table from "../../Table/Table";
-import AwsGroupsRow from "./AwsGroupsRow";
+import AwsGroupsRow from "../../Table/AwsTableRows/AwsGroupsRow";
 
 /** Utils */
 import { arrays } from "../../../utils/";
