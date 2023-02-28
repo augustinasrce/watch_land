@@ -1,5 +1,7 @@
-import { IAwsLogs } from "../../../services/aws/spec";
 import { useState } from "react";
+
+/** Utils */
+import { IAwsLogs } from "../../../services/aws/spec";
 import { timestampToDate } from "../../../utils/dates";
 
 interface IAwsLogsRow {

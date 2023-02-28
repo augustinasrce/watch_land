@@ -16,12 +16,10 @@ import Pagination from "../../Pagination/Pagination";
 import Spinner from "../../Spinner/Spinner";
 import AlertEmpty from "../../Alert/AlertEmpty";
 import AlertError from "../../Alert/AlertError";
-import Table from "../../Table/DefaultTable";
+import Table from "../../Table/Table";
 import AwsGroupsRow from "./AwsGroupsRow";
 
 /** Utils */
-import { generateAwsGroupsTable } from "./utils";
-import { ITableCell } from "../../../utils/spec";
 import { arrays } from "../../../utils/";
 import { useQuery } from "../../../utils/hooks";
 
@@ -30,7 +28,6 @@ const AwsGroups = () => {
   const page = Number(useQuery().get("page") || "1");
   const [groups, setGroups] = useState<IAwsLogGroups[]>([]);
   const [filteredGroups, setFilteredGroups] = useState<IAwsLogGroups[]>([]);
-  const [body, setBody] = useState<ITableCell[][]>([]);
   const [empty, setEmpty] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const stateLoading = useSelector((state: RootState) => state.loading.loading);
@@ -67,12 +64,6 @@ const AwsGroups = () => {
   useEffect(() => {
     loadGroups();
   }, []);
-
-  useEffect(() => {
-    const groupCells = arrays.sliceArray(filteredGroups, page);
-    const bodyCells = generateAwsGroupsTable(groupCells, "/aws/streams/");
-    setBody(bodyCells);
-  }, [filteredGroups, page]);
 
   const filterByGroupName = (groupName: string) => {
     const result = groups.filter(group => group.logGroupName.includes(groupName));
