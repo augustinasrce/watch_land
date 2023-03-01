@@ -1,37 +1,28 @@
-import * as uuid from "uuid";
-import { ITableCell } from "../../utils/spec";
-import TableRow from "./TableRow";
-import "./Table.scss";
+/** Utils */
+import { IAwsLogs, IAwsLogGroups, IAwsStreams } from "../../services/aws/spec";
 
 interface ITableProps {
   headers: string[];
-  body: ITableCell[][];
-  openable?: Boolean;
+  items: IAwsLogs[] | IAwsLogGroups[] | IAwsStreams[];
+  resourceName: string;
+  itemComponent: React.FC;
 }
 
-const Table = ({ headers, body, openable = false }: ITableProps) => {
+const Table = ({ headers, items, itemComponent: ItemComponent, resourceName }: ITableProps) => {
   return (
     <div className="container pb-5">
       <table className="table table-bordered">
         <thead className="thead-dark">
           <tr>
-            {[
-              ...headers.map((header: string) => {
-                return (
-                  <th scope="col" key={uuid.v4()}>
-                    {header}
-                  </th>
-                );
-              })
-            ]}
+            {headers.map(header => (
+              <th key={header}>{header}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          {[
-            ...body.map((cells: ITableCell[]) => {
-              return <TableRow cells={cells} openable={openable} key={uuid.v4()} />;
-            })
-          ]}
+          {items.map((item, i) => (
+            <ItemComponent key={i} {...{ [resourceName]: item }} />
+          ))}
         </tbody>
       </table>
     </div>
