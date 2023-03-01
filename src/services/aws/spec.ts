@@ -18,6 +18,7 @@ export interface IAwsStreams {
   lastEventTimestamp: number;
   lastIngestionTime: number;
   uploadSequenceToken: string;
+  groupName: string;
   arn: string;
   storedBytes: number;
 }

@@ -16,10 +16,9 @@ import AlertEmpty from "../../Alert/AlertEmpty";
 import AlertError from "../../Alert/AlertError";
 import BackButton from "../../Buttons/BackButton";
 import Table from "../../Table/Table";
+import AwsLogsRow from "../../Table/AwsTableRows/AwsLogsRow";
 
 /** Utils */
-import { generateAwsLogsTable } from "./utils";
-import { ITableCell } from "../../../utils/spec";
 import { arrays, useQuery } from "../../../utils/";
 
 const AwsLogs = () => {
@@ -27,7 +26,6 @@ const AwsLogs = () => {
   const groupName = useQuery().get("group") || "";
   const page = Number(useQuery().get("page") || "1");
   const [logs, setLogs] = useState<IAwsLogs[]>([]);
-  const [body, setBody] = useState<ITableCell[][]>([]);
   const [empty, setEmpty] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const stateLoading = useSelector((state: RootState) => state.loading.loading);
@@ -66,13 +64,6 @@ const AwsLogs = () => {
     loadLogs();
   }, []);
 
-  useEffect(() => {
-    const url = `/aws/logs`;
-    const logCells = arrays.sliceArray(logs, page);
-    const bodyCells = generateAwsLogsTable(logCells);
-    setBody(bodyCells);
-  }, [logs, page]);
-
   return (
     <>
       {error ? <AlertError /> : null}
@@ -87,10 +78,15 @@ const AwsLogs = () => {
           {empty ? (
             <AlertEmpty />
           ) : (
-            [
-              <Table headers={["Log stream name", "Message", "Timestamp"]} body={body} openable />,
+            <>
+              <Table
+                headers={["Log stream name", "Message", "Timestamp"]}
+                itemComponent={AwsLogsRow}
+                items={logs}
+                resourceName="log"
+              />
               <Pagination active={page} pageCount={arrays.getNumberOfPages(logs)} />
-            ]
+            </>
           )}
         </>
       )}

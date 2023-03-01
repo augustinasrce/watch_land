@@ -17,11 +17,10 @@ import AlertEmpty from "../../Alert/AlertEmpty";
 import AlertError from "../../Alert/AlertError";
 import Spinner from "../../Spinner/Spinner";
 import Table from "../../Table/Table";
+import AwsStreamsRow from "../../Table/AwsTableRows/AwsStreamsRow";
 
 /** Utils */
-import { generateAwsStreamsTable } from "./utils";
 import { useQuery } from "../../../utils/hooks";
-import { ITableCell } from "../../../utils/spec";
 import { arrays } from "../../../utils/";
 
 const AwsStreams = () => {
@@ -30,7 +29,6 @@ const AwsStreams = () => {
   const groupName = useQuery().get("group") || "";
   const [streams, setStreams] = useState<IAwsStreams[]>([]);
   const [filteredStreams, setFilteredStreams] = useState<IAwsStreams[]>([]);
-  const [body, setBody] = useState<ITableCell[][]>([]);
   const [empty, setEmpty] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const stateLoading = useSelector((state: RootState) => state.loading.loading);
@@ -47,6 +45,7 @@ const AwsStreams = () => {
     setLoading(true);
     CloudWatch.streams(groups, prefix)
       .observe(data => {
+        data.map((stream: { [x: string]: string }) => (stream["groupName"] = groupName));
         dataStreams = dataStreams.concat(data);
         setStreams(dataStreams);
         setFilteredStreams(dataStreams);
@@ -66,12 +65,6 @@ const AwsStreams = () => {
   useEffect(() => {
     loadStreams();
   }, []);
-
-  useEffect(() => {
-    const streamCells = arrays.sliceArray(filteredStreams, page);
-    const bodyCells = generateAwsStreamsTable(streamCells, groupName, "/aws/logs/");
-    setBody(bodyCells);
-  }, [filteredStreams, page]);
 
   const filterByStreamName = (streamName: string) => {
     const result = streams.filter(stream => stream.logStreamName.includes(streamName));
@@ -95,8 +88,9 @@ const AwsStreams = () => {
             [
               <Table
                 headers={["Log stream", "First event time", "Last event time"]}
-                body={body}
-                openable={false}
+                itemComponent={AwsStreamsRow}
+                items={streams}
+                resourceName="stream"
               />,
               <Pagination active={page} pageCount={arrays.getNumberOfPages(filteredStreams)} />
             ]
