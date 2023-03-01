@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./AwsLogsRow.scss";
 
 /** Utils */
 import { IAwsLogs } from "../../../services/aws/spec";
@@ -21,17 +22,7 @@ const AwsLogsRow = ({ log }: IAwsLogsRow) => {
       {log ? (
         <tr onClick={toggle}>
           <td>
-            <ArrowLogo
-              style={
-                open
-                  ? {
-                      height: "16px",
-                      width: "16px",
-                      transform: "rotate(-90deg)"
-                    }
-                  : { height: "16px", width: "16px" }
-              }
-            ></ArrowLogo>
+            <ArrowLogo className={`logo ${open ? "open" : ""}`}></ArrowLogo>
             {log.logStreamName}
           </td>
           <td>{log.message}</td>
@@ -40,15 +31,8 @@ const AwsLogsRow = ({ log }: IAwsLogsRow) => {
       ) : null}
       {open ? (
         <tr onClick={toggle}>
-          <td style={{ borderTop: "none" }} colSpan={3}>
-            <ArrowLogo
-              style={{
-                height: "24px",
-                width: "24px",
-                transform: "rotate(-90deg)",
-                marginRight: "12px"
-              }}
-            ></ArrowLogo>
+          <td colSpan={3}>
+            <ArrowLogo className={`logo ${open ? "open" : ""}`}></ArrowLogo>
             {log?.logStreamName}
           </td>
         </tr>
