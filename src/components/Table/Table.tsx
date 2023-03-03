@@ -1,5 +1,6 @@
 /** Utils */
 import { IAwsLogs, IAwsLogGroups, IAwsStreams } from "../../services/aws/spec";
+import AlertEmpty from "../Alert/AlertEmpty";
 
 interface ITableProps {
   headers: string[];
@@ -9,6 +10,7 @@ interface ITableProps {
 }
 
 const Table = ({ headers, items, itemComponent: ItemComponent, resourceName }: ITableProps) => {
+  if (!items.length) return <AlertEmpty />;
   return (
     <div className="container pb-5">
       <table className="table table-bordered">
