@@ -5,11 +5,16 @@ import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { cloudConnect } from "../../redux/reducers/auth";
 import { AuthTarget, IProfile, AuthRegion } from "../../redux/specs/authSpecs";
-import { WLDevProfiles } from "../../services/specs";
-import { AuthSessions } from "../../authSessions";
+import { AuthSessions } from "./AuthSessions";
 import { Connect } from "../../redux/actions/authActions";
 import { configClient } from "../../services/aws/aws";
 import { CloudWatch } from "../../services/aws/aws";
+
+export enum WLDevProfiles {
+  Dev = "dev",
+  Programmatic = "programmatic",
+  Creds = "creds"
+}
 
 interface LoginProps {
   isAuth?: boolean;

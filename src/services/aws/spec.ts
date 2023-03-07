@@ -1,9 +1,3 @@
-export interface IAwsProvider {
-  groups(): Promise<IAwsLogGroups[] | []>;
-  streams(groupName: string): Promise<IAwsStreams[] | []>;
-  logs(grouName: string, streams: string[]): Promise<IAwsLogs[] | []>;
-}
-
 export interface IAwsLogGroups {
   logGroupName: string;
   creationTime: number;

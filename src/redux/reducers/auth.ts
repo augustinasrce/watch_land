@@ -6,7 +6,7 @@ import {
   IProfile
 } from "../specs/authSpecs";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AuthSessions } from "../../authSessions";
+import { AuthSessions } from "../..//components/Auth/AuthSessions";
 
 const methods = AuthSessions.getMethods();
 

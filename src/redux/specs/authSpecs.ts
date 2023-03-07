@@ -1,4 +1,4 @@
-import { WLDevProfiles } from "../../services/specs";
+import { WLDevProfiles } from "../../components/Auth/Login";
 
 export interface IProfile {
   id: string;

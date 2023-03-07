@@ -1,4 +1,4 @@
-import { IProfile } from "./redux/specs/authSpecs";
+import { IProfile } from "../../redux/specs/authSpecs";
 
 export class AuthSessions {
   static session_methods_key = "auth_methods";

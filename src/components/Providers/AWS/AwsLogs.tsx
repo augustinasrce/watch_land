@@ -14,7 +14,8 @@ import Table from "../../Table/Table";
 import AwsLogsRow from "../../Table/AwsTableRows/AwsLogsRow";
 
 /** Utils */
-import { arrays, useCloudWatch, useQuery } from "../../../utils/";
+// import { getNumberOfPages } from "../../../utils/dates";
+import { useCloudWatch, useQuery } from "../../../utils/hooks";
 
 const AwsLogs = () => {
   const groupName = useQuery().get("group") || "";
@@ -47,7 +48,7 @@ const AwsLogs = () => {
         items={filterByStreamName(filterQuery)}
         resourceName="log"
       />
-      {/* <Pagination active={page} pageCount={arrays.getNumberOfPages(logs)} /> fix it */}
+      {/* <Pagination active={page} pageCount={getNumberOfPages(logs)} /> fix it */}
     </>
   );
 };
