@@ -21,7 +21,6 @@
     "generate": "npx generate-react-cli component",
     "build": "react-scripts build",
     "test": "react-scripts test"
-
   },
   "eslintConfig": {
     "extends": [
@@ -57,8 +56,14 @@
     "@types/react-redux": "^7.1.24",
     "@types/react-router-dom": "^5.3.3",
     "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
+    "eslint": "^8.35.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "generate-react-cli": "^7.2.0",
     "node-sass": "^7.0.1",
+    "prettier": "2.8.4",
     "typescript": "^4.7.4"
   }
 }
