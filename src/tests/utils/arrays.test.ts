@@ -1,4 +1,4 @@
-import { getNumberOfPages, sliceArray } from "../../utils/arrays";
+import { getNumberOfPages, sliceArray } from "utils/arrays";
 
 test("test slice function on array", () => {
   const array = [0, 1, 2, 3];
@@ -7,7 +7,7 @@ test("test slice function on array", () => {
 });
 
 test("test page number value", () => {
-  const array = Array.apply(null, Array(52)).map(function (_, i) {
+  const array = [...Array(52).keys()].map(function (_, i) {
     return i;
   });
   expect(getNumberOfPages([1, 2, 3, 4])).toBe(1);

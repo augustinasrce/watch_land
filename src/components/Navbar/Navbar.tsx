@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.scss";
 
 const Navbar = () => {
-  const [selected, setSelected] = useState<String | undefined>(undefined);
+  const [selected, setSelected] = useState<string | undefined>(undefined);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">

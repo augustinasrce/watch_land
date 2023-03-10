@@ -10,11 +10,11 @@ export const useQuery = () => {
   return React.useMemo(() => new URLSearchParams(search), [search]);
 };
 
-type CloudWatchType = <Type>(watch: Watch) => { data: Type[]; loading: Boolean; error: Boolean };
+type CloudWatchType = <Type>(watch: Watch) => { data: Type[]; loading: boolean; error: boolean };
 
 export const useCloudWatch: CloudWatchType = <Type>(watch: Watch) => {
-  const [loading, setLoading] = useState<Boolean>(false);
-  const [error, setError] = useState<Boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
   const [data, setData] = useState<Type[]>([]);
 
   useEffect(() => {

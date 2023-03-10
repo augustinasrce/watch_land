@@ -1,10 +1,10 @@
-version: '3.8'
+version: "3.8"
 services:
   watchland:
     build:
       context: ../
       dockerfile: ./local/Dockerfile
     volumes:
-      - ../src/:/watchland/src
+      - ./:/watchland/src
     ports:
       - "3000:3000"

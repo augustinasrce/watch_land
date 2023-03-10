@@ -1,4 +1,4 @@
-import { timestampToDate, dateToDateTimeStr, getFullYear } from "../../utils/dates";
+import { timestampToDate, dateToDateTimeStr, getFullYear } from "utils/dates";
 
 test("test timestampToDate dateObject type", () => {
   const timeStamp = 649631482345;

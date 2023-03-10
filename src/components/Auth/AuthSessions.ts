@@ -4,7 +4,7 @@ export class AuthSessions {
   static session_methods_key = "auth_methods";
 
   static getMethods() {
-    let sessionMethods = window.sessionStorage.getItem(this.session_methods_key);
+    const sessionMethods = window.sessionStorage.getItem(this.session_methods_key);
     if (!sessionMethods) return [];
     const methods = [...JSON.parse(sessionMethods)];
     return methods;

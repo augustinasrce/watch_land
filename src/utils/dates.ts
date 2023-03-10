@@ -37,7 +37,7 @@ export const dateToDateTimeStr = (timeStamp: number) => {
  * @returns
  * years
  */
-export const getFullYear = (mYear: number = 0) => {
+export const getFullYear = (mYear = 0) => {
   const fullYear = new Date().getFullYear() - mYear;
   return new Date().setFullYear(fullYear);
 };

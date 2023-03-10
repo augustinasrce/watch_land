@@ -13,7 +13,7 @@ const Pagination = ({ active, pageCount }: IPaginationProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const goToPage = (p: number) => {
-    let params = new URLSearchParams();
+    const params = new URLSearchParams();
     params.set("page", `${p}`);
     searchParams.forEach((value, key) => {
       // Check that the key is not already present
@@ -32,7 +32,7 @@ const Pagination = ({ active, pageCount }: IPaginationProps) => {
       ...pageArray.map((pageKey: number) => {
         const p = pageKey + 1;
         return (
-          <li className={`page-item ${activePage === p ? "active" : ""}`}>
+          <li key="p" className={`page-item ${activePage === p ? "active" : ""}`}>
             <a
               className="page-link"
               href="#"

@@ -10,8 +10,8 @@ import SearchBar from "../../SearchBar/SearchBar";
 import Spinner from "../../Spinner/Spinner";
 import AlertError from "../../Alert/AlertError";
 import BackButton from "../../Buttons/BackButton";
-import Table from "../../Table/Table";
-import AwsLogsRow from "../../Table/AwsTableRows/AwsLogsRow";
+import Table from "../../table/Table";
+import AwsLogsRow from "../../table/AwsTableRows/AwsLogsRow";
 
 /** Utils */
 // import { getNumberOfPages } from "../../../utils/dates";
@@ -19,7 +19,6 @@ import { useCloudWatch, useQuery } from "../../../utils/hooks";
 
 const AwsLogs = () => {
   const groupName = useQuery().get("group") || "";
-  const page = Number(useQuery().get("page") || "1");
 
   const [filterQuery, setFilterQuery] = useState<string>("");
   const {

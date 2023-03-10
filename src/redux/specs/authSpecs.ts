@@ -63,7 +63,7 @@ export enum AuthRegion {
 }
 
 export interface IAuthConnectData {
-  payload: any;
+  payload: string;
 }
 export interface IAuthAction {
   type: AuthType;

@@ -16,7 +16,7 @@ import Spinner from "../../Spinner/Spinner";
 /** Utils */
 import { AuthSessions } from "../../Auth/AuthSessions";
 
-const AwsAuth = (props: any) => {
+const AwsAuth = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
   const auth = useSelector((state: RootState) => {
@@ -28,7 +28,7 @@ const AwsAuth = (props: any) => {
 
   const syncClients = async () => {
     const methods = AuthSessions.getMethods();
-    for (let method of methods) {
+    for (const method of methods) {
       await configClient(method.key, method.secret, method.region);
     }
     setLoading(false);

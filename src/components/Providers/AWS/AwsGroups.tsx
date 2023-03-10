@@ -10,15 +10,14 @@ import SearchBar from "../../SearchBar/SearchBar";
 // import Pagination from "../../Pagination/Pagination";
 import Spinner from "../../Spinner/Spinner";
 import AlertError from "../../Alert/AlertError";
-import Table from "../../Table/Table";
-import AwsGroupsRow from "../../Table/AwsTableRows/AwsGroupsRow";
+import Table from "../../table/Table";
+import AwsGroupsRow from "../../table/AwsTableRows/AwsGroupsRow";
 
 /** Utils */
 // import { arrays } from "../../../utils/";
-import { useCloudWatch, useQuery } from "../../../utils/hooks";
+import { useCloudWatch } from "../../../utils/hooks";
 
 const AwsGroups = () => {
-  const page = Number(useQuery().get("page") || "1");
   const [filterQuery, setFilterQuery] = useState<string>("");
 
   const { data: groups, loading, error } = useCloudWatch<IAwsLogGroups>(CloudWatch.groups());

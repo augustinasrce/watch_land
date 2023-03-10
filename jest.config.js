@@ -1,11 +1,6 @@
-module.exports = {
-     clearMocks: true,
-     collectCoverage: true,
-     coverageDirectory: "coverage",
-     coverageProvider: "v8",
-     testEnvironment: "jsdom",
-     testMatch: [
-          "**/__tests__/**/*.[jt]s?(x)",
-          "**/?(*.)+(test).[tj]s?(x)"
-        ],
-}
+export const clearMocks = true;
+export const collectCoverage = true;
+export const coverageDirectory = "coverage";
+export const coverageProvider = "v8";
+export const testEnvironment = "jsdom";
+export const testMatch = ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(test).[tj]s?(x)"];

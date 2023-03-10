@@ -1,5 +1,3 @@
-import BackButton from "../Buttons/BackButton";
-
 const AlertComingSoon = () => {
   return (
     <>

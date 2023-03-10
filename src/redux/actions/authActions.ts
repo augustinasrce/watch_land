@@ -4,9 +4,8 @@ import {
   IAuthAction,
   IAuthActionDisconnect,
   IAuthConnectionAction,
-  IAuthState,
   IProfile
-} from "../specs/authSpecs";
+} from "redux/specs/authSpecs";
 
 export const Connect = (target: AuthTarget, stateData: IProfile): IAuthAction => {
   return {

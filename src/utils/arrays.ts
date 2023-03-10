@@ -7,6 +7,7 @@ export const PerPage = 50;
  * @returns
  * starting page index and last page index
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const sliceArray = (arr: any[], currentPage: number) => {
   const startIndex = currentPage * PerPage - PerPage;
   const endIndex = currentPage * PerPage;
@@ -21,6 +22,7 @@ export const sliceArray = (arr: any[], currentPage: number) => {
  * number of pages
  */
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getNumberOfPages = (arr: any[]) => {
   return Math.ceil(arr.length / PerPage);
 };
